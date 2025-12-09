@@ -195,6 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">TLDR</a></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link" data-scroll-target="#intro">Intro</a></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   <li><a href="#about-gke-modes-of-operation" id="toc-about-gke-modes-of-operation" class="nav-link" data-scroll-target="#about-gke-modes-of-operation">About GKE Modes of Operation</a></li>
   <li>
@@ -297,10 +298,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="tldr" class="level2"><h2 class="anchored" data-anchor-id="tldr">TLDR</h2>
 <p>Here we work through Google’s interactive GKE<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Autopilot Walkthrough <a href="https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot">tutorial</a>.</p>
+</section><section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>Learning a new technology can sometimes be daunting … especially when it involves cloud, network engineering, &amp; the Internet. There are loads of <a href="https://www.youtube.com/watch?v=BE77h7dmoQU">Kubernetes</a> resources/tutorials on the internet, &amp; it’s been around for over a decade, so why another one? This is for documenting my experience. I’ve kind of always seen this tool as the thing for cloud engineers to handle to scale services in production.</p>
+<p>That’s still true today. Recently, I’ve discovered that quite a few geospatial data science teams are using Kubernetes to scale their satellite imagery data pipelines. With my experience handling geospatial data, I hope to grow my skillset in cloud engineering with handling satellite imagery pipelines at scale.</p>
+<p>Fundamentals first -&gt; so lets go! 🌏 💾 🚢 📦</p>
 </section><section id="resources" class="level2"><h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <ul>
 <li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/choose-cluster-mode">GKE Modes of Operation</a></li>
 <li><a href="https://console.cloud.google.com/kubernetes/auto/add">Kubernetes Engine -&gt; Create an Autopilot cluser</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Resource Management for Pods and Containers</a></li>
 </ul></section><section id="about-gke-modes-of-operation" class="level2"><h2 class="anchored" data-anchor-id="about-gke-modes-of-operation">About GKE Modes of Operation</h2>
 <p>GKE allows you to select 2 modes of operation when creating a cluser:</p>
 <ul>
@@ -425,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The next sections of the tutorial involve deploying a microservice demo application to your Autopilot Cluster.</p>
 <p>The walkthrough on <a href="https://console.cloud.google.com" class="uri">https://console.cloud.google.com</a> has you use the Google Cloud Console built-in terminal &amp; Cloud Shell (VS Code) editor.</p>
 <p>However, Kubernetes was designed to be able to do this remotely, so we will use the <code>kubectl</code> CLI in our local dev environment. With API access/auth &amp; config setup, these steps can be done in either your local dev setup or within the Google Cloud Console.</p>
-<p>Additionally, VS Code’s Kuberenetes extension allows us to monitor our cluster. We’ll show what that looks like as well.</p>
+<p>Additionally, VS Code’s <a href="https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools#overview">Kuberenetes extension</a> allows us to monitor our cluster. We’ll show what that looks like as well.</p>
 <section id="deploying-application-to-cluster" class="level3"><h3 class="anchored" data-anchor-id="deploying-application-to-cluster">Deploying Application to Cluster</h3>
 <p>Here we clone the demo microservice application (an Online Boutique). Then, we deploy it to our autopilot cluster.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">git</span> clone <span class="at">--depth</span> 1 https://github.com/GoogleCloudPlatform/microservices-demo.git</span>
@@ -517,20 +523,25 @@ Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 </p></li>
 </ul></section></section><section id="scaling-kubernetes-autopilot-cluster" class="level2"><h2 class="anchored" data-anchor-id="scaling-kubernetes-autopilot-cluster">Scaling Kubernetes Autopilot Cluster</h2>
 <p>Kubernetes was designed to <strong>scale</strong> container applications. Here we will explore doing so with the Autopilot cluster to demo some of its capabilities.</p>
+<p>Useful resources:</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Resource Management for Pods and Containers</a></li>
+</ul>
 <section id="apply-changes-to-deployment-in-autopilot-cluster" class="level3"><h3 class="anchored" data-anchor-id="apply-changes-to-deployment-in-autopilot-cluster">Apply Changes to Deployment in Autopilot Cluster</h3>
 <p>Either through the <code>kubectl</code> CLI, Cloud Shell, or using VS Code, we can apply a change to our deployment.</p>
-<p>Here we choose to change the CPU requests of the frontend Deployment from 100m to 650m.</p>
+<p>Here we choose to change the frontend Deployment’s CPU resource <strong>requests</strong> from 100m to 650m (millicpus/millicores).</p>
 <p>In this demonstration, we will see how the Autopilot cluster adjusts our resoures to properly fit the updated CPU requests value. When we suppply a Pod without or with values that stretch the constraints, Autopilot adjusts them to fit automatically.</p>
 <p>To grab our frontend Pod’s configuration, in the Kubernetes VS Code extension, we can open our cluster &amp; go to:</p>
 <ul>
 <li><code>Workloads -&gt; Deployments -&gt; frontend</code></li>
 </ul>
-<p>We can also describe the frontend service’s running Pod by opening the Deployment &amp; clicking on “Describe”.</p>
-<p>Under “Pod Template” -&gt; “Containers” -&gt; “Limits”/“Requests”, we see that our CPU limits are set to 200m/100m/ respectively.</p>
+<p><br> We can also describe the frontend service’s running Pod by opening the Deployment &amp; clicking on “Describe”.</p>
+<p>Under “Pod Template” -&gt; “Containers” -&gt; “Limits”/“Requests”, we see that our CPU limits are set to <code>200m</code>/<code>100m</code> respectively.</p>
 <p>We will see how we can change 1 of these values &amp; Autopilot will handle the rest. We will do this by increasing the CPU request value in <code>spec.template.spec.containers.resources</code> from <code>100m</code> to <code>650m</code>.</p>
-<p>Navigate to this value in the deployment-frontend Pod’s yaml config that you just opened by clicking on the Workload in the kubernetes extensions. Change the <code>spec.template.spec.containers.resources.requests.cpu</code> value from <code>100m</code> to <code>650m</code>. Then, open command pallete with <code>CMD+shift+P</code> &amp; use <code>Kubernetes: Apply</code>.</p>
+<p><br> Navigate to this value in the deployment-frontend Pod’s yaml config that you just opened by clicking on the Workload in the kubernetes extensions. Change the <code>spec.template.spec.containers.resources.requests.cpu</code> value from <code>100m</code> to <code>650m</code>. Then, open command pallete with <code>CMD+shift+P</code> &amp; use <code>Kubernetes: Apply</code>.</p>
 <p>This opens a Kuberenetes diff, &amp; then VS Code will ask you to apply the changes in a notification. Click “Apply” to deploy the changes.</p>
-<p>Next, we can describe the Pod again to see how Autopilot applied the changes. We see that our frontend container “Limits” CPU value got changed from <code>200m</code> to also <code>650m</code> to account our Requests change. Additionally, Limits/Requests memory values were updated from <code>128Mi/100Mi</code> to both <code>666Mi</code>.</p>
+<p>This is the equivalent of running <code>kubectl apply</code> on the YAML frontend deployment that you are directly editing.</p>
+<p><br> Next, we can describe the Pod again to see how Autopilot applied the changes. We see that our frontend container “Limits” CPU value got changed from <code>200m</code> to also <code>650m</code> to account for our Requests change. Additionally, Limits/Requests memory values were updated from <code>128Mi/103Mi</code> to both <code>666Mi</code>.</p>
 </section><section id="scaling-a-workload" class="level3"><h3 class="anchored" data-anchor-id="scaling-a-workload">Scaling a Workload</h3>
 <p>Here we will scale our frontend deployment by 3. The new scale does not fit on the <strong><em>existing</em></strong> cluster. However, we expect Autopilot to sclae it for us by adding nodes accordingly.</p>
 <p>The below specifies Kubernetes to scale our cluster to have 3 <a href="https://kubernetes.io/docs/reference/glossary/?fundamental=true#term-replica">Replicas</a>, or copies of pods, of the frontend deployment.</p>
