@@ -6,6 +6,11 @@ figcaption.figure {
   display: block;
   text-align: center;
 }
+/* Possibly need more time with quarto before making such a generalization on most quarto-figure classes */
+div.quarto-figure:not(.column-screen) {
+  width: fit-content;
+  /* padding-right: 2em; */
+}
 .table {
   width: unset;
   margin: auto;
@@ -140,6 +145,18 @@ pre.sourceCode > .code-copy-button > .bi::before, pre.sourceCode:hover > .code-c
   -webkit-text-fill-color: transparent;
 }
 
+/* Quarto Back to Top */
+#quarto-back-to-top {
+  bottom: 1.5em;
+}
+#scroll-padding {
+  padding: 1.5em;
+}
+/* quarto-appendix */
+#quarto-appendix > #footnotes {
+  padding-bottom: 1.5em;
+}
+
 /* footer */
 @media (max-width: 671px) {
   .nav-footer {
@@ -196,11 +213,3 @@ pre.sourceCode > .code-copy-button > .bi::before, pre.sourceCode:hover > .code-c
 .footer [icon^="ph:tennis-ball-fill"] {
   color: #d3e92a;
 }
-
-#quarto-back-to-top {
-  bottom: 1.5em;
-}
-#scroll-padding {
-  padding: 1.5em;
-}
-

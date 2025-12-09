@@ -1,0 +1,4 @@
+.sourceCode-container {
+  display: grid;
+  grid-template-columns: minmax(100px, max-content);
+}
