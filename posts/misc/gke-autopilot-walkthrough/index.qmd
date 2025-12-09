@@ -8,8 +8,10 @@ code-line-numbers: true
 ---
 
 <style>
-  div.quarto-figure:not(.column-screen) {
-    padding-right: 2em;
+  @media (min-width: 400px) {
+    div.quarto-figure:not(.column-screen, .quarto-figure-center, .cell-output-display) {
+      padding-right: 2em;
+    }
   }
   .quarto-figure-center figcaption {
     display: block;
@@ -204,7 +206,7 @@ kubectl apply -f ./release/kubernetes-manifests.yaml
 The output for `kubectl apply` below:
 
 <div class='cell'><details>
-<summary>`kubectl apply -f ./release/kubernetes-manifests.yaml`</summary>
+<summary><p>`kubectl apply -f ./release/kubernetes-manifests.yaml`</p></summary>
 
 ```{.bash}
 deployment.apps/currencyservice created
@@ -272,7 +274,7 @@ shippingservice-845cc8596b-86w47         1/1     Running   0          118m
 
 We can also checkout something similar in the Kubernetes VS Code extension.
 
-![Kubernetes Cluster VS Code extension view](kube-vs-code-ext.png){#fig-kube-vs-code-ext height=600 fig-align="left"}
+![Kubernetes Cluster VS Code extension view](kube-vs-code-ext.png){#fig-kube-vs-code-ext height=520 fig-align="left"}
 
 ### Accessing Microservice Frontend
 
@@ -325,7 +327,7 @@ Here we will scale our frontend deployment by 3. The new scale does not fit on t
 The below specifies Kubernetes to scale our cluster to have 3 [Replicas](https://kubernetes.io/docs/reference/glossary/?fundamental=true#term-replica), or copies of pods, of the frontend deployment. 
 
 <div class='cell'><details>
-<summary>`kubectl scale --replicas=3 deployment/frontend`</summary>
+<summary><p>`kubectl scale --replicas=3 deployment/frontend`</p></summary>
 ```{.bash}
 deployment.apps/frontend scaled
 ```
@@ -333,7 +335,7 @@ deployment.apps/frontend scaled
 
 In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.
 
-![Frontend Deployment of 3 Replicas](kube-vs-code-replicas.png){#fig-kube-vs-code-replicas height=415 fig-align="left"}
+![Frontend Deployment of 3 Replicas](kube-vs-code-replicas.png){#fig-kube-vs-code-replicas height=400 fig-align="left"}
 
 When we re-describe our frontend Deployment, here is what we learn:
 
@@ -360,7 +362,7 @@ Events:
 Now, we will tear down the extra pods & bring back our deployment to it's original state:
 
 <div class='cell'><details>
-<summary>`kubectl scale --replicas=1 deployment/frontend`</summary>
+<summary><p>`kubectl scale --replicas=1 deployment/frontend`</p></summary>
 ```{.bash}
 deployment.apps/frontend scaled
 ```
@@ -411,7 +413,7 @@ frontend   Deployment/frontend   cpu: 2%/5%   1         3         1          4m5
 Now, we will trigger horizontal Pod autoscaling by scaling out the load generator service (adding 5 replicas).
 
 <div class='cell'><details>
-<summary>`kubectl scale deployment/loadgenerator --replicas 5`</summary>
+<summary><p>`kubectl scale deployment/loadgenerator --replicas 5`</p></summary>
 ```{.bash}
 deployment.apps/loadgenerator scaled
 ```
@@ -419,7 +421,7 @@ deployment.apps/loadgenerator scaled
 
 We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.
 
-![Horizontal Autoscaling of Frontend Deployment](kube-vs-code-hpa.png){#fig-kube-vs-code-hpa height=502 fig-align="left"}
+![Horizontal Autoscaling of Frontend Deployment](kube-vs-code-hpa.png){#fig-kube-vs-code-hpa height=475 fig-align="left"}
 
 <div class='cell'><details open>
 <summary>`kubectl describe hpa`</summary>

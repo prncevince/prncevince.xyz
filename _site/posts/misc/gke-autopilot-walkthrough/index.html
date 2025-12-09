@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 8, 2025</p>
+      <p class="date-modified">December 9, 2025</p>
     </div>
   </div>
     
@@ -281,8 +281,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><style>
-  div.quarto-figure:not(.column-screen) {
-    padding-right: 2em;
+  @media (min-width: 400px) {
+    div.quarto-figure:not(.column-screen, .quarto-figure-center, .cell-output-display) {
+      padding-right: 2em;
+    }
   }
   .quarto-figure-center figcaption {
     display: block;
@@ -431,7 +433,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-3"><a href="#cb6-3"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> ./release/kubernetes-manifests.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The output for <code>kubectl apply</code> below:</p>
 <div class="cell">
-<details><summary><code>kubectl apply -f ./release/kubernetes-manifests.yaml</code>
+<details><summary><p>
+<code>kubectl apply -f ./release/kubernetes-manifests.yaml</code>
+</p>
 </summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">deployment.apps/currencyservice</span> created</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="ex">service/currencyservice</span> created</span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="ex">serviceaccount/currencyservice</span> created</span>
@@ -490,9 +494,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can also checkout something similar in the Kubernetes VS Code extension.</p>
-<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="600">
+<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="520">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="kube-vs-code-ext.png" class="quarto-figure-left figure-img" height="600">
+<img src="kube-vs-code-ext.png" class="quarto-figure-left figure-img" height="520">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Kubernetes Cluster VS Code extension view
@@ -531,14 +535,16 @@ Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 <p>Here we will scale our frontend deployment by 3. The new scale does not fit on the <strong><em>existing</em></strong> cluster. However, we expect Autopilot to sclae it for us by adding nodes accordingly.</p>
 <p>The below specifies Kubernetes to scale our cluster to have 3 <a href="https://kubernetes.io/docs/reference/glossary/?fundamental=true#term-replica">Replicas</a>, or copies of pods, of the frontend deployment.</p>
 <div class="cell">
-<details><summary><code>kubectl scale --replicas=3 deployment/frontend</code>
+<details><summary><p>
+<code>kubectl scale --replicas=3 deployment/frontend</code>
+</p>
 </summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">deployment.apps/frontend</span> scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.</p>
-<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="415">
+<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="400">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="kube-vs-code-replicas.png" class="quarto-figure-left figure-img" height="415">
+<img src="kube-vs-code-replicas.png" class="quarto-figure-left figure-img" height="400">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Frontend Deployment of 3 Replicas
@@ -563,7 +569,9 @@ Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </div>
 <p>Now, we will tear down the extra pods &amp; bring back our deployment to it’s original state:</p>
 <div class="cell">
-<details><summary><code>kubectl scale --replicas=1 deployment/frontend</code>
+<details><summary><p>
+<code>kubectl scale --replicas=1 deployment/frontend</code>
+</p>
 </summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">deployment.apps/frontend</span> scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -602,14 +610,16 @@ Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </div>
 <p>Now, we will trigger horizontal Pod autoscaling by scaling out the load generator service (adding 5 replicas).</p>
 <div class="cell">
-<details><summary><code>kubectl scale deployment/loadgenerator --replicas 5</code>
+<details><summary><p>
+<code>kubectl scale deployment/loadgenerator --replicas 5</code>
+</p>
 </summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">deployment.apps/loadgenerator</span> scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.</p>
-<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="502">
+<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="475">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="kube-vs-code-hpa.png" class="quarto-figure-left figure-img" height="502">
+<img src="kube-vs-code-hpa.png" class="quarto-figure-left figure-img" height="475">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Horizontal Autoscaling of Frontend Deployment
