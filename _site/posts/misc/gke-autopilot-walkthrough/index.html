@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Prompt: Cockpit view within futuristic super advanced aircraft, cool lights &amp; monitors, pilot laying back with feet up resting, beautiful view flying over mountains at sunset, wide aspect ratio.</figcaption></figure>
 </div>
 <section id="tldr" class="level2"><h2 class="anchored" data-anchor-id="tldr">TLDR</h2>
-<p>Here we work through Google’s interactive GKE<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Autopilot Walkthrough <a href="https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot">tutorial</a>.</p>
+<p>Here I work through Google’s interactive GKE<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Autopilot Walkthrough <a href="https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot">tutorial</a>. I create an Autopilot cluster, configure access both within the Google Cloud console &amp; on my local dev machine, deploy the <a href="https://cymbal-shops.retail.cymbal.dev/">Online Boutique</a> microservice application to the cluster, scale the cluster to explore Autopilot’s autoscaling features, and finally delete the cluster.</p>
 </section><section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>Learning a new technology can sometimes be daunting … especially when it involves cloud, network engineering, &amp; the Internet. There are loads of <a href="https://www.youtube.com/watch?v=BE77h7dmoQU">Kubernetes</a> resources/tutorials on the internet, &amp; it’s been around for over a decade, so why another one? This is for documenting my experience. I’ve kind of always seen this tool as the thing for cloud engineers to handle to scale services in production.</p>
 <p>That’s still true today. Recently, I’ve discovered that quite a few geospatial data science teams are using Kubernetes to scale their satellite imagery data pipelines. With my experience handling geospatial data, I hope to grow my skillset in cloud engineering with handling satellite imagery pipelines at scale.</p>
@@ -500,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can also checkout something similar in the Kubernetes VS Code extension.</p>
-<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="520">
+<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" height="520" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="kube-vs-code-ext.png" class="quarto-figure-left figure-img" height="520">
 </div>
@@ -553,7 +553,7 @@ Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 </details>
 </div>
 <p>In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.</p>
-<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="400">
+<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" height="400" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="kube-vs-code-replicas.png" class="quarto-figure-left figure-img" height="400">
 </div>
@@ -628,7 +628,7 @@ Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </details>
 </div>
 <p>We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.</p>
-<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="475">
+<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" height="475" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="kube-vs-code-hpa.png" class="quarto-figure-left figure-img" height="475">
 </div>

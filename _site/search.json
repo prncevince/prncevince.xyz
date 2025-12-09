@@ -179,7 +179,7 @@
     "href": "posts/misc/gke-autopilot-walkthrough/index.html#tldr",
     "title": "GKE Autopilot Walkthrough",
     "section": "TLDR",
-    "text": "TLDR\nHere we work through Google’s interactive GKE1 Autopilot Walkthrough tutorial."
+    "text": "TLDR\nHere I work through Google’s interactive GKE1 Autopilot Walkthrough tutorial. I create an Autopilot cluster, configure access both within the Google Cloud console & on my local dev machine, deploy the Online Boutique microservice application to the cluster, scale the cluster to explore Autopilot’s autoscaling features, and finally delete the cluster."
   },
   {
     "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#resources",

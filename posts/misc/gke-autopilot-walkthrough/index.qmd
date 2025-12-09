@@ -25,7 +25,7 @@ Prompt: Cockpit view within futuristic super advanced aircraft, cool lights & mo
 
 ## TLDR
 
-Here we work through Google's interactive GKE[^GKE] Autopilot Walkthrough [tutorial](https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot). 
+Here I work through Google's interactive GKE[^GKE] Autopilot Walkthrough [tutorial](https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot). I create an Autopilot cluster, configure access both within the Google Cloud console & on my local dev machine, deploy the [Online Boutique](https://cymbal-shops.retail.cymbal.dev/) microservice application to the cluster, scale the cluster to explore Autopilot's autoscaling features, and finally delete the cluster.
 
 [^GKE]: Google Kubernetes Engine
 
