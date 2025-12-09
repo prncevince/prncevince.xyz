@@ -49,11 +49,53 @@
     "text": "Wrap-up\nIf you have any thoughts or questions, feel free to let me know what you think in the comments below. You’ll need to sign in to your GitHub account to do so. Like my work? Feel free to reach out.\nWe only have one rock, and it’s a beautiful one. Thanks for reading! ✌️🌍\n\n\n\n\n\n\nFigure 4: 2023 South Lhonak Lake Sikkim, India - Maxar Open Data Program Leaflet Split Map"
   },
   {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Big & tiny spatial thoughts",
+    "objectID": "SETUP.html",
+    "href": "SETUP.html",
+    "title": "Quarto Site Environment Setup",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Updated - Oldest\n        \n         \n          Updated - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\nDesigning aesthetic maps in R with ggplot2 & svglite\n\n\n9 min\n\n\nA method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics).\n\n\n\nOctober 29, 2023\n\n\n\n\n\nOctober 31, 2023\n\n\n\n\n\n\n\n\n\n\n\nNorth India Floods of October 2023\n\n\n3 min\n\n\nA quick turn analysis to visually compare events caused by the Glacial Lake Outburst Flood in the Indian Himalayan Region of Sikkim during early October of 2023.\n\n\n\nOctober 12, 2023\n\n\n\n\n\nFebruary 19, 2024\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Natural Disasters through Dynamic Tiling and Maxar’s Open Data Program\n\n\n13 min\n\n\nA deep dive into visualizing satellite imagery from Maxar’s ODP on-the-fly using STAC, dynamic tiling, and Leaflet.\n\n\n\nOctober 2, 2023\n\n\n\n\n\nOctober 12, 2023\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Here’s all the setup.\n\nSetup quarto-shims.\nThen, run below to install & setup quarto. wget is required in your shell environment, can be installed on Mac via homebrew.\n./utils/download-quarto.sh\n\nSetup r-shims.\nCreate RStudio project within RStudio.\n\nrstudioapi::initializeProject()\n\nInitialize the renv environment. Important packages can be discovered in utils/deps.R.\n\nrenv::init()\n\n\nExplode on paper."
+  },
+  {
+    "objectID": "SETUP.html#quarto",
+    "href": "SETUP.html#quarto",
+    "title": "Quarto Site Environment Setup",
+    "section": "",
+    "text": "Setup quarto-shims.\nThen, run below to install & setup quarto. wget is required in your shell environment, can be installed on Mac via homebrew.\n./utils/download-quarto.sh"
+  },
+  {
+    "objectID": "SETUP.html#r",
+    "href": "SETUP.html#r",
+    "title": "Quarto Site Environment Setup",
+    "section": "",
+    "text": "Setup r-shims.\nCreate RStudio project within RStudio.\n\nrstudioapi::initializeProject()\n\nInitialize the renv environment. Important packages can be discovered in utils/deps.R.\n\nrenv::init()"
+  },
+  {
+    "objectID": "SETUP.html#start",
+    "href": "SETUP.html#start",
+    "title": "Quarto Site Environment Setup",
+    "section": "",
+    "text": "Explode on paper."
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "Creative Commons License",
+    "section": "",
+    "text": "Creative Commons License\nhttps://prncevince.xyz © 2023-2025 by Vincent Clemson is licensed under CC BY-NC-SA 4.0.\nTo view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "Vincent Clemson",
+    "section": "",
+    "text": "👋 I’m Vince. In 2017, I received my Bachelor of Science in mathematics & a minor in statistics from Penn State. Afterward, I spent 5+ years at what is now Peraton working a few Geospatial Intelligence data science missions on the NGA’s enterprise systems engineering contract. Recently, I was an AI Engineer at Booz Allen where I conducted statistical performance analyses against Earth observing satellite imagery object detection algorithms.\nI’ve been traveling a lot lately.\nOver the past year and a half I’ve added 23 new countries to my personal list.\nBefore this, I traveled ~13,000 miles by car across the United States  from the East to the West coast. I’m always searching for my next big (or tiny) adventure.\nI enjoy spatial analytics. I hope that I can help shed some light on spatial topics to those who are also interested with this site. It’s built with Quarto.\nWhen I’m not head down in geeky stuff, I enjoy salsa dancing, sports (go birds 🦅), and jumping out of aircraft (did it once - was fun & a bit terrifying).\nIf you’re interesting in learning more about my career, here’s a web version of my résumé.\nAlso, feel free to contact me at vincent.clemson{@}gmail.com.\nThanks for stopping by. ✌️\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "👋 Welcome to my site",
+    "section": "",
+    "text": "👋 Welcome to my site\n\nYou can learn more about me here.\nYou can find my posts on spatial analytics here.\n\n\n\nThanks for stopping by ✌️"
   },
   {
     "objectID": "posts/geo/maps-ggplot-svglite/index.html",
@@ -119,53 +161,81 @@
     "text": "Wrap-up\nIf you have any thoughts or questions, feel free to let me know what you think in the comments below. You’ll need to sign in to your GitHub account to do so. Like my work? Feel free to reach out.\nWe only have one rock, and it’s a beautiful one. Thanks for reading! ✌️🌍"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "👋 Welcome to my site",
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Big & tiny spatial thoughts",
     "section": "",
-    "text": "👋 Welcome to my site\n\nYou can learn more about me here.\nYou can find my posts on spatial analytics here.\n\n\n\nThanks for stopping by ✌️"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Updated - Oldest\n        \n         \n          Updated - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\nGKE Autopilot Walkthrough\n\n\n17 min\n\n\nWalking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.\n\n\n\nDecember 8, 2025\n\n\n\n\n\nDecember 8, 2025\n\n\n\n\n\n\n\n\n\n\n\nDesigning aesthetic maps in R with ggplot2 & svglite\n\n\n9 min\n\n\nA method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics).\n\n\n\nOctober 29, 2023\n\n\n\n\n\nDecember 7, 2025\n\n\n\n\n\n\n\n\n\n\n\nNorth India Floods of October 2023\n\n\n3 min\n\n\nA quick turn analysis to visually compare events caused by the Glacial Lake Outburst Flood in the Indian Himalayan Region of Sikkim during early October of 2023.\n\n\n\nOctober 12, 2023\n\n\n\n\n\nFebruary 19, 2024\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Natural Disasters through Dynamic Tiling and Maxar’s Open Data Program\n\n\n13 min\n\n\nA deep dive into visualizing satellite imagery from Maxar’s ODP on-the-fly using STAC, dynamic tiling, and Leaflet.\n\n\n\nOctober 2, 2023\n\n\n\n\n\nOctober 12, 2023\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
-    "objectID": "about/index.html",
-    "href": "about/index.html",
-    "title": "Vincent Clemson",
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html",
+    "title": "GKE Autopilot Walkthrough",
     "section": "",
-    "text": "👋 I’m Vince. In 2017, I received my Bachelor of Science in mathematics & a minor in statistics from Penn State. Afterward, I spent 5+ years at what is now Peraton working a few Geospatial Intelligence data science missions on the NGA’s enterprise systems engineering contract. Recently, I was an AI Engineer at Booz Allen where I conducted statistical performance analyses against Earth observing satellite imagery object detection algorithms.\nI’ve been traveling a lot lately.\nOver the past year and a half I’ve added 23 new countries to my personal list.\nBefore this, I traveled ~13,000 miles by car across the United States  from the East to the West coast. I’m always searching for my next big (or tiny) adventure.\nI enjoy spatial analytics. I hope that I can help shed some light on spatial topics to those who are also interested with this site. It’s built with Quarto.\nWhen I’m not head down in geeky stuff, I enjoy salsa dancing, sports (go birds 🦅), and jumping out of aircraft (did it once - was fun & a bit terrifying).\nIf you’re interesting in learning more about my career, here’s a web version of my résumé.\nAlso, feel free to contact me at vincent.clemson{@}gmail.com.\nThanks for stopping by. ✌️\n\n\n Back to top"
+    "text": "Prompt: Cockpit view within futuristic super advanced aircraft, cool lights & monitors, pilot laying back with feet up resting, beautiful view flying over mountains at sunset, wide aspect ratio."
   },
   {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "Creative Commons License",
-    "section": "",
-    "text": "Creative Commons License\nhttps://prncevince.xyz © 2025 by Vincent Clemson is licensed under CC BY-NC-SA 4.0.\nTo view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.\n\n\n\n\n Back to top"
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#tldr",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#tldr",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "TLDR",
+    "text": "TLDR\nHere we work through Google’s interactive GKE1 Autopilot Walkthrough tutorial."
   },
   {
-    "objectID": "SETUP.html",
-    "href": "SETUP.html",
-    "title": "Quarto Site Environment Setup",
-    "section": "",
-    "text": "Here’s all the setup.\n\nSetup quarto-shims.\nThen, run below to install & setup quarto. wget is required in your shell environment, can be installed on Mac via homebrew.\n./utils/download-quarto.sh\n\nSetup r-shims.\nCreate RStudio project within RStudio.\n\nrstudioapi::initializeProject()\n\nInitialize the renv environment. Important packages can be discovered in utils/deps.R.\n\nrenv::init()\n\n\nExplode on paper."
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#resources",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#resources",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Resources",
+    "text": "Resources\n\nGKE Modes of Operation\nKubernetes Engine -&gt; Create an Autopilot cluser"
   },
   {
-    "objectID": "SETUP.html#quarto",
-    "href": "SETUP.html#quarto",
-    "title": "Quarto Site Environment Setup",
-    "section": "",
-    "text": "Setup quarto-shims.\nThen, run below to install & setup quarto. wget is required in your shell environment, can be installed on Mac via homebrew.\n./utils/download-quarto.sh"
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#about-gke-modes-of-operation",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#about-gke-modes-of-operation",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "About GKE Modes of Operation",
+    "text": "About GKE Modes of Operation\nGKE allows you to select 2 modes of operation when creating a cluser:\n\nAutopilot\nStandard"
   },
   {
-    "objectID": "SETUP.html#r",
-    "href": "SETUP.html#r",
-    "title": "Quarto Site Environment Setup",
-    "section": "",
-    "text": "Setup r-shims.\nCreate RStudio project within RStudio.\n\nrstudioapi::initializeProject()\n\nInitialize the renv environment. Important packages can be discovered in utils/deps.R.\n\nrenv::init()"
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#creating-a-cluster-in-autopilot-mode",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#creating-a-cluster-in-autopilot-mode",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Creating a Cluster in Autopilot Mode",
+    "text": "Creating a Cluster in Autopilot Mode\nCreating an Autopilot cluster benefits from Google Cloud handling the following:\n\n\nNodes: Automated node provisioning, scaling, and maintenance\n\nNetworking: VPC-native traffic routing for clusters\n\nSecurity: Shielded GKE Nodes and Workload Identity\n\nTelemetry: Cloud Operations logging and monitoring\n\nSetup Cluster Basics\nThe following CLI command is comparible to what Google Cloud runs to create the Kubernetes cluster.\nTo select the region, I used Google’s Cloud Region Picker.\ngcloud beta container \\\n    --project \\\n\"gke-autopilot-cluster-479822\" clusters create-auto \"my-autopilot-cluster\" \\\n    --region \\\n\"us-east1\" \\\n    --release-channel \\\n\"regular\" \\\n    --enable-ip-access \\\n    --no-enable-google-cloud-access \\\n    --network \\\n\"projects/gke-autopilot-cluster-479822/global/networks/default\" \\\n    --subnetwork \\\n\"projects/gke-autopilot-cluster-479822/regions/us-east1/subnetworks/default\" \\\n    --cluster-ipv4-cidr \\\n\"/17\" \\\n    --binauthz-evaluation-mode=DISABLED\nFleet Registration\nThis feature helps you to manage multiple clusters together.\nA fleet lets you logically group and normalize Kubernetes clusters, helping you uplevel management from individual clusters to groups of clusters. To use multi-cluster capabilities and apply consistent policies across your systems, register your cluster to a fleet.\n\nGKE Fleet Management Overview\nNetworking\nThis section is for defining access to the Control Plane. You can select access through using DNS or through using IPv4 addresses.\nYou also define cluster networking, e.g. how applications in the cluster communicate with each other & how clients can reach them.\nAdvanced Settings\nHere you can choose from 3 target Release Channels: Rapid, Regular, & Stable. The default is Regular (recommended).\n\nRapid\n\nUse to test new releases before they’re qualified for production use or general availability.\n\n\nRegular\n\nBalance feature availability and release stability. Versions have been qualified over a longer period. Recommended for most users.\n\n\nStable\n\nUse it to prioritize stability over new features. GKE rolls out changes and new versions on the Stable channel last, after validating them on the Rapid and Regular channels.\n\n\n\nLearn more about choosing the best channel:\n\nChoosing the Best Channel for your Cluster\n\nOnce selected, default configuration can be changed & defined for the following areas:\n\nAutomation, Service Mesh, Backup plan, Security, AI and Machine Learning, Operations, Metadata\nReview & Create\nHere your can review all settings, and then click Create Cluster. After about 5 minutes, your cluster should be up & running."
   },
   {
-    "objectID": "SETUP.html#start",
-    "href": "SETUP.html#start",
-    "title": "Quarto Site Environment Setup",
-    "section": "",
-    "text": "Explode on paper."
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#configure-access-to-cluster",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#configure-access-to-cluster",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Configure Access to Cluster",
+    "text": "Configure Access to Cluster\nHere we walk through configuring the Kubernetes command line tool to access our cluster. This will allow us to monitor/interact with our cluster on our local machine.\nResources:\n\nInstall kubectl and configure cluster access\n\nFirstly, gcloud CLI must be installed. This allows us to work with the Google Cloud SDK from the command line / terminal.\n\ngcloud Setup & Config\nThis is my first time using Google Cloud, so I need to configure it using:\ngcloud init --no-launch-browser\nAfter authenticating through the browser, next we will pick a project to use. Here I select the project that Google Cloud created when setting up the autpilot cluster: gke-autopilot-cluster-479822.\nNext, we specify a default Google Compute Engine region-zone to use. I selected us-east1-b here since it’s best for my physical location.\nAfter this, Google SDK should have created a ~/.config/gcloud/ directory with your configuration. The Google Cloud SDK configuration information is written to ~/.config/gcloud/configurations/config_default. This looks something like the following:\n\n\n~/.config/gcloud/configurations/config_default\n[core]\naccount = &lt;replace-with-your-email&gt;@gmail.com\nproject = gke-autopilot-cluster-479822\n\n[compute]\nzone = us-east1-b\nregion = us-east1\n\n\n\nkubectl Config\nWe can use gcloud to generate a “kubeconfig” context that stores our GKE cluster information for kubectl.\nThis kubeconfig file is stored under $HOME/.kube/config on macOS.\n\ngcloud container clusters get-credentials my-autopilot-cluster --location=us-east1\nFetching cluster endpoint and auth data. \nkubeconfig entry generated for my-autopilot-cluster.\n\n\nThe kubectl configuration can be output with kubectl config view.\nTo view current context of kubectl, we can run:\n\nkubectl config current-context\ngke_gke-autopilot-cluster-479822_us-east1_my-autopilot-cluster\n\n\nFor more commonly used kubectl commands, see:\n\nkubectl Quick Reference"
+  },
+  {
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#working-with-an-application-on-the-autopilot-cluster",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#working-with-an-application-on-the-autopilot-cluster",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Working with an Application on the Autopilot Cluster",
+    "text": "Working with an Application on the Autopilot Cluster\nThe next sections of the tutorial involve deploying a microservice demo application to your Autopilot Cluster.\nThe walkthrough on https://console.cloud.google.com has you use the Google Cloud Console built-in terminal & Cloud Shell (VS Code) editor.\nHowever, Kubernetes was designed to be able to do this remotely, so we will use the kubectl CLI in our local dev environment. With API access/auth & config setup, these steps can be done in either your local dev setup or within the Google Cloud Console.\nAdditionally, VS Code’s Kuberenetes extension allows us to monitor our cluster. We’ll show what that looks like as well.\nDeploying Application to Cluster\nHere we clone the demo microservice application (an Online Boutique). Then, we deploy it to our autopilot cluster.\ngit clone --depth 1 https://github.com/GoogleCloudPlatform/microservices-demo.git\ncd microservices-demo\nkubectl apply -f ./release/kubernetes-manifests.yaml\nThe output for kubectl apply below:\n\nkubectl apply -f ./release/kubernetes-manifests.yaml\ndeployment.apps/currencyservice created\nservice/currencyservice created\nserviceaccount/currencyservice created\nWarning: autopilot-default-resources-mutator:Autopilot updated Deployment default/loadgenerator: defaulted unspecified 'cpu' resource for containers [frontend-check] (see http://g.co/gke/autopilot-defaults).\ndeployment.apps/loadgenerator created\nserviceaccount/loadgenerator created\ndeployment.apps/productcatalogservice created\nservice/productcatalogservice created\nserviceaccount/productcatalogservice created\ndeployment.apps/checkoutservice created\nservice/checkoutservice created\nserviceaccount/checkoutservice created\ndeployment.apps/shippingservice created\nservice/shippingservice created\nserviceaccount/shippingservice created\ndeployment.apps/cartservice created\nservice/cartservice created\nserviceaccount/cartservice created\ndeployment.apps/redis-cart created\nservice/redis-cart created\ndeployment.apps/emailservice created\nservice/emailservice created\nserviceaccount/emailservice created\ndeployment.apps/paymentservice created\nservice/paymentservice created\nserviceaccount/paymentservice created\ndeployment.apps/frontend created\nservice/frontend created\nservice/frontend-external created\nserviceaccount/frontend created\ndeployment.apps/recommendationservice created\nservice/recommendationservice created\nserviceaccount/recommendationservice created\ndeployment.apps/adservice created\nservice/adservice created\nserviceaccount/adservice created\n\n\nMonitoring Cluster\nNext, we can monitor our cluster. The below command shows us the state of our pods:\n\nkubectl get pods\nNAME                                     READY   STATUS    RESTARTS   AGE\nadservice-fb4d9c855-l8wxt                1/1     Running   0          118m\ncartservice-846697dfbc-s7djk             1/1     Running   0          118m\ncheckoutservice-65894dc998-jkk94         1/1     Running   0          118m\ncurrencyservice-65bc47bf48-75shp         1/1     Running   0          118m\nemailservice-6dcc98d886-ngpc5            1/1     Running   0          118m\nfrontend-84dfc7997f-m769f                1/1     Running   0          118m\nloadgenerator-8649b8d85d-qlpwv           1/1     Running   0          99m\npaymentservice-546dd5484b-twrdr          1/1     Running   0          118m\nproductcatalogservice-fd9b4c966-wqzn2    1/1     Running   0          118m\nrecommendationservice-548f895747-nkg2t   1/1     Running   0          118m\nredis-cart-76ff8946b4-g5zpp              1/1     Running   0          118m\nshippingservice-845cc8596b-86w47         1/1     Running   0          118m\n\n\nWe can also checkout something similar in the Kubernetes VS Code extension.\n\n\n\n\n\nFigure 1: Kubernetes Cluster VS Code extension view\n\n\nAccessing Microservice Frontend\nWe can access the front-end website of the deployed Online Boutique app by entering the IP into the browser under “EXTERNAL-IP” below.\n\nkubectl get service frontend-external\nNAME                TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)        AGE\nfrontend-external   LoadBalancer   34.118.226.169   34.26.108.20   80:30403/TCP   5h9m\n\n\nAdditionally, we can access this IP in the Google Cloud console under:\n\nResource Management -&gt; Workloads -&gt; frontend -&gt; Exposing services -&gt; frontend-external -&gt; Endpoints"
+  },
+  {
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#scaling-kubernetes-autopilot-cluster",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#scaling-kubernetes-autopilot-cluster",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Scaling Kubernetes Autopilot Cluster",
+    "text": "Scaling Kubernetes Autopilot Cluster\nKubernetes was designed to scale container applications. Here we will explore doing so with the Autopilot cluster to demo some of its capabilities.\nApply Changes to Deployment in Autopilot Cluster\nEither through the kubectl CLI, Cloud Shell, or using VS Code, we can apply a change to our deployment.\nHere we choose to change the CPU requests of the frontend Deployment from 100m to 650m.\nIn this demonstration, we will see how the Autopilot cluster adjusts our resoures to properly fit the updated CPU requests value. When we suppply a Pod without or with values that stretch the constraints, Autopilot adjusts them to fit automatically.\nTo grab our frontend Pod’s configuration, in the Kubernetes VS Code extension, we can open our cluster & go to:\n\nWorkloads -&gt; Deployments -&gt; frontend\n\nWe can also describe the frontend service’s running Pod by opening the Deployment & clicking on “Describe”.\nUnder “Pod Template” -&gt; “Containers” -&gt; “Limits”/“Requests”, we see that our CPU limits are set to 200m/100m/ respectively.\nWe will see how we can change 1 of these values & Autopilot will handle the rest. We will do this by increasing the CPU request value in spec.template.spec.containers.resources from 100m to 650m.\nNavigate to this value in the deployment-frontend Pod’s yaml config that you just opened by clicking on the Workload in the kubernetes extensions. Change the spec.template.spec.containers.resources.requests.cpu value from 100m to 650m. Then, open command pallete with CMD+shift+P & use Kubernetes: Apply.\nThis opens a Kuberenetes diff, & then VS Code will ask you to apply the changes in a notification. Click “Apply” to deploy the changes.\nNext, we can describe the Pod again to see how Autopilot applied the changes. We see that our frontend container “Limits” CPU value got changed from 200m to also 650m to account our Requests change. Additionally, Limits/Requests memory values were updated from 128Mi/100Mi to both 666Mi.\nScaling a Workload\nHere we will scale our frontend deployment by 3. The new scale does not fit on the existing cluster. However, we expect Autopilot to sclae it for us by adding nodes accordingly.\nThe below specifies Kubernetes to scale our cluster to have 3 Replicas, or copies of pods, of the frontend deployment.\n\nkubectl scale --replicas=3 deployment/frontend\ndeployment.apps/frontend scaled\n\n\nIn our Clusters pane, we can see 2 new frontend deployment Pods being deployed.\n\n\n\n\n\nFigure 2: Frontend Deployment of 3 Replicas\n\n\nWhen we re-describe our frontend Deployment, here is what we learn:\n\nkubectl describe deployment/frontend\n...\nConditions:\n  Type           Status  Reason\n  ----           ------  ------\n  Progressing    True    NewReplicaSetAvailable\n  Available      True    MinimumReplicasAvailable\nOldReplicaSets:  frontend-84dfc7997f (0/0 replicas created), frontend-74fbc9c757 (0/0 replicas created)\nNewReplicaSet:   frontend-55c6556fb5 (3/3 replicas created)\nEvents:\n  Type    Reason             Age   From                   Message\n  ----    ------             ----  ----                   -------\n  Normal  ScalingReplicaSet  29m   deployment-controller  Scaled up replica set frontend-55c6556fb5 from 1 to 3\n\n\nNow, we will tear down the extra pods & bring back our deployment to it’s original state:\n\nkubectl scale --replicas=1 deployment/frontend\ndeployment.apps/frontend scaled\n\n\nAnd here can see that the Autopilot cluster handles this accordingly\n\nkubectl describe deployment/frontend\n...\nConditions:\n  Type           Status  Reason\n  ----           ------  ------\n  Progressing    True    NewReplicaSetAvailable\n  Available      True    MinimumReplicasAvailable\nOldReplicaSets:  frontend-84dfc7997f (0/0 replicas created), frontend-74fbc9c757 (0/0 replicas created)\nNewReplicaSet:   frontend-55c6556fb5 (1/1 replicas created)\nEvents:\n  Type    Reason             Age   From                   Message\n  ----    ------             ----  ----                   -------\n  Normal  ScalingReplicaSet  67s   deployment-controller  Scaled down replica set frontend-55c6556fb5 from 3 to 1\n\n\nAutoscaling the Application\nHere we will enable a horizontal Pod autoscaling policy (HorizontalPodAutoscaler - HPA) of the frontend Deployment to add new Pods to the cluster when existing Pods are over 5% CPU utilization.\n\nkubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3\nhorizontalpodautoscaler.autoscaling/frontend autoscaled\n\n\nWe can view information on the HPA “autoscaler” below. We can also get a more detailed description using kubectl describe hpa.\n\nkubectl get hpa\nNAME       REFERENCE             TARGETS      MINPODS   MAXPODS   REPLICAS   AGE\nfrontend   Deployment/frontend   cpu: 2%/5%   1         3         1          4m59s\n\n\nNow, we will trigger horizontal Pod autoscaling by scaling out the load generator service (adding 5 replicas).\n\nkubectl scale deployment/loadgenerator --replicas 5\ndeployment.apps/loadgenerator scaled\n\n\nWe can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.\n\n\n\n\n\nFigure 3: Horizontal Autoscaling of Frontend Deployment\n\n\n\nkubectl describe hpa\nName:                                                  frontend\nNamespace:                                             default\nLabels:                                                &lt;none&gt;\nAnnotations:                                           &lt;none&gt;\nCreationTimestamp:                                     Mon, 08 Dec 2025 15:55:46 -0500\nReference:                                             Deployment/frontend\nMetrics:                                               ( current / target )\n  resource cpu on pods  (as a percentage of request):  4% (24m) / 5%\nMin replicas:                                          1\nMax replicas:                                          3\nDeployment pods:                                       3 current / 3 desired\nConditions:\n  Type            Status  Reason              Message\n  ----            ------  ------              -------\n  AbleToScale     True    ReadyForNewScale    recommended size matches current size\n  ScalingActive   True    ValidMetricFound    the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)\n  ScalingLimited  False   DesiredWithinRange  the desired count is within the acceptable range\nEvents:\n  Type     Reason                   Age                From                       Message\n  ----     ------                   ----               ----                       -------\n  Warning  FailedGetResourceMetric  13m (x4 over 21m)  horizontal-pod-autoscaler  No recommendation\n  Normal   SuccessfulRescale        7m6s               horizontal-pod-autoscaler  New size: 3; reason: cpu resource utilization (percentage of request) above target\n  Normal   HpaProfilePerformance    7m6s               horizontal-pod-autoscaler  The HPA rescaled target based on performance profile"
+  },
+  {
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#teardown-cluster",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#teardown-cluster",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Teardown Cluster",
+    "text": "Teardown Cluster\nWe will delete (teardown) our cluster to free up our cloud resources & end all cloud utilization toward our billing account. This can be done with the gcloud CLI or within the Google Cloud console.\n\ngcloud container clusters delete my-autopilot-cluster --region us-east1\nThe following clusters will be deleted.\n - [my-autopilot-cluster] in [us-east1]\n\nDo you want to continue (Y/n)?  Y\n\nDeleting cluster my-autopilot-cluster...done.\nDeleted [https://container.googleapis.com/v1/projects/gke-autopilot-cluster-479822/zones/us-east1/clusters/my-autopilot-cluster].\n\n\nThis ends up taking roughly 5 minutes to complete the teardown."
+  },
+  {
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#fin",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#fin",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Fin",
+    "text": "Fin\nNow go off into the great unknown & do wonders with kubectl, K8s, GKE, & Autopilot Clusters in Google Cloud :)\n\nCode Toolsprint(\"Trigger Code Tools :)\")\n\n[1] \"Trigger Code Tools :)\""
   },
   {
     "objectID": "posts/geo/natural-disasters-maxar-open-data/index.html",

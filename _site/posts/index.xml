@@ -15,7 +15,20 @@
 <link>https://prncevince.xyz/posts/</link>
 </image>
 <generator>quarto-1.4.424</generator>
-<lastBuildDate>Sun, 29 Oct 2023 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 08 Dec 2025 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>GKE Autopilot Walkthrough</title>
+  <dc:creator>Vincent Clemson</dc:creator>
+  <link>https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/</link>
+  <description><![CDATA[ <img src="https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/autopilot-futuristic-cockpit-view.png" class="img-fluid figure-img"> ]]></description>
+  <category>Cloud</category>
+  <category>Google Cloud</category>
+  <category>Kubernetes</category>
+  <category>Containers</category>
+  <category>Autoscaling</category>
+  <guid>https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/</guid>
+  <pubDate>Mon, 08 Dec 2025 05:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Designing aesthetic maps in R with ggplot2 &amp; svglite</title>
   <dc:creator>Vincent Clemson</dc:creator>

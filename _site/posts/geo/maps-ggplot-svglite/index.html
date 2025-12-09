@@ -104,6 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><link rel="stylesheet" href="../../../assets/css/site.css">
 <link rel="stylesheet" href="../../../assets/css/font.css">
+<link rel="stylesheet" href="../../../assets/css/sourceCode.css">
 <link rel="stylesheet" href="../../../assets/css/posts.css">
 <meta property="og:title" content="Designing aesthetic maps in R with ggplot2 &amp; svglite | Vincent Clemson">
 <meta property="og:description" content="A method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics).">
@@ -251,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">October 31, 2023</p>
+      <p class="date-modified">December 7, 2025</p>
     </div>
   </div>
     
@@ -776,7 +777,7 @@ Figure&nbsp;4: The ggplot converted to SVG. A choropleth of the population of th
 <p>We only have one rock, and it’s a beautiful one. Thanks for reading! ✌️🌍</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2024 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2023-2025 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Clemson, Vincent. 2023. <span>“Designing Aesthetic Maps in R with
 Ggplot2 &amp; Svglite.”</span> October 29, 2023. <a href="https://prncevince.xyz/posts/geo/maps-ggplot-svglite">https://prncevince.xyz/posts/geo/maps-ggplot-svglite</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -877,17 +878,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return false;
     });
   }
+  // Edit 2025/12/07-08
+  // To allow for div.sourceCode-container wrapper used in sourceCode.css / sourceCode.js
   function toggleCodeHandler(show) {
     return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      // const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      // const detailsSrc = window.document.querySelectorAll(".cell > details .sourceCode.cell-code");
+      const detailsSrc = window.document.querySelectorAll('.cell > details div[class="sourceCode"], .cell > details .sourceCode.cell-code');
       for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
+        const details = detailsSrc[i].parentElement.parentElement;
         if (show) {
           details.open = true;
         } else {
           details.removeAttribute("open");
         }
       }
+      // const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      // const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode.cell-code");
       const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
       const fromCls = show ? "hidden" : "unhidden";
       const toCls = show ? "unhidden" : "hidden";
@@ -1297,7 +1304,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer><div id="scroll-padding"></div>
-<script src="../../../assets/js/site.js"></script><script src="../../../assets/js/posts.js"></script>
+<script src="../../../assets/js/site.js"></script><script src="../../../assets/js/posts.js"></script><script src="../../../assets/js/sourceCode.js"></script>
 
 
 <script src="../../../site_libs/quarto-contrib/add-code-files-1.0.0/add-code-files.js"></script>

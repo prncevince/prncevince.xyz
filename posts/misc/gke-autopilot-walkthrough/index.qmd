@@ -1,0 +1,483 @@
+---
+title: GKE Autopilot Walkthrough
+date: 12/08/25
+draft: false
+description: Walking through Google Cloud's GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.
+categories: [Cloud, Google Cloud, Kubernetes, Containers, Autoscaling]
+code-line-numbers: true
+---
+
+<style>
+  div.quarto-figure:not(.column-screen) {
+    padding-right: 2em;
+  }
+  .quarto-figure-center figcaption {
+    display: block;
+    text-align: center;
+  }
+</style>
+
+![
+Prompt: Cockpit view within futuristic super advanced aircraft, cool lights & monitors, pilot laying back with feet up resting, beautiful view flying over mountains at sunset, wide aspect ratio.
+](autopilot-futuristic-cockpit-view.png)
+
+## TLDR
+
+Here we work through Google's interactive GKE[^GKE] Autopilot Walkthrough [tutorial](https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot). 
+
+[^GKE]: Google Kubernetes Engine
+
+## Resources
+
+- [GKE Modes of Operation](https://cloud.google.com/kubernetes-engine/docs/concepts/choose-cluster-mode)
+- [Kubernetes Engine -> Create an Autopilot cluser](https://console.cloud.google.com/kubernetes/auto/add)
+
+
+## About GKE Modes of Operation
+
+GKE allows you to select 2 modes of operation when creating a cluser:
+
+- Autopilot
+- Standard
+
+## Creating a Cluster in Autopilot Mode
+
+Creating an Autopilot cluster benefits from Google Cloud handling the following:
+
+- **Nodes**: Automated node provisioning, scaling, and maintenance
+- **Networking**: VPC-native traffic routing for clusters
+- **Security**: Shielded GKE Nodes and Workload Identity
+- **Telemetry**: Cloud Operations logging and monitoring
+
+### Setup Cluster Basics
+
+The following CLI command is comparible to what Google Cloud runs to create the Kubernetes cluster. 
+
+To select the region, I used Google's [Cloud Region Picker](https://cloud.withgoogle.com/region-picker/).
+
+```bash
+gcloud beta container \
+    --project \
+"gke-autopilot-cluster-479822" clusters create-auto "my-autopilot-cluster" \
+    --region \
+"us-east1" \
+    --release-channel \
+"regular" \
+    --enable-ip-access \
+    --no-enable-google-cloud-access \
+    --network \
+"projects/gke-autopilot-cluster-479822/global/networks/default" \
+    --subnetwork \
+"projects/gke-autopilot-cluster-479822/regions/us-east1/subnetworks/default" \
+    --cluster-ipv4-cidr \
+"/17" \
+    --binauthz-evaluation-mode=DISABLED
+```
+
+### Fleet Registration
+
+This feature helps you to manage multiple clusters together.
+
+A fleet lets you logically group and normalize Kubernetes clusters, helping you uplevel management from individual clusters to groups of clusters. To use multi-cluster capabilities and apply consistent policies across your systems, register your cluster to a fleet.
+
+- [GKE Fleet Management Overview](https://cloud.google.com/kubernetes-engine/fleet-management/docs)
+
+### Networking
+
+This section is for defining access to the Control Plane. You can select access through using DNS or through using IPv4 addresses.
+
+You also define cluster networking, e.g. how applications in the cluster communicate with each other & how clients can reach them.
+
+### Advanced Settings
+
+Here you can choose from 3 target Release Channels: Rapid, Regular, & Stable. The default is Regular (recommended). 
+
+- Rapid
+  - Use to test new releases before they're qualified for production use or general availability.
+- Regular
+  - Balance feature availability and release stability. Versions have been qualified over a longer period. Recommended for most users.
+- Stable
+  - Use it to prioritize stability over new features. GKE rolls out changes and new versions on the Stable channel last, after validating them on the Rapid and Regular channels.
+
+Learn more about choosing the best channel:
+
+- [Choosing the Best Channel for your Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#what_channel_should_i_use)
+
+Once selected, default configuration can be changed & defined for the following areas:
+
+- Automation, Service Mesh, Backup plan, Security, AI and Machine Learning, Operations, Metadata
+
+### Review & Create
+
+Here your can review all settings, and then click Create Cluster. After about 5 minutes, your cluster should be up & running. 
+
+## Configure Access to Cluster 
+
+Here we walk through configuring the Kubernetes command line tool to access our cluster. This will allow us to monitor/interact with our cluster on our local machine. 
+
+Resources:
+
+- [Install kubectl and configure cluster access](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
+
+Firstly, [gcloud](https://docs.cloud.google.com/sdk/docs/install-sdk) CLI must be installed. This allows us to work with the [Google Cloud SDK](https://docs.cloud.google.com/sdk/docs/overview) from the command line / terminal. 
+
+### `gcloud` Setup & Config
+
+This is my first time using Google Cloud, so I need to configure it using:
+
+```bash
+gcloud init --no-launch-browser
+```
+
+After authenticating through the browser, next we will pick a project to use. Here I select the project that Google Cloud created when setting up the autpilot cluster: `gke-autopilot-cluster-479822`.
+
+Next, we specify a default Google Compute Engine region-zone to use. I selected `us-east1-b` here since it's best for my physical location.
+
+After this, Google SDK should have created a `~/.config/gcloud/` directory with your configuration. The Google Cloud SDK configuration information is written to `~/.config/gcloud/configurations/config_default`. This looks something like the following:
+
+<div class='cell'><details open>
+<summary>~/.config/gcloud/configurations/config_default</summary>
+
+```{.bash}
+[core]
+account = <replace-with-your-email>@gmail.com
+project = gke-autopilot-cluster-479822
+
+[compute]
+zone = us-east1-b
+region = us-east1
+```
+</details></div>
+
+
+### `kubectl` Config
+
+We can use `gcloud` to generate a "***kubeconfig***" context that stores our GKE cluster information for `kubectl`.
+
+This kubeconfig file is stored under `$HOME/.kube/config` on macOS. 
+
+<div class='cell'><details open>
+<summary>`gcloud container clusters get-credentials my-autopilot-cluster --location=us-east1`</summary>
+
+```{.bash}
+Fetching cluster endpoint and auth data. 
+kubeconfig entry generated for my-autopilot-cluster.
+```
+</details></div>
+
+The kubectl configuration can be output with `kubectl config view`.
+
+To view current context of kubectl, we can run:
+
+<div class='cell'><details open>
+<summary>`kubectl config current-context`</summary>
+
+```{.bash}
+gke_gke-autopilot-cluster-479822_us-east1_my-autopilot-cluster
+```
+</details></div>
+
+For more commonly used `kubectl` commands, see:
+
+- [kubectl Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/)
+
+## Working with an Application on the Autopilot Cluster
+
+The next sections of the tutorial involve deploying a microservice demo application to your Autopilot Cluster. 
+
+The walkthrough on <https://console.cloud.google.com> has you use the Google Cloud Console built-in terminal & Cloud Shell (VS Code) editor.
+
+However, Kubernetes was designed to be able to do this remotely, so we will use the `kubectl` CLI in our local dev environment. With API access/auth & config setup, these steps can be done in either your local dev setup or within the Google Cloud Console. 
+
+Additionally, VS Code's Kuberenetes extension allows us to monitor our cluster. We'll show what that looks like as well.
+
+### Deploying Application to Cluster
+
+Here we clone the demo microservice application (an Online Boutique). Then, we deploy it to our autopilot cluster.
+
+```bash
+git clone --depth 1 https://github.com/GoogleCloudPlatform/microservices-demo.git
+cd microservices-demo
+kubectl apply -f ./release/kubernetes-manifests.yaml
+```
+
+The output for `kubectl apply` below:
+
+<div class='cell'><details>
+<summary>`kubectl apply -f ./release/kubernetes-manifests.yaml`</summary>
+
+```{.bash}
+deployment.apps/currencyservice created
+service/currencyservice created
+serviceaccount/currencyservice created
+Warning: autopilot-default-resources-mutator:Autopilot updated Deployment default/loadgenerator: defaulted unspecified 'cpu' resource for containers [frontend-check] (see http://g.co/gke/autopilot-defaults).
+deployment.apps/loadgenerator created
+serviceaccount/loadgenerator created
+deployment.apps/productcatalogservice created
+service/productcatalogservice created
+serviceaccount/productcatalogservice created
+deployment.apps/checkoutservice created
+service/checkoutservice created
+serviceaccount/checkoutservice created
+deployment.apps/shippingservice created
+service/shippingservice created
+serviceaccount/shippingservice created
+deployment.apps/cartservice created
+service/cartservice created
+serviceaccount/cartservice created
+deployment.apps/redis-cart created
+service/redis-cart created
+deployment.apps/emailservice created
+service/emailservice created
+serviceaccount/emailservice created
+deployment.apps/paymentservice created
+service/paymentservice created
+serviceaccount/paymentservice created
+deployment.apps/frontend created
+service/frontend created
+service/frontend-external created
+serviceaccount/frontend created
+deployment.apps/recommendationservice created
+service/recommendationservice created
+serviceaccount/recommendationservice created
+deployment.apps/adservice created
+service/adservice created
+serviceaccount/adservice created
+```
+
+</details></div>
+
+### Monitoring Cluster
+
+Next, we can monitor our cluster. The below command shows us the state of our pods:
+
+<div class='cell'><details>
+<summary>`kubectl get pods`</summary>
+```{.bash}
+NAME                                     READY   STATUS    RESTARTS   AGE
+adservice-fb4d9c855-l8wxt                1/1     Running   0          118m
+cartservice-846697dfbc-s7djk             1/1     Running   0          118m
+checkoutservice-65894dc998-jkk94         1/1     Running   0          118m
+currencyservice-65bc47bf48-75shp         1/1     Running   0          118m
+emailservice-6dcc98d886-ngpc5            1/1     Running   0          118m
+frontend-84dfc7997f-m769f                1/1     Running   0          118m
+loadgenerator-8649b8d85d-qlpwv           1/1     Running   0          99m
+paymentservice-546dd5484b-twrdr          1/1     Running   0          118m
+productcatalogservice-fd9b4c966-wqzn2    1/1     Running   0          118m
+recommendationservice-548f895747-nkg2t   1/1     Running   0          118m
+redis-cart-76ff8946b4-g5zpp              1/1     Running   0          118m
+shippingservice-845cc8596b-86w47         1/1     Running   0          118m
+```
+</details></div>
+
+We can also checkout something similar in the Kubernetes VS Code extension.
+
+![Kubernetes Cluster VS Code extension view](kube-vs-code-ext.png){#fig-kube-vs-code-ext height=600 fig-align="left"}
+
+### Accessing Microservice Frontend
+
+We can access the front-end website of the deployed Online Boutique app by entering the IP into the browser under "EXTERNAL-IP" below.
+
+<div class='cell'><details>
+<summary>`kubectl get service frontend-external`</summary>
+```{.bash}
+NAME                TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)        AGE
+frontend-external   LoadBalancer   34.118.226.169   34.26.108.20   80:30403/TCP   5h9m
+```
+</details></div>
+
+Additionally, we can access this IP in the Google Cloud console under:
+
+- `Resource Management -> Workloads -> frontend -> Exposing services -> frontend-external -> Endpoints`
+
+## Scaling Kubernetes Autopilot Cluster
+
+Kubernetes was designed to **scale** container applications. Here we will explore doing so with the Autopilot cluster to demo some of its capabilities. 
+
+### Apply Changes to Deployment in Autopilot Cluster
+
+Either through the `kubectl` CLI, Cloud Shell, or using VS Code, we can apply a change to our deployment. 
+
+Here we choose to change the CPU requests of the frontend Deployment from 100m to 650m. 
+
+In this demonstration, we will see how the Autopilot cluster adjusts our resoures to properly fit the updated CPU requests value. When we suppply a Pod without or with values that stretch the constraints, Autopilot adjusts them to fit automatically.
+
+To grab our frontend Pod's configuration, in the Kubernetes VS Code extension, we can open our cluster & go to:
+
+- `Workloads -> Deployments -> frontend`
+
+We can also describe the frontend service's running Pod by opening the Deployment & clicking on "Describe".
+
+Under "Pod Template" -> "Containers" -> "Limits"/"Requests", we see that our CPU limits are set to 200m/100m/ respectively.
+
+We will see how we can change 1 of these values & Autopilot will handle the rest. We will do this by increasing the CPU request value in `spec.template.spec.containers.resources` from `100m` to `650m`.
+
+Navigate to this value in the deployment-frontend Pod's yaml config that you just opened by clicking on the Workload in the kubernetes extensions. Change the `spec.template.spec.containers.resources.requests.cpu` value from `100m` to `650m`. Then, open command pallete with `CMD+shift+P` & use `Kubernetes: Apply`.
+
+This opens a Kuberenetes diff, & then VS Code will ask you to apply the changes in a notification. Click "Apply" to deploy the changes. 
+
+Next, we can describe the Pod again to see how Autopilot applied the changes. We see that our frontend container "Limits" CPU value got changed from `200m` to also `650m` to account our Requests change. Additionally, Limits/Requests memory values were updated from `128Mi/100Mi` to both `666Mi`. 
+
+### Scaling a Workload
+
+Here we will scale our frontend deployment by 3. The new scale does not fit on the ***existing*** cluster. However, we expect Autopilot to sclae it for us by adding nodes accordingly. 
+
+The below specifies Kubernetes to scale our cluster to have 3 [Replicas](https://kubernetes.io/docs/reference/glossary/?fundamental=true#term-replica), or copies of pods, of the frontend deployment. 
+
+<div class='cell'><details>
+<summary>`kubectl scale --replicas=3 deployment/frontend`</summary>
+```{.bash}
+deployment.apps/frontend scaled
+```
+</details></div>
+
+In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.
+
+![Frontend Deployment of 3 Replicas](kube-vs-code-replicas.png){#fig-kube-vs-code-replicas height=415 fig-align="left"}
+
+When we re-describe our frontend Deployment, here is what we learn:
+
+
+<div class='cell'><details open>
+<summary>`kubectl describe deployment/frontend`</summary>
+
+```{.bash}
+...
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  frontend-84dfc7997f (0/0 replicas created), frontend-74fbc9c757 (0/0 replicas created)
+NewReplicaSet:   frontend-55c6556fb5 (3/3 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  29m   deployment-controller  Scaled up replica set frontend-55c6556fb5 from 1 to 3
+```
+</details></div>
+
+Now, we will tear down the extra pods & bring back our deployment to it's original state:
+
+<div class='cell'><details>
+<summary>`kubectl scale --replicas=1 deployment/frontend`</summary>
+```{.bash}
+deployment.apps/frontend scaled
+```
+</details></div>
+
+And here can see that the Autopilot cluster handles this accordingly
+
+<div class='cell'><details open>
+<summary>`kubectl describe deployment/frontend`</summary>
+
+```{.bash}
+...
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  frontend-84dfc7997f (0/0 replicas created), frontend-74fbc9c757 (0/0 replicas created)
+NewReplicaSet:   frontend-55c6556fb5 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  67s   deployment-controller  Scaled down replica set frontend-55c6556fb5 from 3 to 1
+```
+</details></div>
+
+### Autoscaling the Application
+
+Here we will enable a horizontal Pod autoscaling policy (HorizontalPodAutoscaler - HPA) of the frontend Deployment to add new Pods to the cluster when existing Pods are over 5% CPU utilization. 
+
+<div class='cell'><details>
+<summary>`kubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3`</summary>
+```{.bash}
+horizontalpodautoscaler.autoscaling/frontend autoscaled
+```
+</details></div>
+
+We can view information on the HPA "autoscaler" below. We can also get a more detailed description using `kubectl describe hpa`.
+
+<div class='cell'><details open>
+<summary>`kubectl get hpa`</summary>
+```{.bash}
+NAME       REFERENCE             TARGETS      MINPODS   MAXPODS   REPLICAS   AGE
+frontend   Deployment/frontend   cpu: 2%/5%   1         3         1          4m59s
+```
+</details></div>
+
+Now, we will trigger horizontal Pod autoscaling by scaling out the load generator service (adding 5 replicas).
+
+<div class='cell'><details>
+<summary>`kubectl scale deployment/loadgenerator --replicas 5`</summary>
+```{.bash}
+deployment.apps/loadgenerator scaled
+```
+</details></div>
+
+We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.
+
+![Horizontal Autoscaling of Frontend Deployment](kube-vs-code-hpa.png){#fig-kube-vs-code-hpa height=502 fig-align="left"}
+
+<div class='cell'><details open>
+<summary>`kubectl describe hpa`</summary>
+
+```{.bash}
+Name:                                                  frontend
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Mon, 08 Dec 2025 15:55:46 -0500
+Reference:                                             Deployment/frontend
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  4% (24m) / 5%
+Min replicas:                                          1
+Max replicas:                                          3
+Deployment pods:                                       3 current / 3 desired
+Conditions:
+  Type            Status  Reason              Message
+  ----            ------  ------              -------
+  AbleToScale     True    ReadyForNewScale    recommended size matches current size
+  ScalingActive   True    ValidMetricFound    the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  False   DesiredWithinRange  the desired count is within the acceptable range
+Events:
+  Type     Reason                   Age                From                       Message
+  ----     ------                   ----               ----                       -------
+  Warning  FailedGetResourceMetric  13m (x4 over 21m)  horizontal-pod-autoscaler  No recommendation
+  Normal   SuccessfulRescale        7m6s               horizontal-pod-autoscaler  New size: 3; reason: cpu resource utilization (percentage of request) above target
+  Normal   HpaProfilePerformance    7m6s               horizontal-pod-autoscaler  The HPA rescaled target based on performance profile
+```
+</details></div>
+
+## Teardown Cluster
+
+We will delete (teardown) our cluster to free up our cloud resources & end all cloud utilization toward our billing account. This can be done with the `gcloud` CLI or within the Google Cloud console.
+
+<div class='cell'><details>
+<summary>`gcloud container clusters delete my-autopilot-cluster --region us-east1`</summary>
+
+```{.bash}
+The following clusters will be deleted.
+ - [my-autopilot-cluster] in [us-east1]
+
+Do you want to continue (Y/n)?  Y
+
+Deleting cluster my-autopilot-cluster...done.
+Deleted [https://container.googleapis.com/v1/projects/gke-autopilot-cluster-479822/zones/us-east1/clusters/my-autopilot-cluster].
+```
+</details></div>
+
+This ends up taking roughly 5 minutes to complete the teardown.
+
+## Fin
+
+Now go off into the great unknown & do wonders with `kubectl`, K8s, GKE, & Autopilot Clusters in Google Cloud :)
+
+```{r}
+#| eval: true
+#| code-fold: true
+#| code-summary: Code Tools
+print("Trigger Code Tools :)")
+```

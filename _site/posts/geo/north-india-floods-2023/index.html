@@ -117,6 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../../../assets/css/site.css">
 <link rel="stylesheet" href="../../../assets/css/font.css">
+<link rel="stylesheet" href="../../../assets/css/sourceCode.css">
 <link rel="stylesheet" href="../../../assets/css/posts.css">
 <meta property="og:title" content="North India Floods of October 2023 | Vincent Clemson">
 <meta property="og:description" content="A quick turn analysis to visually compare events caused by the Glacial Lake Outburst Flood in the Indian Himalayan Region of Sikkim during early October of 2023.">
@@ -280,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div id="fig-north-india-flood" class="quarto-figure quarto-figure-center anchored" width="1080px" data-fig-align="center">
+<div id="fig-north-india-flood" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="1080px">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-north-india-flood-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="india-north-flood-3x-3fps-1080w-80lossy-O3.gif" class="img-fluid quarto-figure-center figure-img" width="1080">
@@ -1375,7 +1376,7 @@ Figure&nbsp;4: 2023 South Lhonak Lake Sikkim, India - Maxar Open Data Program Le
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2024 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2023-2025 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Clemson, Vincent. 2023. <span>“North India Floods of October
 2023.”</span> October 12, 2023. <a href="https://prncevince.xyz/posts/geo/north-india-floods-2023">https://prncevince.xyz/posts/geo/north-india-floods-2023</a>.
 </div></div></section></div></main> <!-- /main -->
@@ -1477,17 +1478,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return false;
     });
   }
+  // Edit 2025/12/07-08
+  // To allow for div.sourceCode-container wrapper used in sourceCode.css / sourceCode.js
   function toggleCodeHandler(show) {
     return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      // const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      // const detailsSrc = window.document.querySelectorAll(".cell > details .sourceCode.cell-code");
+      const detailsSrc = window.document.querySelectorAll('.cell > details div[class="sourceCode"], .cell > details .sourceCode.cell-code');
       for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
+        const details = detailsSrc[i].parentElement.parentElement;
         if (show) {
           details.open = true;
         } else {
           details.removeAttribute("open");
         }
       }
+      // const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      // const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode.cell-code");
       const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
       const fromCls = show ? "hidden" : "unhidden";
       const toCls = show ? "unhidden" : "hidden";
@@ -1904,6 +1911,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <div id="scroll-padding"></div>
 <script src="../../../assets/js/site.js"></script>
 <script src="../../../assets/js/posts.js"></script>
+<script src="../../../assets/js/sourceCode.js"></script>
 
 
 

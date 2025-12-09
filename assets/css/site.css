@@ -7,7 +7,7 @@ figcaption.figure {
   text-align: center;
 }
 /* Possibly need more time with quarto before making such a generalization on most quarto-figure classes */
-div.quarto-figure:not(.column-screen) {
+div.quarto-figure:not(.column-screen, .quarto-figure-center, .cell-output-display) {
   width: fit-content;
   /* padding-right: 2em; */
 }

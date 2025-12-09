@@ -111,6 +111,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="../assets/css/font.css">
+<link rel="stylesheet" href="../assets/css/sourceCode.css">
 <link rel="stylesheet" href="../assets/css/posts-listing.css">
 <link rel="alternate" type="application/rss+xml" title="Big &amp; tiny Spatial Thoughts" href="index.xml" data-external="1"><meta property="og:title" content="Big &amp; tiny spatial thoughts | Vincent Clemson">
 <meta property="og:description" content="A collection of unique spatial data science content">
@@ -204,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="30DayMapChallenge">30DayMapChallenge <span class="quarto-category-count">(1)</span></div><div class="category" data-category="COG">COG <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Development Seed">Development Seed <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Earthquake">Earthquake <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Flood">Flood <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Geospatial">Geospatial <span class="quarto-category-count">(3)</span></div><div class="category" data-category="JavaScript">JavaScript <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Landslide">Landslide <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Leaflet">Leaflet <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Maxar">Maxar <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Natural Disasters">Natural Disasters <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Open Data">Open Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="STAC">STAC <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SVG">SVG <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tiling">Tiling <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ggplot2">ggplot2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rspatial">rspatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="svglite">svglite <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tidyverse">tidyverse <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="30DayMapChallenge">30DayMapChallenge <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Autoscaling">Autoscaling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="COG">COG <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Cloud">Cloud <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Containers">Containers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Development Seed">Development Seed <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Earthquake">Earthquake <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Flood">Flood <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Geospatial">Geospatial <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Google Cloud">Google Cloud <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JavaScript">JavaScript <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Kubernetes">Kubernetes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Landslide">Landslide <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Leaflet">Leaflet <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Maxar">Maxar <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Natural Disasters">Natural Disasters <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Open Data">Open Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="STAC">STAC <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SVG">SVG <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tiling">Tiling <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ggplot2">ggplot2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rspatial">rspatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="svglite">svglite <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tidyverse">tidyverse <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -254,7 +255,35 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="ggplot2,R,Geospatial,svglite,SVG,JavaScript,rspatial,tidyverse,30DayMapChallenge" data-listing-date-sort="1698555600000" data-listing-file-modified-sort="1698734220356" data-listing-date-modified-sort="1698734220000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1746">
+<div class="g-col-1" data-index="0" data-categories="Cloud,Google Cloud,Kubernetes,Containers,Autoscaling" data-listing-date-sort="1765170000000" data-listing-file-modified-sort="1765240122092" data-listing-date-modified-sort="1765240122000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3326">
+<a href="../posts/misc/gke-autopilot-walkthrough/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="misc/gke-autopilot-walkthrough/autopilot-futuristic-cockpit-view.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+GKE Autopilot Walkthrough
+</h5>
+<div class="listing-reading-time card-text text-muted">
+17 min
+</div>
+<div class="card-text listing-description">
+Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+December 8, 2025
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>December 8, 2025</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="ggplot2,R,Geospatial,svglite,SVG,JavaScript,rspatial,tidyverse,30DayMapChallenge" data-listing-date-sort="1698555600000" data-listing-file-modified-sort="1765169524394" data-listing-date-modified-sort="1765169524000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1746">
 <a href="../posts/geo/maps-ggplot-svglite/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="geo/maps-ggplot-svglite/usapop-ggplot-svglite-3x-3fps-1920w-80lossy-O3.gif" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -276,13 +305,13 @@ October 29, 2023
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>October 31, 2023</p>
+<p>December 7, 2025</p>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Geospatial,Maxar,Natural Disasters,COG,STAC,Tiling,Python,Leaflet,Development Seed,Open Data,Flood,Landslide" data-listing-date-sort="1697086800000" data-listing-file-modified-sort="1708327731834" data-listing-date-modified-sort="1708327731000" data-listing-reading-time-sort="3" data-listing-word-count-sort="458">
+<div class="g-col-1" data-index="2" data-categories="Geospatial,Maxar,Natural Disasters,COG,STAC,Tiling,Python,Leaflet,Development Seed,Open Data,Flood,Landslide" data-listing-date-sort="1697086800000" data-listing-file-modified-sort="1708327731834" data-listing-date-modified-sort="1708327731000" data-listing-reading-time-sort="3" data-listing-word-count-sort="458">
 <a href="../posts/geo/north-india-floods-2023/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="geo/north-india-floods-2023/india-north-flood-3x-3fps-1080w-80lossy-O3.gif" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -310,7 +339,7 @@ October 12, 2023
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="Geospatial,Maxar,Natural Disasters,COG,STAC,Tiling,Python,Leaflet,Development Seed,Open Data,Earthquake" data-listing-date-sort="1696222800000" data-listing-file-modified-sort="1697152819645" data-listing-date-modified-sort="1697152819000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2459">
+<div class="g-col-1" data-index="3" data-categories="Geospatial,Maxar,Natural Disasters,COG,STAC,Tiling,Python,Leaflet,Development Seed,Open Data,Earthquake" data-listing-date-sort="1696222800000" data-listing-file-modified-sort="1697152819645" data-listing-date-modified-sort="1697152819000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2459">
 <a href="../posts/geo/natural-disasters-maxar-open-data/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="geo/natural-disasters-maxar-open-data/morocco-eq-30s-3x-2fps-1080w-80lossy-O3.gif" style="height: 150px;"  class="thumbnail-image card-img"/></p>

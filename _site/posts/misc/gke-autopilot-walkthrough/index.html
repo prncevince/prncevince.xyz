@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.424">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Vincent Clemson">
+<meta name="dcterms.date" content="2025-12-08">
+<meta name="description" content="Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.">
+<title>GKE Autopilot Walkthrough | Vincent Clemson</title>
+<script src="../../../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script><script defer="" src="../../../_vercel/insights/script.js"></script><style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../..//assets/img/favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/font.css">
+<link rel="stylesheet" href="../../../assets/css/sourceCode.css">
+<link rel="stylesheet" href="../../../assets/css/posts.css">
+<meta property="og:title" content="GKE Autopilot Walkthrough | Vincent Clemson">
+<meta property="og:description" content="Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.">
+<meta property="og:image" content="https://prncevince.xyz/assets/img/posts.png">
+<meta property="og:site_name" content="Vincent Clemson">
+<meta property="og:image:height" content="1498">
+<meta property="og:image:width" content="2868">
+<meta name="twitter:title" content="GKE Autopilot Walkthrough | Vincent Clemson">
+<meta name="twitter:description" content="Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.">
+<meta name="twitter:image" content="https://prncevince.xyz/assets/img/posts.png">
+<meta name="twitter:creator" content="@prncevincecares">
+<meta name="twitter:site" content="@prncevincecares">
+<meta name="twitter:image-height" content="1498">
+<meta name="twitter:image-width" content="2868">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Vincent Clemson</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../../posts/index.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-brands-github-classquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="quarto-navbar-tools-item"><i class="fa-brands fa-github" aria-label="github"></i></span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-fa-brands-github-classquarto-navbar-tools-item">
+<li>
+    <a class="dropdown-item" href="https://github.com/prncevince" rel="me" target="_blank">
+ <span class="dropdown-text">GitHub Profile <i class="fa-brands fa-github-alt" aria-label="github-alt"></i></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/prncevince/prncevince.io/discussions" target="_blank">
+ <span class="dropdown-text">Site Discussions 🗣</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/prncevince/prncevince.io" target="_blank">
+ <span class="dropdown-text">Site Source Code 💻</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-brands-twitter-classquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="quarto-navbar-tools-item"><i class="fa-brands fa-twitter" aria-label="twitter"></i></span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-fa-brands-twitter-classquarto-navbar-tools-item">
+<li>
+    <a class="dropdown-item" href="https://twitter.com/prncevincecares" rel="me" target="_blank">
+ <span class="dropdown-text">News &amp; Science &amp; Code 🚀</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://twitter.com/prncevincestats" rel="me" target="_blank">
+ <span class="dropdown-text">Sports 🎾</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/index.xml"> 
+<span class="menu-text"><span class="rss quarto-navbar-tools-item"><i class="fa-solid fa-rss" aria-label="rss"></i></span></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">TLDR</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#about-gke-modes-of-operation" id="toc-about-gke-modes-of-operation" class="nav-link" data-scroll-target="#about-gke-modes-of-operation">About GKE Modes of Operation</a></li>
+  <li>
+<a href="#creating-a-cluster-in-autopilot-mode" id="toc-creating-a-cluster-in-autopilot-mode" class="nav-link" data-scroll-target="#creating-a-cluster-in-autopilot-mode">Creating a Cluster in Autopilot Mode</a>
+  <ul>
+<li><a href="#setup-cluster-basics" id="toc-setup-cluster-basics" class="nav-link" data-scroll-target="#setup-cluster-basics">Setup Cluster Basics</a></li>
+  <li><a href="#fleet-registration" id="toc-fleet-registration" class="nav-link" data-scroll-target="#fleet-registration">Fleet Registration</a></li>
+  <li><a href="#networking" id="toc-networking" class="nav-link" data-scroll-target="#networking">Networking</a></li>
+  <li><a href="#advanced-settings" id="toc-advanced-settings" class="nav-link" data-scroll-target="#advanced-settings">Advanced Settings</a></li>
+  <li><a href="#review-create" id="toc-review-create" class="nav-link" data-scroll-target="#review-create">Review &amp; Create</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#configure-access-to-cluster" id="toc-configure-access-to-cluster" class="nav-link" data-scroll-target="#configure-access-to-cluster">Configure Access to Cluster</a>
+  <ul>
+<li><a href="#gcloud-setup-config" id="toc-gcloud-setup-config" class="nav-link" data-scroll-target="#gcloud-setup-config"><code>gcloud</code> Setup &amp; Config</a></li>
+  <li><a href="#kubectl-config" id="toc-kubectl-config" class="nav-link" data-scroll-target="#kubectl-config"><code>kubectl</code> Config</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#working-with-an-application-on-the-autopilot-cluster" id="toc-working-with-an-application-on-the-autopilot-cluster" class="nav-link" data-scroll-target="#working-with-an-application-on-the-autopilot-cluster">Working with an Application on the Autopilot Cluster</a>
+  <ul>
+<li><a href="#deploying-application-to-cluster" id="toc-deploying-application-to-cluster" class="nav-link" data-scroll-target="#deploying-application-to-cluster">Deploying Application to Cluster</a></li>
+  <li><a href="#monitoring-cluster" id="toc-monitoring-cluster" class="nav-link" data-scroll-target="#monitoring-cluster">Monitoring Cluster</a></li>
+  <li><a href="#accessing-microservice-frontend" id="toc-accessing-microservice-frontend" class="nav-link" data-scroll-target="#accessing-microservice-frontend">Accessing Microservice Frontend</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#scaling-kubernetes-autopilot-cluster" id="toc-scaling-kubernetes-autopilot-cluster" class="nav-link" data-scroll-target="#scaling-kubernetes-autopilot-cluster">Scaling Kubernetes Autopilot Cluster</a>
+  <ul>
+<li><a href="#apply-changes-to-deployment-in-autopilot-cluster" id="toc-apply-changes-to-deployment-in-autopilot-cluster" class="nav-link" data-scroll-target="#apply-changes-to-deployment-in-autopilot-cluster">Apply Changes to Deployment in Autopilot Cluster</a></li>
+  <li><a href="#scaling-a-workload" id="toc-scaling-a-workload" class="nav-link" data-scroll-target="#scaling-a-workload">Scaling a Workload</a></li>
+  <li><a href="#autoscaling-the-application" id="toc-autoscaling-the-application" class="nav-link" data-scroll-target="#autoscaling-the-application">Autoscaling the Application</a></li>
+  </ul>
+</li>
+  <li><a href="#teardown-cluster" id="toc-teardown-cluster" class="nav-link" data-scroll-target="#teardown-cluster">Teardown Cluster</a></li>
+  <li><a href="#fin" id="toc-fin" class="nav-link" data-scroll-target="#fin">Fin</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">GKE Autopilot Walkthrough</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i></button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/prncevince/prncevince.io/blob/main/posts/misc/gke-autopilot-walkthrough/index.qmd">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Cloud</div>
+    <div class="quarto-category">Google Cloud</div>
+    <div class="quarto-category">Kubernetes</div>
+    <div class="quarto-category">Containers</div>
+    <div class="quarto-category">Autoscaling</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vincent Clemson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 8, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">December 8, 2025</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header><style>
+  div.quarto-figure:not(.column-screen) {
+    padding-right: 2em;
+  }
+  .quarto-figure-center figcaption {
+    display: block;
+    text-align: center;
+  }
+</style>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="autopilot-futuristic-cockpit-view.png" class="img-fluid figure-img"></p>
+<figcaption>Prompt: Cockpit view within futuristic super advanced aircraft, cool lights &amp; monitors, pilot laying back with feet up resting, beautiful view flying over mountains at sunset, wide aspect ratio.</figcaption></figure>
+</div>
+<section id="tldr" class="level2"><h2 class="anchored" data-anchor-id="tldr">TLDR</h2>
+<p>Here we work through Google’s interactive GKE<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Autopilot Walkthrough <a href="https://console.cloud.google.com/welcome?walkthrough_id=gke_autopilot">tutorial</a>.</p>
+</section><section id="resources" class="level2"><h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/choose-cluster-mode">GKE Modes of Operation</a></li>
+<li><a href="https://console.cloud.google.com/kubernetes/auto/add">Kubernetes Engine -&gt; Create an Autopilot cluser</a></li>
+</ul></section><section id="about-gke-modes-of-operation" class="level2"><h2 class="anchored" data-anchor-id="about-gke-modes-of-operation">About GKE Modes of Operation</h2>
+<p>GKE allows you to select 2 modes of operation when creating a cluser:</p>
+<ul>
+<li>Autopilot</li>
+<li>Standard</li>
+</ul></section><section id="creating-a-cluster-in-autopilot-mode" class="level2"><h2 class="anchored" data-anchor-id="creating-a-cluster-in-autopilot-mode">Creating a Cluster in Autopilot Mode</h2>
+<p>Creating an Autopilot cluster benefits from Google Cloud handling the following:</p>
+<ul>
+<li>
+<strong>Nodes</strong>: Automated node provisioning, scaling, and maintenance</li>
+<li>
+<strong>Networking</strong>: VPC-native traffic routing for clusters</li>
+<li>
+<strong>Security</strong>: Shielded GKE Nodes and Workload Identity</li>
+<li>
+<strong>Telemetry</strong>: Cloud Operations logging and monitoring</li>
+</ul>
+<section id="setup-cluster-basics" class="level3"><h3 class="anchored" data-anchor-id="setup-cluster-basics">Setup Cluster Basics</h3>
+<p>The following CLI command is comparible to what Google Cloud runs to create the Kubernetes cluster.</p>
+<p>To select the region, I used Google’s <a href="https://cloud.withgoogle.com/region-picker/">Cloud Region Picker</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">gcloud</span> beta container <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="at">--project</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="st">"gke-autopilot-cluster-479822"</span> clusters create-auto <span class="st">"my-autopilot-cluster"</span> <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="at">--region</span> <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="st">"us-east1"</span> <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="at">--release-channel</span> <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">"regular"</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="at">--enable-ip-access</span> <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="at">--no-enable-google-cloud-access</span> <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="at">--network</span> <span class="dt">\</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="st">"projects/gke-autopilot-cluster-479822/global/networks/default"</span> <span class="dt">\</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="at">--subnetwork</span> <span class="dt">\</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="st">"projects/gke-autopilot-cluster-479822/regions/us-east1/subnetworks/default"</span> <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="at">--cluster-ipv4-cidr</span> <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="st">"/17"</span> <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="at">--binauthz-evaluation-mode</span><span class="op">=</span>DISABLED</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="fleet-registration" class="level3"><h3 class="anchored" data-anchor-id="fleet-registration">Fleet Registration</h3>
+<p>This feature helps you to manage multiple clusters together.</p>
+<p>A fleet lets you logically group and normalize Kubernetes clusters, helping you uplevel management from individual clusters to groups of clusters. To use multi-cluster capabilities and apply consistent policies across your systems, register your cluster to a fleet.</p>
+<ul>
+<li><a href="https://cloud.google.com/kubernetes-engine/fleet-management/docs">GKE Fleet Management Overview</a></li>
+</ul></section><section id="networking" class="level3"><h3 class="anchored" data-anchor-id="networking">Networking</h3>
+<p>This section is for defining access to the Control Plane. You can select access through using DNS or through using IPv4 addresses.</p>
+<p>You also define cluster networking, e.g.&nbsp;how applications in the cluster communicate with each other &amp; how clients can reach them.</p>
+</section><section id="advanced-settings" class="level3"><h3 class="anchored" data-anchor-id="advanced-settings">Advanced Settings</h3>
+<p>Here you can choose from 3 target Release Channels: Rapid, Regular, &amp; Stable. The default is Regular (recommended).</p>
+<ul>
+<li>Rapid
+<ul>
+<li>Use to test new releases before they’re qualified for production use or general availability.</li>
+</ul>
+</li>
+<li>Regular
+<ul>
+<li>Balance feature availability and release stability. Versions have been qualified over a longer period. Recommended for most users.</li>
+</ul>
+</li>
+<li>Stable
+<ul>
+<li>Use it to prioritize stability over new features. GKE rolls out changes and new versions on the Stable channel last, after validating them on the Rapid and Regular channels.</li>
+</ul>
+</li>
+</ul>
+<p>Learn more about choosing the best channel:</p>
+<ul>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#what_channel_should_i_use">Choosing the Best Channel for your Cluster</a></li>
+</ul>
+<p>Once selected, default configuration can be changed &amp; defined for the following areas:</p>
+<ul>
+<li>Automation, Service Mesh, Backup plan, Security, AI and Machine Learning, Operations, Metadata</li>
+</ul></section><section id="review-create" class="level3"><h3 class="anchored" data-anchor-id="review-create">Review &amp; Create</h3>
+<p>Here your can review all settings, and then click Create Cluster. After about 5 minutes, your cluster should be up &amp; running.</p>
+</section></section><section id="configure-access-to-cluster" class="level2"><h2 class="anchored" data-anchor-id="configure-access-to-cluster">Configure Access to Cluster</h2>
+<p>Here we walk through configuring the Kubernetes command line tool to access our cluster. This will allow us to monitor/interact with our cluster on our local machine.</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://docs.cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl">Install kubectl and configure cluster access</a></li>
+</ul>
+<p>Firstly, <a href="https://docs.cloud.google.com/sdk/docs/install-sdk">gcloud</a> CLI must be installed. This allows us to work with the <a href="https://docs.cloud.google.com/sdk/docs/overview">Google Cloud SDK</a> from the command line / terminal.</p>
+<section id="gcloud-setup-config" class="level3"><h3 class="anchored" data-anchor-id="gcloud-setup-config">
+<code>gcloud</code> Setup &amp; Config</h3>
+<p>This is my first time using Google Cloud, so I need to configure it using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">gcloud</span> init <span class="at">--no-launch-browser</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After authenticating through the browser, next we will pick a project to use. Here I select the project that Google Cloud created when setting up the autpilot cluster: <code>gke-autopilot-cluster-479822</code>.</p>
+<p>Next, we specify a default Google Compute Engine region-zone to use. I selected <code>us-east1-b</code> here since it’s best for my physical location.</p>
+<p>After this, Google SDK should have created a <code>~/.config/gcloud/</code> directory with your configuration. The Google Cloud SDK configuration information is written to <code>~/.config/gcloud/configurations/config_default</code>. This looks something like the following:</p>
+<div class="cell">
+<details open=""><summary>
+~/.config/gcloud/configurations/config_default
+</summary><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">[core]</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">account</span> = <span class="op">&lt;</span>replace-with-your-email<span class="op">&gt;</span>@gmail.com</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">project</span> = gke-autopilot-cluster-479822</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">[compute]</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="ex">zone</span> = us-east1-b</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="ex">region</span> = us-east1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="kubectl-config" class="level3"><h3 class="anchored" data-anchor-id="kubectl-config">
+<code>kubectl</code> Config</h3>
+<p>We can use <code>gcloud</code> to generate a “<strong><em>kubeconfig</em></strong>” context that stores our GKE cluster information for <code>kubectl</code>.</p>
+<p>This kubeconfig file is stored under <code>$HOME/.kube/config</code> on macOS.</p>
+<div class="cell">
+<details open=""><summary><code>gcloud container clusters get-credentials my-autopilot-cluster --location=us-east1</code>
+</summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Fetching</span> cluster endpoint and auth data. </span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">kubeconfig</span> entry generated for my-autopilot-cluster.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The kubectl configuration can be output with <code>kubectl config view</code>.</p>
+<p>To view current context of kubectl, we can run:</p>
+<div class="cell">
+<details open=""><summary><code>kubectl config current-context</code>
+</summary><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">gke_gke-autopilot-cluster-479822_us-east1_my-autopilot-cluster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>For more commonly used <code>kubectl</code> commands, see:</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/quick-reference/">kubectl Quick Reference</a></li>
+</ul></section></section><section id="working-with-an-application-on-the-autopilot-cluster" class="level2"><h2 class="anchored" data-anchor-id="working-with-an-application-on-the-autopilot-cluster">Working with an Application on the Autopilot Cluster</h2>
+<p>The next sections of the tutorial involve deploying a microservice demo application to your Autopilot Cluster.</p>
+<p>The walkthrough on <a href="https://console.cloud.google.com" class="uri">https://console.cloud.google.com</a> has you use the Google Cloud Console built-in terminal &amp; Cloud Shell (VS Code) editor.</p>
+<p>However, Kubernetes was designed to be able to do this remotely, so we will use the <code>kubectl</code> CLI in our local dev environment. With API access/auth &amp; config setup, these steps can be done in either your local dev setup or within the Google Cloud Console.</p>
+<p>Additionally, VS Code’s Kuberenetes extension allows us to monitor our cluster. We’ll show what that looks like as well.</p>
+<section id="deploying-application-to-cluster" class="level3"><h3 class="anchored" data-anchor-id="deploying-application-to-cluster">Deploying Application to Cluster</h3>
+<p>Here we clone the demo microservice application (an Online Boutique). Then, we deploy it to our autopilot cluster.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">git</span> clone <span class="at">--depth</span> 1 https://github.com/GoogleCloudPlatform/microservices-demo.git</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">cd</span> microservices-demo</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> ./release/kubernetes-manifests.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output for <code>kubectl apply</code> below:</p>
+<div class="cell">
+<details><summary><code>kubectl apply -f ./release/kubernetes-manifests.yaml</code>
+</summary><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">deployment.apps/currencyservice</span> created</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">service/currencyservice</span> created</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">serviceaccount/currencyservice</span> created</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">Warning:</span> autopilot-default-resources-mutator:Autopilot updated Deployment default/loadgenerator: defaulted unspecified <span class="st">'cpu'</span> resource for containers <span class="pp">[</span><span class="ss">frontend</span><span class="pp">-</span><span class="ss">check</span><span class="pp">]</span> <span class="er">(</span><span class="ex">see</span> http://g.co/gke/autopilot-defaults<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">deployment.apps/loadgenerator</span> created</span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="ex">serviceaccount/loadgenerator</span> created</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="ex">deployment.apps/productcatalogservice</span> created</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="ex">service/productcatalogservice</span> created</span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="ex">serviceaccount/productcatalogservice</span> created</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="ex">deployment.apps/checkoutservice</span> created</span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="ex">service/checkoutservice</span> created</span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="ex">serviceaccount/checkoutservice</span> created</span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="ex">deployment.apps/shippingservice</span> created</span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="ex">service/shippingservice</span> created</span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="ex">serviceaccount/shippingservice</span> created</span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="ex">deployment.apps/cartservice</span> created</span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="ex">service/cartservice</span> created</span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="ex">serviceaccount/cartservice</span> created</span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="ex">deployment.apps/redis-cart</span> created</span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="ex">service/redis-cart</span> created</span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="ex">deployment.apps/emailservice</span> created</span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="ex">service/emailservice</span> created</span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="ex">serviceaccount/emailservice</span> created</span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="ex">deployment.apps/paymentservice</span> created</span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="ex">service/paymentservice</span> created</span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="ex">serviceaccount/paymentservice</span> created</span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="ex">deployment.apps/frontend</span> created</span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="ex">service/frontend</span> created</span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="ex">service/frontend-external</span> created</span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="ex">serviceaccount/frontend</span> created</span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="ex">deployment.apps/recommendationservice</span> created</span>
+<span id="cb7-32"><a href="#cb7-32"></a><span class="ex">service/recommendationservice</span> created</span>
+<span id="cb7-33"><a href="#cb7-33"></a><span class="ex">serviceaccount/recommendationservice</span> created</span>
+<span id="cb7-34"><a href="#cb7-34"></a><span class="ex">deployment.apps/adservice</span> created</span>
+<span id="cb7-35"><a href="#cb7-35"></a><span class="ex">service/adservice</span> created</span>
+<span id="cb7-36"><a href="#cb7-36"></a><span class="ex">serviceaccount/adservice</span> created</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="monitoring-cluster" class="level3"><h3 class="anchored" data-anchor-id="monitoring-cluster">Monitoring Cluster</h3>
+<p>Next, we can monitor our cluster. The below command shows us the state of our pods:</p>
+<div class="cell">
+<details><summary><code>kubectl get pods</code>
+</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">NAME</span>                                     READY   STATUS    RESTARTS   AGE</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">adservice-fb4d9c855-l8wxt</span>                1/1     Running   0          118m</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">cartservice-846697dfbc-s7djk</span>             1/1     Running   0          118m</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="ex">checkoutservice-65894dc998-jkk94</span>         1/1     Running   0          118m</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="ex">currencyservice-65bc47bf48-75shp</span>         1/1     Running   0          118m</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="ex">emailservice-6dcc98d886-ngpc5</span>            1/1     Running   0          118m</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="ex">frontend-84dfc7997f-m769f</span>                1/1     Running   0          118m</span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="ex">loadgenerator-8649b8d85d-qlpwv</span>           1/1     Running   0          99m</span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="ex">paymentservice-546dd5484b-twrdr</span>          1/1     Running   0          118m</span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="ex">productcatalogservice-fd9b4c966-wqzn2</span>    1/1     Running   0          118m</span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="ex">recommendationservice-548f895747-nkg2t</span>   1/1     Running   0          118m</span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="ex">redis-cart-76ff8946b4-g5zpp</span>              1/1     Running   0          118m</span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="ex">shippingservice-845cc8596b-86w47</span>         1/1     Running   0          118m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can also checkout something similar in the Kubernetes VS Code extension.</p>
+<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" height="600" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="kube-vs-code-ext.png" class="quarto-figure-left figure-img" height="600">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Kubernetes Cluster VS Code extension view
+</figcaption></figure>
+</div>
+</section><section id="accessing-microservice-frontend" class="level3"><h3 class="anchored" data-anchor-id="accessing-microservice-frontend">Accessing Microservice Frontend</h3>
+<p>We can access the front-end website of the deployed Online Boutique app by entering the IP into the browser under “EXTERNAL-IP” below.</p>
+<div class="cell">
+<details><summary><code>kubectl get service frontend-external</code>
+</summary><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">NAME</span>                TYPE           CLUSTER-IP       EXTERNAL-IP    PORT<span class="er">(</span><span class="ex">S</span><span class="kw">)</span>        <span class="ex">AGE</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="ex">frontend-external</span>   LoadBalancer   34.118.226.169   34.26.108.20   80:30403/TCP   5h9m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Additionally, we can access this IP in the Google Cloud console under:</p>
+<ul>
+<li><code>Resource Management -&gt; Workloads -&gt; frontend -&gt; Exposing services -&gt; frontend-external -&gt; Endpoints</code></li>
+</ul></section></section><section id="scaling-kubernetes-autopilot-cluster" class="level2"><h2 class="anchored" data-anchor-id="scaling-kubernetes-autopilot-cluster">Scaling Kubernetes Autopilot Cluster</h2>
+<p>Kubernetes was designed to <strong>scale</strong> container applications. Here we will explore doing so with the Autopilot cluster to demo some of its capabilities.</p>
+<section id="apply-changes-to-deployment-in-autopilot-cluster" class="level3"><h3 class="anchored" data-anchor-id="apply-changes-to-deployment-in-autopilot-cluster">Apply Changes to Deployment in Autopilot Cluster</h3>
+<p>Either through the <code>kubectl</code> CLI, Cloud Shell, or using VS Code, we can apply a change to our deployment.</p>
+<p>Here we choose to change the CPU requests of the frontend Deployment from 100m to 650m.</p>
+<p>In this demonstration, we will see how the Autopilot cluster adjusts our resoures to properly fit the updated CPU requests value. When we suppply a Pod without or with values that stretch the constraints, Autopilot adjusts them to fit automatically.</p>
+<p>To grab our frontend Pod’s configuration, in the Kubernetes VS Code extension, we can open our cluster &amp; go to:</p>
+<ul>
+<li><code>Workloads -&gt; Deployments -&gt; frontend</code></li>
+</ul>
+<p>We can also describe the frontend service’s running Pod by opening the Deployment &amp; clicking on “Describe”.</p>
+<p>Under “Pod Template” -&gt; “Containers” -&gt; “Limits”/“Requests”, we see that our CPU limits are set to 200m/100m/ respectively.</p>
+<p>We will see how we can change 1 of these values &amp; Autopilot will handle the rest. We will do this by increasing the CPU request value in <code>spec.template.spec.containers.resources</code> from <code>100m</code> to <code>650m</code>.</p>
+<p>Navigate to this value in the deployment-frontend Pod’s yaml config that you just opened by clicking on the Workload in the kubernetes extensions. Change the <code>spec.template.spec.containers.resources.requests.cpu</code> value from <code>100m</code> to <code>650m</code>. Then, open command pallete with <code>CMD+shift+P</code> &amp; use <code>Kubernetes: Apply</code>.</p>
+<p>This opens a Kuberenetes diff, &amp; then VS Code will ask you to apply the changes in a notification. Click “Apply” to deploy the changes.</p>
+<p>Next, we can describe the Pod again to see how Autopilot applied the changes. We see that our frontend container “Limits” CPU value got changed from <code>200m</code> to also <code>650m</code> to account our Requests change. Additionally, Limits/Requests memory values were updated from <code>128Mi/100Mi</code> to both <code>666Mi</code>.</p>
+</section><section id="scaling-a-workload" class="level3"><h3 class="anchored" data-anchor-id="scaling-a-workload">Scaling a Workload</h3>
+<p>Here we will scale our frontend deployment by 3. The new scale does not fit on the <strong><em>existing</em></strong> cluster. However, we expect Autopilot to sclae it for us by adding nodes accordingly.</p>
+<p>The below specifies Kubernetes to scale our cluster to have 3 <a href="https://kubernetes.io/docs/reference/glossary/?fundamental=true#term-replica">Replicas</a>, or copies of pods, of the frontend deployment.</p>
+<div class="cell">
+<details><summary><code>kubectl scale --replicas=3 deployment/frontend</code>
+</summary><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">deployment.apps/frontend</span> scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.</p>
+<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" height="415" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="kube-vs-code-replicas.png" class="quarto-figure-left figure-img" height="415">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Frontend Deployment of 3 Replicas
+</figcaption></figure>
+</div>
+<p>When we re-describe our frontend Deployment, here is what we learn:</p>
+<div class="cell">
+<details open=""><summary><code>kubectl describe deployment/frontend</code>
+</summary><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">...</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="ex">Conditions:</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="ex">Type</span>           Status  Reason</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="ex">----</span>           <span class="at">------</span>  <span class="at">------</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="ex">Progressing</span>    True    NewReplicaSetAvailable</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="ex">Available</span>      True    MinimumReplicasAvailable</span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="ex">OldReplicaSets:</span>  frontend-84dfc7997f <span class="er">(</span><span class="ex">0/0</span> replicas created<span class="kw">)</span><span class="ex">,</span> frontend-74fbc9c757 <span class="er">(</span><span class="ex">0/0</span> replicas created<span class="kw">)</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="ex">NewReplicaSet:</span>   frontend-55c6556fb5 <span class="er">(</span><span class="ex">3/3</span> replicas created<span class="kw">)</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="ex">Events:</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="ex">Type</span>    Reason             Age   From                   Message</span>
+<span id="cb11-11"><a href="#cb11-11"></a>  <span class="ex">----</span>    <span class="at">------</span>             <span class="at">----</span>  <span class="at">----</span>                   <span class="at">-------</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>  <span class="ex">Normal</span>  ScalingReplicaSet  29m   deployment-controller  Scaled up replica set frontend-55c6556fb5 from 1 to 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now, we will tear down the extra pods &amp; bring back our deployment to it’s original state:</p>
+<div class="cell">
+<details><summary><code>kubectl scale --replicas=1 deployment/frontend</code>
+</summary><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">deployment.apps/frontend</span> scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>And here can see that the Autopilot cluster handles this accordingly</p>
+<div class="cell">
+<details open=""><summary><code>kubectl describe deployment/frontend</code>
+</summary><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">...</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="ex">Conditions:</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="ex">Type</span>           Status  Reason</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="ex">----</span>           <span class="at">------</span>  <span class="at">------</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="ex">Progressing</span>    True    NewReplicaSetAvailable</span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="ex">Available</span>      True    MinimumReplicasAvailable</span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="ex">OldReplicaSets:</span>  frontend-84dfc7997f <span class="er">(</span><span class="ex">0/0</span> replicas created<span class="kw">)</span><span class="ex">,</span> frontend-74fbc9c757 <span class="er">(</span><span class="ex">0/0</span> replicas created<span class="kw">)</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="ex">NewReplicaSet:</span>   frontend-55c6556fb5 <span class="er">(</span><span class="ex">1/1</span> replicas created<span class="kw">)</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="ex">Events:</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="ex">Type</span>    Reason             Age   From                   Message</span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="ex">----</span>    <span class="at">------</span>             <span class="at">----</span>  <span class="at">----</span>                   <span class="at">-------</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="ex">Normal</span>  ScalingReplicaSet  67s   deployment-controller  Scaled down replica set frontend-55c6556fb5 from 3 to 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="autoscaling-the-application" class="level3"><h3 class="anchored" data-anchor-id="autoscaling-the-application">Autoscaling the Application</h3>
+<p>Here we will enable a horizontal Pod autoscaling policy (HorizontalPodAutoscaler - HPA) of the frontend Deployment to add new Pods to the cluster when existing Pods are over 5% CPU utilization.</p>
+<div class="cell">
+<details><summary><code>kubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3</code>
+</summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">horizontalpodautoscaler.autoscaling/frontend</span> autoscaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can view information on the HPA “autoscaler” below. We can also get a more detailed description using <code>kubectl describe hpa</code>.</p>
+<div class="cell">
+<details open=""><summary><code>kubectl get hpa</code>
+</summary><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">NAME</span>       REFERENCE             TARGETS      MINPODS   MAXPODS   REPLICAS   AGE</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="ex">frontend</span>   Deployment/frontend   cpu: 2%/5%   1         3         1          4m59s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now, we will trigger horizontal Pod autoscaling by scaling out the load generator service (adding 5 replicas).</p>
+<div class="cell">
+<details><summary><code>kubectl scale deployment/loadgenerator --replicas 5</code>
+</summary><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">deployment.apps/loadgenerator</span> scaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.</p>
+<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" height="502" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="kube-vs-code-hpa.png" class="quarto-figure-left figure-img" height="502">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Horizontal Autoscaling of Frontend Deployment
+</figcaption></figure>
+</div>
+<div class="cell">
+<details open=""><summary><code>kubectl describe hpa</code>
+</summary><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="ex">Name:</span>                                                  frontend</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="ex">Namespace:</span>                                             default</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="ex">Labels:</span>                                                <span class="op">&lt;</span>none<span class="op">&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="ex">Annotations:</span>                                           <span class="op">&lt;</span>none<span class="op">&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="ex">CreationTimestamp:</span>                                     Mon, 08 Dec 2025 15:55:46 <span class="at">-0500</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="ex">Reference:</span>                                             Deployment/frontend</span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="ex">Metrics:</span>                                               <span class="er">(</span> <span class="ex">current</span> / target <span class="kw">)</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="ex">resource</span> cpu on pods  <span class="er">(</span><span class="fu">as</span> a percentage of request<span class="kw">)</span><span class="bu">:</span>  4% <span class="er">(</span><span class="ex">24m</span><span class="kw">)</span> <span class="ex">/</span> 5%</span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="ex">Min</span> replicas:                                          1</span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="ex">Max</span> replicas:                                          3</span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="ex">Deployment</span> pods:                                       3 current / 3 desired</span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="ex">Conditions:</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="ex">Type</span>            Status  Reason              Message</span>
+<span id="cb17-14"><a href="#cb17-14"></a>  <span class="ex">----</span>            <span class="at">------</span>  <span class="at">------</span>              <span class="at">-------</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>  <span class="ex">AbleToScale</span>     True    ReadyForNewScale    recommended size matches current size</span>
+<span id="cb17-16"><a href="#cb17-16"></a>  <span class="ex">ScalingActive</span>   True    ValidMetricFound    the HPA was able to successfully calculate a replica count from cpu resource utilization <span class="er">(</span><span class="ex">percentage</span> of request<span class="kw">)</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a>  <span class="ex">ScalingLimited</span>  False   DesiredWithinRange  the desired count is within the acceptable range</span>
+<span id="cb17-18"><a href="#cb17-18"></a><span class="ex">Events:</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a>  <span class="ex">Type</span>     Reason                   Age                From                       Message</span>
+<span id="cb17-20"><a href="#cb17-20"></a>  <span class="ex">----</span>     <span class="at">------</span>                   <span class="at">----</span>               <span class="at">----</span>                       <span class="at">-------</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a>  <span class="ex">Warning</span>  FailedGetResourceMetric  13m <span class="er">(</span><span class="ex">x4</span> over 21m<span class="kw">)</span>  <span class="ex">horizontal-pod-autoscaler</span>  No recommendation</span>
+<span id="cb17-22"><a href="#cb17-22"></a>  <span class="ex">Normal</span>   SuccessfulRescale        7m6s               horizontal-pod-autoscaler  New size: 3<span class="kw">;</span> <span class="ex">reason:</span> cpu resource utilization <span class="er">(</span><span class="ex">percentage</span> of request<span class="kw">)</span> <span class="ex">above</span> target</span>
+<span id="cb17-23"><a href="#cb17-23"></a>  <span class="ex">Normal</span>   HpaProfilePerformance    7m6s               horizontal-pod-autoscaler  The HPA rescaled target based on performance profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section><section id="teardown-cluster" class="level2"><h2 class="anchored" data-anchor-id="teardown-cluster">Teardown Cluster</h2>
+<p>We will delete (teardown) our cluster to free up our cloud resources &amp; end all cloud utilization toward our billing account. This can be done with the <code>gcloud</code> CLI or within the Google Cloud console.</p>
+<div class="cell">
+<details><summary><code>gcloud container clusters delete my-autopilot-cluster --region us-east1</code>
+</summary><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">The</span> following clusters will be deleted.</span>
+<span id="cb18-2"><a href="#cb18-2"></a> <span class="ex">-</span> <span class="pp">[</span><span class="ss">my</span><span class="pp">-</span><span class="ss">autopilot</span><span class="pp">-</span><span class="ss">cluster</span><span class="pp">]</span> in <span class="pp">[</span><span class="ss">us</span><span class="pp">-</span><span class="ss">east1</span><span class="pp">]</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="ex">Do</span> you want to continue <span class="er">(</span><span class="ex">Y/n</span><span class="kw">)</span><span class="ex">?</span>  Y</span>
+<span id="cb18-5"><a href="#cb18-5"></a></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="ex">Deleting</span> cluster my-autopilot-cluster...done.</span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="ex">Deleted</span> <span class="pp">[</span><span class="ss">https://container.googleapis.com/v1/projects/gke</span><span class="pp">-</span><span class="ss">autopilot</span><span class="pp">-</span><span class="ss">cluster</span><span class="pp">-</span><span class="ss">479822/zones/us</span><span class="pp">-</span><span class="ss">east1/clusters/my</span><span class="pp">-</span><span class="ss">autopilot</span><span class="pp">-</span><span class="ss">cluster</span><span class="pp">]</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>This ends up taking roughly 5 minutes to complete the teardown.</p>
+</section><section id="fin" class="level2"><h2 class="anchored" data-anchor-id="fin">Fin</h2>
+<p>Now go off into the great unknown &amp; do wonders with <code>kubectl</code>, K8s, GKE, &amp; Autopilot Clusters in Google Cloud :)</p>
+<div class="cell">
+<details><summary>Code Tools</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">print</span>(<span class="st">"Trigger Code Tools :)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>[1] "Trigger Code Tools :)"</code></pre>
+</div>
+</div>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>Google Kubernetes Engine<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></aside><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2023-2025 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Clemson, Vincent. 2025. <span>“GKE Autopilot Walkthrough.”</span>
+December 8, 2025. <a href="https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough">https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough</a>.
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  // Edit 2025/12/07-08
+  // To allow for div.sourceCode-container wrapper used in sourceCode.css / sourceCode.js
+  function toggleCodeHandler(show) {
+    return function(e) {
+      // const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      // const detailsSrc = window.document.querySelectorAll(".cell > details .sourceCode.cell-code");
+      const detailsSrc = window.document.querySelectorAll('.cell > details div[class="sourceCode"], .cell > details .sourceCode.cell-code');
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement.parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      // const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      // const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode.cell-code");
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+});
+</script><script src="https://giscus.app/client.js" data-repo="prncevince/prncevince.io" data-repo-id="R_kgDOKfrJMA" data-category="Comments" data-category-id="DIC_kwDOKfrJMM4CaFyh" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script><input type="hidden" id="giscus-base-theme" value="preferred_color_scheme"><input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme">
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="../../../LICENSE.html">©</a> 2025 <a href="../../../about/">Vincent Clemson</a> | built with <i class="fa-solid fa-heart-pulse" aria-label="heart-pulse"></i> &amp; <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item">
+    <a class="nav-link" href="https://twitter.com/prncevincecares" rel="me" target="_blank">
+<p><i class="fa-brands fa-twitter" aria-label="twitter"></i> <i class="fa-solid fa-rocket" aria-label="rocket"></i></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/vincentclemson/" rel="me" target="_blank">
+      <i class="bi bi-linkedin" role="img" aria-label="My LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prncevince" rel="me" target="_blank">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://instagram.com/prncemaps/" rel="me" target="_blank">
+<p><span class="instagram"><i class="fa-brands fa-square-instagram" aria-label="square-instagram"></i></span></p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../posts/index.xml">
+<p><span class="rss"><i class="fa-solid fa-square-rss" aria-label="square-rss"></i></span></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@prncevince" rel="me" target="_blank">
+      <i class="bi bi-mastodon" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/@prncevince" rel="me" target="_blank">
+      <i class="bi bi-youtube" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://twitter.com/prncevincestats" rel="me" target="_blank">
+<p><i class="fa-brands fa-twitter" aria-label="twitter"></i> <iconify-icon inline="" icon="ph:tennis-ball-fill"></iconify-icon></p>
+</a>
+  </li>  
+</ul>
+</div>
+    <div class="nav-footer-right">
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>
+</div>
+  </div>
+</footer><div id="scroll-padding"></div>
+<script src="../../../assets/js/site.js"></script><script src="../../../assets/js/posts.js"></script><script src="../../../assets/js/sourceCode.js"></script>
+
+
+</body></html>
