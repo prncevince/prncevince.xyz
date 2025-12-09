@@ -157,7 +157,7 @@ We can use `gcloud` to generate a "***kubeconfig***" context that stores our GKE
 This kubeconfig file is stored under `$HOME/.kube/config` on macOS. 
 
 <div class='cell'><details open>
-<summary>`gcloud container clusters get-credentials my-autopilot-cluster --location=us-east1`</summary>
+<summary><p>`gcloud container clusters get-credentials my-autopilot-cluster --location=us-east1`</p></summary>
 
 ```{.bash}
 Fetching cluster endpoint and auth data. 
@@ -288,7 +288,7 @@ frontend-external   LoadBalancer   34.118.226.169   34.26.108.20   80:30403/TCP 
 
 Additionally, we can access this IP in the Google Cloud console under:
 
-- `Resource Management -> Workloads -> frontend -> Exposing services -> frontend-external -> Endpoints`
+- <p>`Resource Management -> Workloads -> frontend -> Exposing services -> frontend-external -> Endpoints`</p>
 
 ## Scaling Kubernetes Autopilot Cluster
 
@@ -392,7 +392,7 @@ Events:
 Here we will enable a horizontal Pod autoscaling policy (HorizontalPodAutoscaler - HPA) of the frontend Deployment to add new Pods to the cluster when existing Pods are over 5% CPU utilization. 
 
 <div class='cell'><details>
-<summary>`kubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3`</summary>
+<summary><p>`kubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3`</p></summary>
 ```{.bash}
 horizontalpodautoscaler.autoscaling/frontend autoscaled
 ```
@@ -456,7 +456,7 @@ Events:
 We will delete (teardown) our cluster to free up our cloud resources & end all cloud utilization toward our billing account. This can be done with the `gcloud` CLI or within the Google Cloud console.
 
 <div class='cell'><details>
-<summary>`gcloud container clusters delete my-autopilot-cluster --region us-east1`</summary>
+<summary><p>`gcloud container clusters delete my-autopilot-cluster --region us-east1`</p></summary>
 
 ```{.bash}
 The following clusters will be deleted.

@@ -402,7 +402,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We can use <code>gcloud</code> to generate a “<strong><em>kubeconfig</em></strong>” context that stores our GKE cluster information for <code>kubectl</code>.</p>
 <p>This kubeconfig file is stored under <code>$HOME/.kube/config</code> on macOS.</p>
 <div class="cell">
-<details open=""><summary><code>gcloud container clusters get-credentials my-autopilot-cluster --location=us-east1</code>
+<details open=""><summary><p>
+<code>gcloud container clusters get-credentials my-autopilot-cluster --location=us-east1</code>
+</p>
 </summary><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Fetching</span> cluster endpoint and auth data. </span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="ex">kubeconfig</span> entry generated for my-autopilot-cluster.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -488,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can also checkout something similar in the Kubernetes VS Code extension.</p>
-<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" height="600" data-fig-align="left">
+<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="600">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="kube-vs-code-ext.png" class="quarto-figure-left figure-img" height="600">
 </div>
@@ -506,7 +508,9 @@ Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 </div>
 <p>Additionally, we can access this IP in the Google Cloud console under:</p>
 <ul>
-<li><code>Resource Management -&gt; Workloads -&gt; frontend -&gt; Exposing services -&gt; frontend-external -&gt; Endpoints</code></li>
+<li><p>
+<code>Resource Management -&gt; Workloads -&gt; frontend -&gt; Exposing services -&gt; frontend-external -&gt; Endpoints</code>
+</p></li>
 </ul></section></section><section id="scaling-kubernetes-autopilot-cluster" class="level2"><h2 class="anchored" data-anchor-id="scaling-kubernetes-autopilot-cluster">Scaling Kubernetes Autopilot Cluster</h2>
 <p>Kubernetes was designed to <strong>scale</strong> container applications. Here we will explore doing so with the Autopilot cluster to demo some of its capabilities.</p>
 <section id="apply-changes-to-deployment-in-autopilot-cluster" class="level3"><h3 class="anchored" data-anchor-id="apply-changes-to-deployment-in-autopilot-cluster">Apply Changes to Deployment in Autopilot Cluster</h3>
@@ -532,7 +536,7 @@ Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 </details>
 </div>
 <p>In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.</p>
-<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" height="415" data-fig-align="left">
+<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="415">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="kube-vs-code-replicas.png" class="quarto-figure-left figure-img" height="415">
 </div>
@@ -583,7 +587,9 @@ Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </section><section id="autoscaling-the-application" class="level3"><h3 class="anchored" data-anchor-id="autoscaling-the-application">Autoscaling the Application</h3>
 <p>Here we will enable a horizontal Pod autoscaling policy (HorizontalPodAutoscaler - HPA) of the frontend Deployment to add new Pods to the cluster when existing Pods are over 5% CPU utilization.</p>
 <div class="cell">
-<details><summary><code>kubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3</code>
+<details><summary><p>
+<code>kubectl autoscale deployment/frontend --cpu-percent 5 --min 1 --max 3</code>
+</p>
 </summary><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">horizontalpodautoscaler.autoscaling/frontend</span> autoscaled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -601,7 +607,7 @@ Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </details>
 </div>
 <p>We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.</p>
-<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" height="502" data-fig-align="left">
+<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" data-fig-align="left" height="502">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="kube-vs-code-hpa.png" class="quarto-figure-left figure-img" height="502">
 </div>
@@ -639,7 +645,9 @@ Figure&nbsp;3: Horizontal Autoscaling of Frontend Deployment
 </section></section><section id="teardown-cluster" class="level2"><h2 class="anchored" data-anchor-id="teardown-cluster">Teardown Cluster</h2>
 <p>We will delete (teardown) our cluster to free up our cloud resources &amp; end all cloud utilization toward our billing account. This can be done with the <code>gcloud</code> CLI or within the Google Cloud console.</p>
 <div class="cell">
-<details><summary><code>gcloud container clusters delete my-autopilot-cluster --region us-east1</code>
+<details><summary><p>
+<code>gcloud container clusters delete my-autopilot-cluster --region us-east1</code>
+</p>
 </summary><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">The</span> following clusters will be deleted.</span>
 <span id="cb18-2"><a href="#cb18-2"></a> <span class="ex">-</span> <span class="pp">[</span><span class="ss">my</span><span class="pp">-</span><span class="ss">autopilot</span><span class="pp">-</span><span class="ss">cluster</span><span class="pp">]</span> in <span class="pp">[</span><span class="ss">us</span><span class="pp">-</span><span class="ss">east1</span><span class="pp">]</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>
