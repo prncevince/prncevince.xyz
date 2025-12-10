@@ -206,9 +206,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
+  // Edit 2025/12/10
+  // with button placement moved from original sibling of <code> element - need update to find <code> element
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      // const codeEl = trigger.previousElementSibling.cloneNode(true);
+      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
+      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();

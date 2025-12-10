@@ -165,7 +165,7 @@
     "href": "posts/index.html",
     "title": "Big & tiny spatial thoughts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Updated - Oldest\n        \n         \n          Updated - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\nGKE Autopilot Walkthrough\n\n\n17 min\n\n\nWalking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.\n\n\n\nDecember 8, 2025\n\n\n\n\n\nDecember 8, 2025\n\n\n\n\n\n\n\n\n\n\n\nDesigning aesthetic maps in R with ggplot2 & svglite\n\n\n9 min\n\n\nA method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics).\n\n\n\nOctober 29, 2023\n\n\n\n\n\nDecember 7, 2025\n\n\n\n\n\n\n\n\n\n\n\nNorth India Floods of October 2023\n\n\n3 min\n\n\nA quick turn analysis to visually compare events caused by the Glacial Lake Outburst Flood in the Indian Himalayan Region of Sikkim during early October of 2023.\n\n\n\nOctober 12, 2023\n\n\n\n\n\nFebruary 19, 2024\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Natural Disasters through Dynamic Tiling and Maxar’s Open Data Program\n\n\n13 min\n\n\nA deep dive into visualizing satellite imagery from Maxar’s ODP on-the-fly using STAC, dynamic tiling, and Leaflet.\n\n\n\nOctober 2, 2023\n\n\n\n\n\nOctober 12, 2023\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Updated - Oldest\n        \n         \n          Updated - Newest\n        \n     \n  \n\n\n\n\n\n\n\n\nGKE Autopilot Walkthrough\n\n\n18 min\n\n\nWalking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.\n\n\n\nDecember 8, 2025\n\n\n\n\n\nDecember 9, 2025\n\n\n\n\n\n\n\n\n\n\n\nDesigning aesthetic maps in R with ggplot2 & svglite\n\n\n9 min\n\n\nA method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics).\n\n\n\nOctober 29, 2023\n\n\n\n\n\nDecember 7, 2025\n\n\n\n\n\n\n\n\n\n\n\nNorth India Floods of October 2023\n\n\n3 min\n\n\nA quick turn analysis to visually compare events caused by the Glacial Lake Outburst Flood in the Indian Himalayan Region of Sikkim during early October of 2023.\n\n\n\nOctober 12, 2023\n\n\n\n\n\nFebruary 19, 2024\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Natural Disasters through Dynamic Tiling and Maxar’s Open Data Program\n\n\n13 min\n\n\nA deep dive into visualizing satellite imagery from Maxar’s ODP on-the-fly using STAC, dynamic tiling, and Leaflet.\n\n\n\nOctober 2, 2023\n\n\n\n\n\nOctober 12, 2023\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
     "objectID": "posts/misc/gke-autopilot-walkthrough/index.html",
@@ -180,6 +180,13 @@
     "title": "GKE Autopilot Walkthrough",
     "section": "TLDR",
     "text": "TLDR\nHere I work through Google’s interactive GKE1 Autopilot Walkthrough tutorial. I create an Autopilot cluster, configure access both within the Google Cloud console & on my local dev machine, deploy the Online Boutique microservice application to the cluster, scale the cluster to explore Autopilot’s autoscaling features, and finally delete the cluster."
+  },
+  {
+    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#intro",
+    "href": "posts/misc/gke-autopilot-walkthrough/index.html#intro",
+    "title": "GKE Autopilot Walkthrough",
+    "section": "Intro",
+    "text": "Intro\nLearning a new technology can sometimes be daunting … especially when it involves cloud, network engineering, & the Internet. There are loads of Kubernetes resources/tutorials on the internet, & it’s been around for over a decade, so why another one? This is for documenting my experience. I’ve kind of always seen this tool as the thing for cloud engineers to handle to scale services in production.\nThat’s still true today. Recently, I’ve discovered that quite a few geospatial data science teams are using Kubernetes to scale their satellite imagery data pipelines. With my experience handling geospatial data, I hope to grow my skillset in cloud engineering with handling satellite imagery pipelines at scale.\nFundamentals first -&gt; so lets go! 🌏 💾 🚢 📦"
   },
   {
     "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#resources",
@@ -292,12 +299,5 @@
     "title": "Visualizing Natural Disasters through Dynamic Tiling and Maxar’s Open Data Program",
     "section": "Wrap-up",
     "text": "Wrap-up\nAlthough it may be difficult to claim that there is an overall increase in the number of natural disasters over the course of recent history, it is clear that the amount of recorded data that we as a society have on natural disasters is increasing. As this rate across our world increases and as the level of damage and destruction becomes more severe on Earth, there’s an ever growing need to analyze satellite sensor data to help respond to these events. Hopefully, more satellite imagery providers can follow the trend of continuing to release critical imagery to those who need it most in critical times of need.\nIf you have any thoughts or questions, feel free to let me know what you think in the comments below. You’ll need to sign in to your GitHub account to do so. Like my work? Feel free to reach out.\nWe only have one rock, and it’s a beautiful one. Thanks for reading! ✌️🌍\n\n\n\n\n\n\nFigure 10: 2023 Morocco Earthquake - Leaflet Split Map Example"
-  },
-  {
-    "objectID": "posts/misc/gke-autopilot-walkthrough/index.html#intro",
-    "href": "posts/misc/gke-autopilot-walkthrough/index.html#intro",
-    "title": "GKE Autopilot Walkthrough",
-    "section": "Intro",
-    "text": "Intro\nLearning a new technology can sometimes be daunting … especially when it involves cloud, network engineering, & the Internet. There are loads of Kubernetes resources/tutorials on the internet, & it’s been around for over a decade, so why another one? This is for documenting my experience. I’ve kind of always seen this tool as the thing for cloud engineers to handle to scale services in production.\nThat’s still true today. Recently, I’ve discovered that quite a few geospatial data science teams are using Kubernetes to scale their satellite imagery data pipelines. With my experience handling geospatial data, I hope to grow my skillset in cloud engineering with handling satellite imagery pipelines at scale.\nFundamentals first -&gt; so lets go! 🌏 💾 🚢 📦"
   }
 ]

@@ -1,4 +1,16 @@
-.sourceCode-container {
+.sourceCode-container-inner {
   display: grid;
   grid-template-columns: minmax(100px, max-content);
+  position: relative;
+}
+.sourceCode-container-outer {
+  display: grid;
+  grid-template-columns: minmax(0, max-content);
+}
+button.code-copy-button {
+  top: 10px;
+}
+pre.copy-button {
+  position: absolute;
+  right: 0;
 }

@@ -255,7 +255,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Cloud,Google Cloud,Kubernetes,Containers,Autoscaling" data-listing-date-sort="1765170000000" data-listing-file-modified-sort="1765240122092" data-listing-date-modified-sort="1765240122000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3326">
+<div class="g-col-1" data-index="0" data-categories="Cloud,Google Cloud,Kubernetes,Containers,Autoscaling" data-listing-date-sort="1765170000000" data-listing-file-modified-sort="1765318241486" data-listing-date-modified-sort="1765318241000" data-listing-reading-time-sort="18" data-listing-word-count-sort="3537">
 <a href="../posts/misc/gke-autopilot-walkthrough/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="misc/gke-autopilot-walkthrough/autopilot-futuristic-cockpit-view.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -264,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
 GKE Autopilot Walkthrough
 </h5>
 <div class="listing-reading-time card-text text-muted">
-17 min
+18 min
 </div>
 <div class="card-text listing-description">
 Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.
@@ -277,7 +277,7 @@ December 8, 2025
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>December 8, 2025</p>
+<p>December 9, 2025</p>
 </div>
 </div>
 </div>
@@ -407,9 +407,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
+  // Edit 2025/12/10
+  // with button placement moved from original sibling of <code> element - need update to find <code> element
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      // const codeEl = trigger.previousElementSibling.cloneNode(true);
+      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
+      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();

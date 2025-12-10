@@ -96,7 +96,8 @@ div > details > summary {
   border-radius: var(--quarto-border-radius);
   box-shadow: 0 .2rem .5rem #6c757d,0 0 .05rem #6c757d;
 }
-pre.sourceCode > .code-copy-button > .bi::before, pre.sourceCode:hover > .code-copy-button > .bi::before {
+div.sourceCode-container-inner > pre > .code-copy-button > .bi::before,
+div.sourceCode-container-inner:hover > pre > .code-copy-button > .bi::before {
   content: "";
   height: 1.5rem;
   width: 1.5rem;
