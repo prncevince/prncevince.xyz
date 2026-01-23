@@ -28,6 +28,7 @@ comments:
     input-position: top
     theme: preferred_color_scheme
     language: en
+sidebar: false
 toc: true
 toc-depth: 6
 toc-expand: 3

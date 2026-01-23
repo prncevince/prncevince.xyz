@@ -1,3 +1,10 @@
+h1 {
+  /* background-color: linear-gradient(45deg,#4e734d 45%,#ecc187 50%, #770505 55%); */
+  background-image: linear-gradient(45deg, var(--bs-primary) 25%, #ecc187 50%, #770505 75%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .about-contents {
   text-align: justify;
 }
@@ -8,6 +15,9 @@
     column-gap: 0.5em;
     flex-direction: row;
     font-size: 0.85em;
+  }
+  div#quarto-content {
+    padding-top: 12px;
   }
 }
 .usa {

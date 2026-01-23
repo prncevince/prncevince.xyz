@@ -1,5 +1,5 @@
 ---
-title: Vincent Clemson
+title: "{{< fa earth-americas >}} Vincent Clemson {{< fa earth-europe >}}"
 pagetitle: 'About - Vincent Clemson'
 image: profile.jpg
 about:
@@ -7,8 +7,8 @@ about:
   links:
     - icon: github
       href: https://github.com/prncevince
-    - icon: twitter
-      href: https://twitter.com/prncevincecares
+    - text: "{{< fa brands x-twitter >}}"
+      href: https://x.com/prncevincecares
     - icon: instagram
       href: https://instagram.com/prncemaps/
     - icon: linkedin
@@ -23,11 +23,12 @@ include-after-body:
     <script src='/assets/js/site.js'></script>
     <script src='/assets/js/non-posts.js'></script>
 css: [/assets/css/non-posts.css, /assets/css/about.css]
+sidebar: false
 ---
 
 👋 I'm Vince. In 2017, I received my Bachelor of Science in mathematics & a minor in statistics from <a href="https://www.psu.edu" style="color: #1e407c">Penn State</a>. Afterward, I spent 5+ years at what is now [Peraton](https://www.peraton.com) working a few Geospatial Intelligence data science missions on the [NGA's](https://www.nga.mil) enterprise systems engineering contract. Recently, I was an AI Engineer at Booz Allen where I conducted statistical performance analyses against Earth observing satellite imagery object detection algorithms. 
 
-I've been traveling a lot lately. 
+I've been traveling a lot lately.
 
 Over the past year and a half I've added 23 new countries to my personal list.
 
@@ -39,8 +40,8 @@ When I'm not head down in geeky stuff, I enjoy salsa dancing, sports (go birds �
 
 If you're interesting in learning more about my career, here's a web version of my [résumé](/resume){.external target='_blank'}.
 
-Also, feel free to contact me at vincent.clemson{@}gmail.com. 
+You can reach me by email at: vincent.clemson{@}gmail.com
 
-Thanks for stopping by. ✌️ 
+Also, feel free to connect with me on [LinkedIn {{< fa brands linkedin >}}](https://www.linkedin.com/in/vincentclemson/).
 
-
+Thanks for stopping by. ✌️

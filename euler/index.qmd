@@ -1,0 +1,46 @@
+---
+title: Project Euler
+image: /assets/img/Leonhard_Euler_2.jpg
+twitter-card:
+  description: Working through answering all of Project Euler using both R & Python (& Math of course)!
+open-graph:
+  description: Working through answering all of Project Euler using both R & Python (& Math of course)!
+subtitle: Answering all of Project Euler <br>... eventually.
+listing:
+  type: grid
+  grid-columns: 3
+  categories: true
+  feed:
+    title: Project Euler
+    type: partial
+    items: 100
+  sort: date desc
+  fields: [image, date, title, file-modified, subtitle, reading-time, description]
+  field-display-names:
+    file-modified: "Updated"
+  sort-ui: [date, file-modified]
+  filter-ui: true
+include-after-body:
+  text: |
+    <div id="scroll-padding"></div>
+    <script src='/assets/js/posts-listing.js'></script>
+    <script src='/assets/js/site.js'></script>
+    <script src='/assets/js/euler-listing.js'></script>
+css: [/assets/css/posts-listing.css, /assets/css/euler-listing.css]
+resources: [/assets/img/Leonhard_Euler_2.jpg]
+author: ''
+date-modified: ''
+sidebar: false
+comments: false
+code-tools: false
+citation: false
+license: ''
+---
+
+![](/assets/img/Leonhard_Euler_2.jpg){.euler}
+
+Here you'll find me working through answering all of the Project Euler problems using both R & Python (& Math of course)!
+
+I'm treating R as a first class citizen, a feat that I think is a bit novel as the majority of members have answered using Python, C/C++, Java, & C#.
+
+[Code Languages](https://projecteuler.net/languages) used by Project Euler members.

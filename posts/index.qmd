@@ -34,6 +34,7 @@ listing:
   field-display-names:
     file-modified: "Updated"
   sort-ui: [date, file-modified]
+  filter-ui: true
 author: ''
 date-modified: ''
 comments: false
@@ -41,3 +42,4 @@ code-tools: false
 citation: false
 license: ''
 ---
+

@@ -25,6 +25,7 @@ a {
 #quarto-content .quarto-categories > .quarto-category > a:hover {
   text-decoration-line: none;
 }
+
 /*-- external link style --*/
 a.external:after {
   font-size: 0.75em;
@@ -48,7 +49,7 @@ nav .nav-item:not(.compact) {
   font-size: 1.1em;
 }
 .navbar .quarto-code-tools {
-  order: 21;
+  order: 901;
 }
 #navbarCollapse {
   flex-basis: unset;
@@ -75,6 +76,16 @@ a.navbar-brand {
   background-repeat: no-repeat;
   padding-left: 45px;
 }
+@media (max-width: 991.98px) {
+  nav.quarto-secondary-nav {
+    background-color: rgba(253, 251, 247, 0.90);
+    border-bottom: unset;
+  }
+}
+div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sidebar.sidebar-navigation:not(.rollup) {
+  background-color: rgba(253, 251, 247, 0.90);
+}
+
 /* Source Code */
 div.sourceCode::-webkit-scrollbar {
   display: none; /* Chrome */

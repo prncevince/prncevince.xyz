@@ -1,3 +1,5 @@
+/* This is when bootstrap collapses div#navbarCollapse*/
+/* @media (min-width: 576px) {} */
 @media (max-width: 515px) {
   .navbar-brand > .navbar-title {
     display: inline-block;

@@ -1,0 +1,24 @@
+---
+title: Problem 0 - 
+date: 01/01/26
+draft: false
+---
+
+```{r}
+#| include: false
+#| file: euler/utils/setup.R
+```
+
+## R
+
+### Development
+
+### Answer 1
+
+```{r}
+
+```
+
+## Python
+
+### Answer 1

@@ -25,8 +25,7 @@ data/
 README_files/
 /CONTRIBUTING.html
 # A personal note directory - add your notes in here
-notes/
-/notes
+.notes/
 # Vim
 *.swp
 # OS

@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: _site
   execute-dir: project
-  render: ["*.qmd", "*.ipynb", "*.Rmd", "*.md", "!SETUP.md", "!LICENSE.md", "!notes/"]
+  render: ["*.qmd", "*.ipynb", "*.Rmd", "*.md", "!SETUP.md", "!LICENSE.md", ".notes/"]
   post-render:
     - cp -a resume _site/.
 website:
@@ -12,23 +12,44 @@ website:
   description: 'A collection of unique spatial data science content by Vincent Clemson'
   repo-branch: main
   repo-url: https://github.com/prncevince/prncevince.io
-  page-navigation: true
   open-graph:
     image: /assets/img/logo-og.png
   twitter-card:
     creator: "@prncevincecares"
     site: "@prncevincecares"
     image: /assets/img/logo-og.png
+  back-to-top-navigation: true
+  bread-crumbs: false
+  sidebar:
+    - id: euler
+      title: Euler
+      contents: 
+        - section: Project Euler
+          href: euler/index.qmd
+          contents: euler/problem/*
   navbar:
+    collapse-below: lg
     right:
-      - text: Posts
+      - text: Blog
         href: posts/index.qmd
-      - text: About
-        href: about/index.qmd
-      - text: "[{{< fa brands github >}}]{class='quarto-navbar-tools-item'}"
+      - text: "[Projects]{class='quarto-navbar-tools-item'}"
         menu:
-          - text: GitHub Profile {{< fa brands github-alt >}}
+          - text: Euler
+            href: euler/index.qmd
+      - text: "[Contacts]{class='quarto-navbar-tools-item'}"
+        menu:
+          - text: About Me
+            href: about/index.qmd
+          - text: LinkedIn - Let's Connect {{< fa brands linkedin >}} 
+            href: https://www.linkedin.com/in/vincentclemson/
+            target: _blank
+            rel: me
+          - text: GitHub Profile {{< fa brands github >}}
             url:  https://github.com/prncevince
+            target: _blank
+            rel: me
+          - text: "{{< fa brands x-twitter >}}"
+            url: https://x.com/prncevincecares
             target: _blank
             rel: me
           - text: Site Discussions 🗣
@@ -37,18 +58,6 @@ website:
           - text: Site Source Code 💻
             url:  https://github.com/prncevince/prncevince.io
             target: _blank
-      - text: "[{{< fa brands twitter >}}]{class='quarto-navbar-tools-item'}"
-        menu:
-          - text: News & Science & Code 🚀
-            url: https://twitter.com/prncevincecares
-            target: _blank
-            rel: me
-          - text: Sports 🎾
-            url: https://twitter.com/prncevincestats
-            target: _blank
-            rel: me
-      - text: "[{{< fa solid rss >}}]{class='rss quarto-navbar-tools-item'}"
-        href: posts/index.xml
   page-footer:
     left: |
       [©](/LICENSE.html) 2025 [Vincent Clemson](/about/) | built with {{< fa solid heart-pulse >}} & [Quarto](https://quarto.org)
@@ -86,7 +95,6 @@ website:
         rel: me
     right: |
       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a>
-  back-to-top-navigation: true
 format:
   html:
     filters:
@@ -107,4 +115,3 @@ format:
     highlight-style: assets/highlight/a11y-light-new.theme
     theme:
       light: [flatly, 'assets/scss/light.scss']
-

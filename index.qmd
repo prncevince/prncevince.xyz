@@ -10,6 +10,7 @@ include-after-body:
     <script src='/assets/js/non-posts.js'></script>
 css: [/assets/css/non-posts.css]
 back-to-top-navigation: false
+sidebar: false
 ---
 
 # 👋 Welcome to my site

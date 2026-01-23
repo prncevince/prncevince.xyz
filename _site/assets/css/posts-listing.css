@@ -1,5 +1,8 @@
 /* Header */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) { */
+/* it seems that bootstrap decides at min-width to collapse the header   */
+/* @media (min-width: 814px) {} */
+@media (max-width: 814px) {
   .navbar-title-container .nav-link {
     --bs-nav-link-padding-x: 0.5rem;
   }

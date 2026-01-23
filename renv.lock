@@ -956,6 +956,17 @@
       ],
       "Hash": "a7f498a1b2a4a6816148e498509f6e1d"
     },
+    "primes": {
+      "Package": "primes",
+      "Version": "1.6.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp"
+      ],
+      "Hash": "e3d61269ae150747de2e380b4ad00c3e"
+    },
     "processx": {
       "Package": "processx",
       "Version": "3.8.2",
