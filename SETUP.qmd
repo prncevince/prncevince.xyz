@@ -1,13 +1,15 @@
 ---
-code-fold: false
-include-after-body:
-  text: |
-    <div id="scroll-padding"></div>
-    <script src='/assets/js/site.js'></script>
-    <script src='/assets/js/non-posts.js'></script>
-    <script src='/assets/js/sourceCode.js'></script>
-css: [/assets/css/non-posts.css]
-sidebard: false
+format:
+  html:
+    code-fold: false
+    include-after-body:
+      text: |
+        <div id="scroll-padding"></div>
+        <script src='/assets/js/site.js'></script>
+        <script src='/assets/js/non-posts.js'></script>
+        <script src='/assets/js/sourceCode.js'></script>
+    css: [/assets/css/non-posts.css]
+    sidebard: false
 ---
 
 # Quarto Site Environment Setup 

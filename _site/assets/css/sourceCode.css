@@ -1,3 +1,36 @@
+div.sourceCode::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+div.sourceCode {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  border-width: 2px;
+  border-style: solid;
+  border-radius: .5rem;
+  margin-top: .5rem;
+}
+div > details > summary {
+  padding: 0.1rem 0.7rem 0.2rem 0.7rem;
+  width: max-content;
+  max-width: fit-content;
+  border-width: var(--quarto-border-width);
+  border-style: solid;
+  border-radius: var(--quarto-border-radius);
+  box-shadow: 0 .2rem .5rem #6c757d,0 0 .05rem #6c757d;
+}
+div.sourceCode-container-inner > pre > .code-copy-button > .bi::before,
+div.sourceCode-container-inner:hover > pre > .code-copy-button > .bi::before {
+  content: "";
+  height: 1.5rem;
+  width: 1.5rem;
+  background-size: 1.5rem 1.3rem;
+}
+pre.sourceCode >.code-copy-button >.bi::before {
+  background-repeat: no-repeat;
+}
+.cell-output code {
+  border: none;
+}
 .sourceCode-container-inner {
   display: grid;
   grid-template-columns: minmax(100px, max-content);
@@ -8,7 +41,7 @@
   grid-template-columns: minmax(0, max-content);
 }
 button.code-copy-button {
-  top: 10px;
+  top: 9px;
 }
 pre.copy-button {
   position: absolute;
@@ -16,4 +49,7 @@ pre.copy-button {
 }
 details[open] {
   margin-bottom: 0;
+}
+pre.sourceCode.code-with-copy {
+  padding-right: 2rem;
 }
