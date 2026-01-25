@@ -1,7 +1,8 @@
 ---
-title: Problem 0 - 
-date: 01/01/26
+title: Problem 4 - Largest Palindrome Product
+date: 01/17/26
 draft: false
+link: <https://projecteuler.net/problem=4>{.link-euler}
 ---
 
 ```{r}
@@ -9,14 +10,53 @@ draft: false
 #| file: euler/utils/setup.R
 ```
 
-## R
+![Sigirya, Sri Lanka - Sigirya Fortress - Lion Rock - May 5th, 2025](../assets/img/DJI_20250502212800_0890_D.jpg)
+
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is $90009 = 91 \times 99$. 
+<br>
+Find the largest palindrome made from the product of two 3-digit numbers.
+
+{{< meta link >}}
 
 ### Development
+
+## R
 
 ### Answer 1
 
 ```{r}
+palindrome_m2n3 <- function(m = 2, n = 3) {
+  # check from largest to least of product of m (10^n)-1 digit numbers
+  x <- seq(((10^n)-1)^m, 1)
+  y <- as.character(x)
+  for (i in 1:length(x)) {
+    # find reverse digits & check if palindrome 
+    # then check for compatible n-digit m-factor product
+    yr <- lapply(strsplit(y[i], ""), function(i) paste(rev(i), collapse = ""))[[1]]
+    if (identical(y[i], yr)) {
+      # n-digit sequence
+      f_i <- seq((10^n)-1, 10^(n-1))
+      # booleans of the factor
+      f_x0 <- x[i] %% f_i == 0
+      f_x <- x[i] / f_i
+      # compatibility check: of factor 'f2'
+      if (any(f_x0)) {
+        # compatibility check: of n-digit factor 'f2'
+        bool_n <- f_x[f_x0] %in% f_i
+        if (any(bool_n)) {
+          i_f <- min(which(f_i %in% f_x[f_x0]))
+          f1 <- f_i[i_f]
+          f2 <- f_x[i_f]
+          return(data.frame(p = x[i], f1, f2, iter = i))
+        }
+      }
+    }
+  }
+}
 
+tic()
+palindrome_m2n3(m = 2, n = 3)
+toc()
 ```
 
 ## Python

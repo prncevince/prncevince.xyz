@@ -22,7 +22,7 @@ website:
   bread-crumbs: false
   sidebar:
     - id: euler
-      title: Euler
+      title: Project Euler
       contents: 
         - section: Project Euler
           href: euler/index.qmd
@@ -34,7 +34,7 @@ website:
         href: posts/index.qmd
       - text: "[Projects]{class='quarto-navbar-tools-item'}"
         menu:
-          - text: Euler
+          - text: Project Euler
             href: euler/index.qmd
       - text: "[Contacts]{class='quarto-navbar-tools-item'}"
         menu:

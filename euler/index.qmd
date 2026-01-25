@@ -9,16 +9,17 @@ subtitle: Answering all of Project Euler <br>... eventually.
 listing:
   type: grid
   grid-columns: 3
+  image-height: unset
   categories: true
   feed:
     title: Project Euler
     type: partial
     items: 100
-  sort: date desc
+  sort: title
   fields: [image, date, title, file-modified, subtitle, reading-time, description]
   field-display-names:
     file-modified: "Updated"
-  sort-ui: [date, file-modified]
+  sort-ui: [title, date, file-modified]
   filter-ui: true
 include-after-body:
   text: |
@@ -43,4 +44,4 @@ Here you'll find me working through answering all of the Project Euler problems 
 
 I'm treating R as a first class citizen, a feat that I think is a bit novel as the majority of members have answered using Python, C/C++, Java, & C#.
 
-[Code Languages](https://projecteuler.net/languages) used by Project Euler members.
+[Code Languages](https://projecteuler.net/languages) used by Project Euler members. 

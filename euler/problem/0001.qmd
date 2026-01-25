@@ -10,6 +10,8 @@ link: <https://projecteuler.net/problem=1>{.link-euler}
 #| file: euler/utils/setup.R
 ```
 
+![Mirissa, Sri Lanka - April 26th, 2025](../assets/img/DJI_20250426080623_0634_D.jpg)
+
 If we list all the natural numbers below $10$ that are multiples of $3$ or $5$, we get $3, 5, 6$ and $9$. The sum of these multiples is $23$. 
 Find the sum of all the multiples of $3$ or $5$ below $1000$.
 
