@@ -1,0 +1,10 @@
+/*
+Changes all tables in document from centered to left-page aligned
+For markdown & generated table figures 
+*/
+table.table {
+  margin-left: 0;
+}
+figcaption.quarto-float-tbl {
+  text-align: left;
+}

@@ -30,7 +30,10 @@ div.quarto-figure:not(.column-screen, .quarto-figure-center, .cell-output-displa
   text-align: left;
 }
 table, table.table {
-  margin: 0 0 1.5rem 0;
+  margin-bottom: 1.5rem;
+}
+table.table.caption-top {
+  margin-top: 0.5rem;
 }
 .table {
   width: unset;
