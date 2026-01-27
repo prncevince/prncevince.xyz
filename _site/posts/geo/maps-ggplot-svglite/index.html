@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.424">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Vincent Clemson">
 <meta name="dcterms.date" content="2023-10-29">
 <meta name="description" content="A method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics).">
-<title>Designing aesthetic maps in R with ggplot2 &amp; svglite | Vincent Clemson</title>
+<title>Designing aesthetic maps in R with ggplot2 &amp; svglite | Vincent Clemson – Vincent Clemson</title>
 <script src="../../../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script><script defer="" src="../../../_vercel/insights/script.js"></script><style>
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -98,6 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -124,14 +125,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Vincent Clemson</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -141,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projectsclassquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projectsclassquarto-navbar-tools-item" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="quarto-navbar-tools-item">Projects</span></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-projectsclassquarto-navbar-tools-item">
@@ -152,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
 </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contactsclassquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contactsclassquarto-navbar-tools-item" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="quarto-navbar-tools-item">Contacts</span></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-contactsclassquarto-navbar-tools-item">
@@ -184,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul>
 </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -260,11 +261,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><div id="fig-usapop-gif" class="quarto-figure quarto-figure-center anchored">
+</header><div id="fig-usapop-gif" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-usapop-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="usapop-ggplot-svglite-3x-3fps-1920w-80lossy-O3.gif" class="img-fluid figure-img">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-usapop-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-usapop-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: A choropleth map visualizing the population within each county of the continental United States in 2015. <br><br> The map was designed using <a href="https://ggplot2-book.org">ggplot2</a>. Saving the map using <a href="https://svglite.r-lib.org">svglite</a> and editing the output has the potential to create beautiful interactive &amp; lightweight maps.
 </figcaption></figure>
 </div>
@@ -285,7 +286,7 @@ Figure&nbsp;1: A choropleth map visualizing the population within each county of
 <p>As a precursor, I filtered out Alaska &amp; Hawaii because I am not planning to travel that far just yet, i.e.&nbsp;I want the focus of the plot to be on CONUS. I used the <a href="http://wiki.gis.com/wiki/index.php/Albers_equal-area_conic_projection">Albers equal area conic projection</a> centered on the US. The proj4 string of the projection was highlighted in a <a href="https://rud.is/b/2014/11/16/moving-the-earth-well-alaska-hawaii-with-r/">neat post</a> by Bob Rudis a few years back.</p>
 <p>The key variable that I create here for the visual is the percentage of the population per state for each county. I ultimately display this using a log scale in the color palette of the plot to better visualize large differences in the county population. Additionally, this percentage gets used as hover text in the interactive figure.</p>
 <div class="cell">
-<details><summary>usapop-data.R</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sf)</span>
+<details class="code-fold"><summary>usapop-data.R</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(usmap)</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
@@ -342,10 +343,10 @@ Figure&nbsp;1: A choropleth map visualizing the population within each county of
 <p>With the <a href="https://github.com/yixuan/showtext">showtext</a> package, I used a custom font that I downloaded from Fontsgeek, <a href="https://fontsgeek.com/fonts/Black-Chancery-Regular">Black Chancery</a>. Additionally, to give the plot a bit of a 3D effect, I added shadow using <a href="https://ggfx.data-imaginist.com">ggfx</a>. It adds some <a href="https://www.data-imaginist.com/2021/say-goodbye-to-good-taste/">good taste</a> IMO.</p>
 <p>When it came to trying to save an identical copy of the rendered ggplot graphic within the RStudio Plot pane programmatically, I’ve found this to be very challenging. The <code>ggplot::ggsave</code> function has <code>width</code>, <code>height</code>, <code>unit</code>, &amp; <code>dpi</code> parameters that can be specified. There’s also a great <a href="https://www.christophenicault.com/post/understand_size_dimension_ggplot2/">post by Christophe Nicault</a> on setting the text DPI via the <a href="https://github.com/yixuan/showtext">showtext</a> package to match the DPI used within <code>ggsave</code> by the PNG graphics device. However on my 14” MBP, these methods all seem to fall short, with the ggsave approach font being larger than the font displayed in the Plot pane. It seems that the Plot pane does some magic when it comes to resizing. You can right click your image &amp; choose “Save image as…”, which allows you to save <strong><em>what you’re looking at</em></strong> to file.</p>
 <p>I think that there are benefits &amp; drawbacks to both approaches. Below I provide the ggplot code version of the map. The last line of the snippet includes a <code>ggsave</code> call that builds a plot with text slightly bigger than what’s expected. Additionally, the ggfx shadow seems less prominent in the <code>ggsave</code> version, and the overall width / height of the plot content appear smaller as well.</p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">Even if we switch the <code>dpi</code> to <code>72</code>, and calculate the same width / height of the RStudio pane version to get the same resolution image in the <code>ggsave</code> version, i.e.&nbsp;both dpi &amp; pixel width/height match amongst both files, we get even smaller text and other distortions.</span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">Even if we switch the <code>dpi</code> to <code>72</code>, and calculate the same width / height of the RStudio pane version to get the same resolution image in the <code>ggsave</code> version, i.e.&nbsp;both dpi &amp; pixel width/height match amongst both files, we get even smaller text and other distortions.</span></div></div>
 <p>Thus, I’ve included both versions in <a href="#fig-usapop-ggplot" class="quarto-xref">Figure&nbsp;2</a> for comparison, the version that I saved from the RStudio plot pane, as well as the <code>ggsave</code> version. MacOS Preview app info on the <code>.png</code> tells me that the plot pane version ends up saving with <code>72</code> dpi (dots per inch), while the <code>ggsave</code> version has <code>254</code> as I’ve specified. Both files have near equivalent pixel size dimensions (<code>3023 × 1889</code>), with the key difference being the dpi.</p>
 <div class="cell">
-<details><summary>usapop-ggplot.R</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(sf)</span>
+<details class="code-fold"><summary>usapop-ggplot.R</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(ggfx)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(usmap)</span>
@@ -391,30 +392,30 @@ Figure&nbsp;1: A choropleth map visualizing the population within each county of
 <div class="page-columns page-full">
 <div id="fig-usapop-ggplot" class="quarto-layout-panel page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full"><div aria-describedby="fig-usapop-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
-<div class="quarto-layout-row quarto-layout-valign-top column-screen">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-usapop-ggplot" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-usapop-ggplot-rs" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-row column-screen">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-usapop-ggplot" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-usapop-ggplot-rs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-usapop-ggplot-rs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="usapop-ggplot.png" class="img-fluid figure-img" data-ref-parent="fig-usapop-ggplot">
 </div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-usapop-ggplot-rs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-usapop-ggplot-rs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) RStudio Plot Pane Version
 </figcaption></figure>
 </div>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-usapop-ggplot" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-usapop-ggplot-gg" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-usapop-ggplot" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-usapop-ggplot-gg" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-usapop-ggplot-gg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="usapop-ggplot-ggsave.png" class="img-fluid figure-img" data-ref-parent="fig-usapop-ggplot">
 </div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-usapop-ggplot-gg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-usapop-ggplot-gg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) ggsave Version
 </figcaption></figure>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-usapop-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-usapop-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Two ggplot versions of the county population map to compare save methods.
 </figcaption></figure>
 </div>
@@ -439,7 +440,7 @@ Note
 <section id="adding-iteractivity" class="level3"><h3 class="anchored" data-anchor-id="adding-iteractivity">Adding Iteractivity</h3>
 <p>Using vanilla JavaScript, I add a tooltip that reads the <code>title</code> attribute of each county boundary SVG <code>&lt;path&gt;</code> within the created choropleth group (<code>&lt;g&gt;</code>) element, e.g <code>&lt;g class="tooltip"&gt;&lt;rect/&gt;&lt;text&gt;&lt;/text&gt;&lt;/g&gt;</code>. The SVG tooltip element itself is a single <code>&lt;rect/&gt;</code> &amp; <code>&lt;text&gt;</code> pair rapped in a group. When creating the SVG/XML document in R, I add it as the <em>last</em> graphic element in the <code>&lt;svg&gt;</code> container so that it displays on top of everything else. JavaScript handles updating the content of the <code>&lt;text&gt;</code> using event handlers on mouse movement. The tooltip was inspired by Lee Mason’s <a href="https://observablehq.com/@siliconjazz/basic-svg-tooltip">Basic SVG Tooltip</a> Observable notebook. It differs in that it’s implemented as native SVG, rather than using a <code>&lt;div&gt;</code> wrapped in a <code>&lt;foreignObject&gt;</code>, which is incompatible in all browsers.</p>
 <div data-add-from="../../../about/usapop.js" data-code-filename="usapop.js">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1"></a>svgChoro <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'svg.svglite &gt; g.choro'</span>)</span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1"></a>svgChoro <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'svg.svglite &gt; g.choro'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>svgBords <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'svg.svglite &gt; g.borders'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a>svgBordE <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'svg.svglite &gt; g.borders &gt; path.end'</span>)</span>
 <span id="cb3-4"><a href="#cb3-4"></a>tooltipG <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">'svg.svglite g.tooltip'</span>)</span>
@@ -527,22 +528,22 @@ Note
 </div>
 <p>Styling for the tooltip:</p>
 <div data-add-from="../../../about/usapop.css" data-code-filename="usapop.css">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1"></a>g<span class="fu">.borders</span> <span class="op">&gt;</span> path<span class="fu">.hover</span> {</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  stroke-width: <span class="dv">0.5</span> <span class="at">!important</span><span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  stroke: <span class="fu">rgb(</span><span class="dv">226</span><span class="op">,</span> <span class="dv">226</span><span class="op">,</span> <span class="dv">226</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1"></a>g<span class="fu">.borders</span> <span class="op">&gt;</span> path<span class="fu">.hover</span> {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  stroke-width<span class="ch">:</span> <span class="dv">0.5</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="kw">stroke</span><span class="ch">:</span> <span class="fu">rgb(</span><span class="dv">226</span><span class="op">,</span> <span class="dv">226</span><span class="op">,</span> <span class="dv">226</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>}</span>
 <span id="cb4-5"><a href="#cb4-5"></a>g<span class="fu">.tooltip</span> {</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="kw">visibility</span>: <span class="dv">hidden</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="kw">visibility</span><span class="ch">:</span> <span class="dv">hidden</span><span class="op">;</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a>}</span>
 <span id="cb4-8"><a href="#cb4-8"></a>g<span class="fu">.tooltip</span> rect {</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="kw">fill</span>: <span class="fu">rgba(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0.7</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  rx: <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>  ry: <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="fu">rgba(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0.7</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  rx<span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  ry<span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb4-12"><a href="#cb4-12"></a>}</span>
 <span id="cb4-13"><a href="#cb4-13"></a>g<span class="fu">.tooltip</span> text {</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="kw">font-size</span>: <span class="dv">16</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="kw">dominant-baseline</span>: <span class="dv">middle</span><span class="op">;</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>  text-anchor: <span class="dv">middle</span><span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">16</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="kw">dominant-baseline</span><span class="ch">:</span> <span class="dv">middle</span><span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="kw">text-anchor</span><span class="ch">:</span> <span class="dv">middle</span><span class="op">;</span></span>
 <span id="cb4-17"><a href="#cb4-17"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -550,7 +551,7 @@ Note
 <p>Combining all of these techniques involves quite a bit of prototyping. There’s a lot to pick apart, especially with mapping elements of the ggplot to the svg output correctly. <a href="#fig-usapop-outline" class="quarto-xref">Figure&nbsp;3</a> displays an outline of the core components of the script. You can dive deep into the full script below. I originally built this to add within the <a href="../../../about/">about</a> page/path of my site, so this is why paths are relative to the <code>about/</code> directory.</p>
 <p>When it comes to prototyping CSS/JavaScript, I created 2 methods to add styles and scripts. For testing purposes, I setup the CSS/JavaScript to source external scripts. This allows you to set breakpoints on script files sourced by the SVG in Developer Tools, as well as edit stylesheets natively in the Sources/Styling Editor. For ‘production’, I keep the graphic entirely <strong>self-contained</strong>, e.g.&nbsp;not sourcing any external scripts. This means that the SVG element can be downloaded and used in any browser context, without the need for the external <code>.css</code>/<code>.js</code> dependencies. Additionally, I embed the external <code>.ttf</code> font as base64 encoded data.</p>
 <div class="cell">
-<details><summary>usapop-svg.R</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(sf)</span>
+<details class="code-fold"><summary>usapop-svg.R</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(ggfx)</span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(xml2)</span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="fu">library</span>(dplyr)</span>
@@ -753,22 +754,22 @@ Note
 <span id="cb5-201"><a href="#cb5-201"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="fig-usapop-outline" class="quarto-figure quarto-figure-center anchored" style="max-height: 500px">
+<div id="fig-usapop-outline" class="quarto-float quarto-figure quarto-figure-center anchored" style="max-height: 500px">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-usapop-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="usapop-outline.png" class="img-fluid figure-img" style="max-height: 500px">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-usapop-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-usapop-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Outline within RStudio of the US population SVG graphic R script
 </figcaption></figure>
 </div>
 </section></section><section id="finished-product" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="finished-product">Finished Product</h2>
 <p>Enjoy the viz!</p>
-<div id="fig-usapop-svg" class="column-screen quarto-figure quarto-figure-center anchored" style="text-align:center;">
+<div id="fig-usapop-svg" class="column-screen quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-usapop-svg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <object id="usapop" data="/about/usapop.svg"></object>
 
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-usapop-svg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-usapop-svg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: The ggplot converted to SVG. A choropleth of the population of the continental United States in 2015.
 </figcaption></figure>
 </div>
@@ -777,9 +778,9 @@ Figure&nbsp;4: The ggplot converted to SVG. A choropleth of the population of th
 <p>We only have one rock, and it’s a beautiful one. Thanks for reading! ✌️🌍</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Clemson, Vincent. 2023. <span>“Designing Aesthetic Maps in R with
-Ggplot2 &amp; Svglite.”</span> October 29, 2023. <a href="https://prncevince.xyz/posts/geo/maps-ggplot-svglite">https://prncevince.xyz/posts/geo/maps-ggplot-svglite</a>.
+Ggplot2 &amp; Svglite.”</span> October 29, 2023. <a href="https://prncevince.xyz/posts/geo/maps-ggplot-svglite/">https://prncevince.xyz/posts/geo/maps-ggplot-svglite/</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -815,22 +816,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  // Edit 2025/12/10
-  // with button placement moved from original sibling of <code> element - need update to find <code> element
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      // const codeEl = trigger.previousElementSibling.cloneNode(true);
-      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
-      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -847,7 +833,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
+          // Edit 2026/01/26
+          offset: [0, 0]});
       tooltip.show();    
     }
     setTimeout(function() {
@@ -862,7 +849,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  // Edit 2025/12/10 & 2026/01/26
+  // with button placement moved from original sibling of <code> element - need update to find <code> element
+  const getTextToCopy = function(trigger) {
+      // const codeEl = trigger.previousElementSibling.cloneNode(true);
+      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
+      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -883,6 +896,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
   // Edit 2025/12/07-08-10
+  // This file is _quarto-cli/quarto-x.x.xxx-macos/share/formats/html/templates/quarto-html.ejs
+  // This edit is stored in the project root at assets/js/code-folding.js:
+  // The edit is stored here because it is edited in the template directly 
+  // ... which is not prefered b/c changes are not tracked to the quarto directory by Git
+  // to fix this, quarto html templates (different than Pandoc) need be able to be edited outside of the quarto directory
+  //
   // To allow for div.sourceCode-container wrapper used in sourceCode.css / sourceCode.js
   function toggleCodeHandler(show) {
     return function(e) {
@@ -935,6 +954,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
+  // end Edit
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -969,7 +1012,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -984,38 +1031,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1024,8 +1061,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1244,24 +1288,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
 });
 </script><script src="https://giscus.app/client.js" data-repo="prncevince/prncevince.io" data-repo-id="R_kgDOKfrJMA" data-category="Comments" data-category-id="DIC_kwDOKfrJMM4CaFyh" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
 </script><input type="hidden" id="giscus-base-theme" value="preferred_color_scheme"><input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme">

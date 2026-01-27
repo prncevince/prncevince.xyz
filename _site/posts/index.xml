@@ -14,13 +14,13 @@
 <title>Big &amp; tiny Spatial Thoughts</title>
 <link>https://prncevince.xyz/posts/</link>
 </image>
-<generator>quarto-1.4.424</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Mon, 08 Dec 2025 03:00:00 GMT</lastBuildDate>
 <item>
   <title>GKE Autopilot Walkthrough</title>
   <dc:creator>Vincent Clemson</dc:creator>
   <link>https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/</link>
-  <description><![CDATA[ <img src="https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/autopilot-futuristic-cockpit-view.png" class="img-fluid figure-img"> ]]></description>
+  <description><![CDATA[ Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling. ]]></description>
   <category>Cloud</category>
   <category>Google Cloud</category>
   <category>Kubernetes</category>
@@ -33,7 +33,7 @@
   <title>Designing aesthetic maps in R with ggplot2 &amp; svglite</title>
   <dc:creator>Vincent Clemson</dc:creator>
   <link>https://prncevince.xyz/posts/geo/maps-ggplot-svglite/</link>
-  <description><![CDATA[ I show off how to use R packages in the <a href="../../../posts/#category=rspatial" target="_blank">#rspatial</a> &amp; <a href="../../../posts/#category=tidyverse" target="_blank">tidyverse</a> ecosystems to build both aesthetic &amp; interactive maps. I also use some slightly advanced web dev &amp; scraping techniques to create the finished product. ]]></description>
+  <description><![CDATA[ A method to create beautiful lightweight interactive maps in R using ggplot2 and SVG (Scalar Vector Graphics). ]]></description>
   <category>ggplot2</category>
   <category>R</category>
   <category>Geospatial</category>
@@ -50,7 +50,7 @@
   <title>North India Floods of October 2023</title>
   <dc:creator>Vincent Clemson</dc:creator>
   <link>https://prncevince.xyz/posts/geo/north-india-floods-2023/</link>
-  <description><![CDATA[ I quickly visualize Maxar’s recent release in response to the flooding events in the northern Himalayan region of Sikkim, India in October of 2023. Figure&nbsp;4 displays a demo of this. You can use Figure&nbsp;3 to interact with the web map for yourself. ]]></description>
+  <description><![CDATA[ A quick turn analysis to visually compare events caused by the Glacial Lake Outburst Flood in the Indian Himalayan Region of Sikkim during early October of 2023. ]]></description>
   <category>Geospatial</category>
   <category>Maxar</category>
   <category>Natural Disasters</category>
@@ -70,7 +70,7 @@
   <title>Visualizing Natural Disasters through Dynamic Tiling and Maxar’s Open Data Program</title>
   <dc:creator>Vincent Clemson</dc:creator>
   <link>https://prncevince.xyz/posts/geo/natural-disasters-maxar-open-data/</link>
-  <description><![CDATA[ <img src="https://prncevince.xyz/posts/geo/natural-disasters-maxar-open-data/morocco-eq-30s-3x-2fps-1080w-80lossy-O3.gif" class="img-fluid figure-img" width="1080"> ]]></description>
+  <description><![CDATA[ A deep dive into visualizing satellite imagery from Maxar’s ODP on-the-fly using STAC, dynamic tiling, and Leaflet. ]]></description>
   <category>Geospatial</category>
   <category>Maxar</category>
   <category>Natural Disasters</category>

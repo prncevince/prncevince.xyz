@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.424">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Vincent Clemson">
 <meta name="dcterms.date" content="2025-12-08">
 <meta name="description" content="Walking through Google Cloud’s GKE (Google Kubernetes Engine) Autopilot Cluster tutorial to explore K8 autoscaling.">
-<title>GKE Autopilot Walkthrough | Vincent Clemson</title>
+<title>GKE Autopilot Walkthrough | Vincent Clemson – Vincent Clemson</title>
 <script src="../../../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script><script defer="" src="../../../_vercel/insights/script.js"></script><style>
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -98,6 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -124,14 +125,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Vincent Clemson</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -141,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projectsclassquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projectsclassquarto-navbar-tools-item" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="quarto-navbar-tools-item">Projects</span></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-projectsclassquarto-navbar-tools-item">
@@ -152,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
 </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contactsclassquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contactsclassquarto-navbar-tools-item" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="quarto-navbar-tools-item">Contacts</span></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-contactsclassquarto-navbar-tools-item">
@@ -184,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul>
 </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -500,11 +501,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can also checkout something similar in the Kubernetes VS Code extension.</p>
-<div id="fig-kube-vs-code-ext" class="quarto-figure quarto-figure-left anchored" height="520" data-fig-align="left">
+<div id="fig-kube-vs-code-ext" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="kube-vs-code-ext.png" class="quarto-figure-left figure-img" height="520">
+<img src="kube-vs-code-ext.png" class="quarto-figure quarto-figure-left figure-img" height="520">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-ext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 </figcaption></figure>
 </div>
@@ -553,11 +554,11 @@ Figure&nbsp;1: Kubernetes Cluster VS Code extension view
 </details>
 </div>
 <p>In our Clusters pane, we can see 2 new frontend deployment Pods being deployed.</p>
-<div id="fig-kube-vs-code-replicas" class="quarto-figure quarto-figure-left anchored" height="400" data-fig-align="left">
+<div id="fig-kube-vs-code-replicas" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="kube-vs-code-replicas.png" class="quarto-figure-left figure-img" height="400">
+<img src="kube-vs-code-replicas.png" class="quarto-figure quarto-figure-left figure-img" height="400">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </figcaption></figure>
 </div>
@@ -628,11 +629,11 @@ Figure&nbsp;2: Frontend Deployment of 3 Replicas
 </details>
 </div>
 <p>We can easily discover this change in the Kubernetes VS Code extension. As well as get some quick info on the events that have triggered our HPA.</p>
-<div id="fig-kube-vs-code-hpa" class="quarto-figure quarto-figure-left anchored" height="475" data-fig-align="left">
+<div id="fig-kube-vs-code-hpa" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="kube-vs-code-hpa.png" class="quarto-figure-left figure-img" height="475">
+<img src="kube-vs-code-hpa.png" class="quarto-figure quarto-figure-left figure-img" height="475">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kube-vs-code-hpa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Horizontal Autoscaling of Frontend Deployment
 </figcaption></figure>
 </div>
@@ -682,19 +683,19 @@ Figure&nbsp;3: Horizontal Autoscaling of Frontend Deployment
 </section><section id="fin" class="level2"><h2 class="anchored" data-anchor-id="fin">Fin</h2>
 <p>Now go off into the great unknown &amp; do wonders with <code>kubectl</code>, K8s, GKE, &amp; Autopilot Clusters in Google Cloud :)</p>
 <div class="cell">
-<details><summary>Code Tools</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">print</span>(<span class="st">"Trigger Code Tools :)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code Tools</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">print</span>(<span class="st">"Trigger Code Tools :)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>[1] "Trigger Code Tools :)"</code></pre>
 </div>
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>Google Kubernetes Engine<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></aside><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+</ol></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Clemson, Vincent. 2025. <span>“GKE Autopilot Walkthrough.”</span>
-December 8, 2025. <a href="https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough">https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough</a>.
+December 8, 2025. <a href="https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/">https://prncevince.xyz/posts/misc/gke-autopilot-walkthrough/</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -730,22 +731,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  // Edit 2025/12/10
-  // with button placement moved from original sibling of <code> element - need update to find <code> element
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      // const codeEl = trigger.previousElementSibling.cloneNode(true);
-      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
-      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -762,7 +748,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
+          // Edit 2026/01/26
+          offset: [0, 0]});
       tooltip.show();    
     }
     setTimeout(function() {
@@ -777,7 +764,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  // Edit 2025/12/10 & 2026/01/26
+  // with button placement moved from original sibling of <code> element - need update to find <code> element
+  const getTextToCopy = function(trigger) {
+      // const codeEl = trigger.previousElementSibling.cloneNode(true);
+      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
+      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -798,6 +811,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
   // Edit 2025/12/07-08-10
+  // This file is _quarto-cli/quarto-x.x.xxx-macos/share/formats/html/templates/quarto-html.ejs
+  // This edit is stored in the project root at assets/js/code-folding.js:
+  // The edit is stored here because it is edited in the template directly 
+  // ... which is not prefered b/c changes are not tracked to the quarto directory by Git
+  // to fix this, quarto html templates (different than Pandoc) need be able to be edited outside of the quarto directory
+  //
   // To allow for div.sourceCode-container wrapper used in sourceCode.css / sourceCode.js
   function toggleCodeHandler(show) {
     return function(e) {
@@ -850,6 +869,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
+  // end Edit
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -884,7 +927,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -899,38 +946,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -939,8 +976,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1159,24 +1203,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
 });
 </script><script src="https://giscus.app/client.js" data-repo="prncevince/prncevince.io" data-repo-id="R_kgDOKfrJMA" data-category="Comments" data-category-id="DIC_kwDOKfrJMM4CaFyh" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
 </script><input type="hidden" id="giscus-base-theme" value="preferred_color_scheme"><input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme">

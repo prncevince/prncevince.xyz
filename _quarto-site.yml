@@ -2,10 +2,11 @@ project:
   type: website
   output-dir: _site
   execute-dir: project
-  render: ["*.qmd", "*.ipynb", "*.Rmd", "*.md", "!SETUP.md", "!LICENSE.md", ".notes/"]
+  render: ["*.qmd", "*.ipynb", "*.Rmd", "*.md", "!SETUP.md", "!LICENSE.md", "!.notes/"]
   post-render:
     - cp -a resume _site/.
 website:
+  draft-mode: unlinked
   title: Vincent Clemson
   favicon: /assets/img/favicon.png
   site-url: https://prncevince.xyz

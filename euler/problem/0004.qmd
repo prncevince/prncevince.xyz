@@ -3,6 +3,7 @@ title: Problem 4 - Largest Palindrome Product
 date: 01/17/26
 draft: false
 link: <https://projecteuler.net/problem=4>{.link-euler}
+image: ../assets/img/DJI_20250502212800_0890_D.jpg
 ---
 
 ```{r}

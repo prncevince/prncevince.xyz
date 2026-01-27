@@ -7,8 +7,10 @@ open-graph:
   description: Working through answering all of Project Euler using both R & Python (& Math of course)!
 subtitle: Answering all of Project Euler <br>... eventually.
 listing:
+  contents: problem
   type: grid
   grid-columns: 3
+  image-lazy-loading: true
   image-height: unset
   categories: true
   feed:
@@ -16,8 +18,9 @@ listing:
     type: partial
     items: 100
   sort: title
-  fields: [image, date, title, file-modified, subtitle, reading-time, description]
+  fields: [image, date, title, subtitle, description, file-modified]
   field-display-names:
+    date: "Published"
     file-modified: "Updated"
   sort-ui: [title, date, file-modified]
   filter-ui: true
@@ -44,4 +47,4 @@ Here you'll find me working through answering all of the Project Euler problems 
 
 I'm treating R as a first class citizen, a feat that I think is a bit novel as the majority of members have answered using Python, C/C++, Java, & C#.
 
-[Code Languages](https://projecteuler.net/languages) used by Project Euler members. 
+[Code Languages](https://projecteuler.net/languages) used by Project Euler members.

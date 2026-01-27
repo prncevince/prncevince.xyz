@@ -33,3 +33,22 @@ code {
   font-size: var(--bs-root-font-size);
   margin-bottom: .3em;
 }
+/* Top of article figuress  */
+figure > figcaption {
+  font-size: 1em;
+}
+/* In article figures */
+figure.quarto-float > figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0.5em;
+}
+/* in article
+div.{quarto-float quarto-figure quarto-figure-left anchored}
+figure.{quarto-float quarto-float-fig figure}
+figcaption.{quarto-float-caption-bottom quarto-float-caption quarto-float-fig}
+top article 
+div.{quarto-figure quarto-figure-center}
+figure.{figure}
+figcaption
+*/

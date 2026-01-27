@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.424">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="">
 
-<title>Project Euler | Vincent Clemson</title>
+<title>Project Euler | Vincent Clemson – Vincent Clemson</title>
 <script src="../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
@@ -71,6 +71,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -86,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-file-modified','listing-subtitle','listing-reading-time','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-subtitle','listing-description','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
@@ -130,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -138,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -148,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projectsclassquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projectsclassquarto-navbar-tools-item" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="quarto-navbar-tools-item">Projects</span></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-projectsclassquarto-navbar-tools-item">    
@@ -159,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contactsclassquarto-navbar-tools-item" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contactsclassquarto-navbar-tools-item" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="quarto-navbar-tools-item">Contacts</span></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-contactsclassquarto-navbar-tools-item">    
@@ -191,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -244,10 +245,10 @@ ul.task-list li input[type="checkbox"] {
           Title
         </option>
          <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
+          Published - Oldest
         </option>
          <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
+          Published - Newest
         </option>
          <option value="listing-file-modified-sort" data-direction="asc">
           Updated - Oldest
@@ -263,17 +264,16 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1768446000000" data-listing-file-modified-sort="1769299892259" data-listing-date-modified-sort="1769299892000" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1768446000000" data-listing-file-modified-sort="1769380894927" data-listing-date-modified-sort="1769380894000" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
 <a href="../euler/problem/0001.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="assets/img/DJI_20250426080623_0634_D.jpg" style="height: unset;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top">
+<img loading="lazy" src="../euler/assets/img/DJI_20250426080623_0634_D.jpg" class="thumbnail-image card-img" style="height: unset;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Problem 1 - Multiples of 3 or 5
 </h5>
-<div class="listing-reading-time card-text text-muted">
-1 min
-</div>
 <div class="card-text listing-description">
 If we list all the natural numbers below <span class="math inline">\(10\)</span> that are multiples of <span class="math inline">\(3\)</span> or <span class="math inline">\(5\)</span>, we get <span class="math inline">\(3, 5, 6\)</span> and <span class="math inline">\(9\)</span>. The sum of these multiples is <span class="math inline">\(23\)</span>. Find the sum of all…<span class="math inline"></span><span class="math inline"></span><span class="math inline"></span>
 </div>
@@ -285,23 +285,22 @@ January 15, 2026
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>January 24, 2026</p>
+<p>January 25, 2026</p>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1768446000000" data-listing-file-modified-sort="1769302259680" data-listing-date-modified-sort="1769302259000" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1768446000000" data-listing-file-modified-sort="1769381041338" data-listing-date-modified-sort="1769381041000" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
 <a href="../euler/problem/0002.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="assets/img/DJI_20250426083343_0654_D.jpg" style="height: unset;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top">
+<img loading="lazy" src="../euler/assets/img/DJI_20250426083343_0654_D.jpg" class="thumbnail-image card-img" style="height: unset;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Problem 2 - Even Fibonacci Numbers
 </h5>
-<div class="listing-reading-time card-text text-muted">
-1 min
-</div>
 <div class="card-text listing-description">
 
 Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>, the first <span class="math inline">\(10\)</span> terms will be: <span class="math display">\[1, 2, 3, 5, 8…</span>
@@ -314,23 +313,22 @@ January 15, 2026
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>January 24, 2026</p>
+<p>January 25, 2026</p>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1768446000000" data-listing-file-modified-sort="1769302715041" data-listing-date-modified-sort="1769302715000" data-listing-reading-time-sort="3" data-listing-word-count-sort="492">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1768446000000" data-listing-file-modified-sort="1769381042147" data-listing-date-modified-sort="1769381042000" data-listing-reading-time-sort="3" data-listing-word-count-sort="492">
 <a href="../euler/problem/0003.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="assets/img/DJI_20250429081018_0767_D.jpg" style="height: unset;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top">
+<img loading="lazy" src="../euler/assets/img/DJI_20250429081018_0767_D.jpg" class="thumbnail-image card-img" style="height: unset;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Problem 3 - Largest Prime Factor
 </h5>
-<div class="listing-reading-time card-text text-muted">
-3 min
-</div>
 <div class="card-text listing-description">
 The prime factors of <span class="math inline">\(13195\)</span> are <span class="math inline">\(5, 7, 13\)</span> and <span class="math inline">\(29\)</span>. <br> What is the largest prime factor of the number <span class="math inline">\(600851475143\)</span>?
 </div>
@@ -342,23 +340,22 @@ January 15, 2026
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>January 24, 2026</p>
+<p>January 25, 2026</p>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1768618800000" data-listing-file-modified-sort="1769305413042" data-listing-date-modified-sort="1769305413000" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
+<div class="g-col-1" data-index="3" data-listing-date-sort="1768618800000" data-listing-file-modified-sort="1769381042906" data-listing-date-modified-sort="1769381042000" data-listing-reading-time-sort="2" data-listing-word-count-sort="325">
 <a href="../euler/problem/0004.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="assets/img/DJI_20250502212800_0890_D.jpg" style="height: unset;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top">
+<img loading="lazy" src="../euler/assets/img/DJI_20250502212800_0890_D.jpg" class="thumbnail-image card-img" style="height: unset;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Problem 4 - Largest Palindrome Product
 </h5>
-<div class="listing-reading-time card-text text-muted">
-2 min
-</div>
 <div class="card-text listing-description">
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is <span class="math inline">\(90009 = 91 \times 99\)</span>. <br> Find the largest palindrome…
 </div>
@@ -370,25 +367,24 @@ January 17, 2026
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>January 24, 2026</p>
+<p>January 25, 2026</p>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-listing-date-sort="1768618800000" data-listing-file-modified-sort="1769309243672" data-listing-date-modified-sort="1769309243000" data-listing-reading-time-sort="3" data-listing-word-count-sort="412">
+<div class="g-col-1" data-index="4" data-listing-date-sort="1768618800000" data-listing-file-modified-sort="1769482163964" data-listing-date-modified-sort="1769482163000" data-listing-reading-time-sort="3" data-listing-word-count-sort="405">
 <a href="../euler/problem/0005.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="assets/img/DJI_20250430211849_0811_D.jpg" style="height: unset;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top">
+<img loading="lazy" src="../euler/assets/img/DJI_20250430211849_0811_D.jpg" class="thumbnail-image card-img" style="height: unset;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Problem 5 - Smallest Multiple
 </h5>
-<div class="listing-reading-time card-text text-muted">
-3 min
-</div>
 <div class="card-text listing-description">
-2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. <br> What is the smallest positive number that is evenly divisible by…
+<span class="math inline">\(2,520\)</span> is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. <br> What is the smallest positive number that is evenly…
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -398,7 +394,7 @@ January 17, 2026
 </div>
 <div class="card-footer">
 <div class="card-file-modified listing-file-modified">
-<p>January 24, 2026</p>
+<p>January 26, 2026</p>
 </div>
 </div>
 </div>
@@ -444,22 +440,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  // Edit 2025/12/10
-  // with button placement moved from original sibling of <code> element - need update to find <code> element
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      // const codeEl = trigger.previousElementSibling.cloneNode(true);
-      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
-      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -476,7 +457,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
+          // Edit 2026/01/26
+          offset: [0, 0]});
       tooltip.show();    
     }
     setTimeout(function() {
@@ -491,7 +473,56 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  // Edit 2025/12/10 & 2026/01/26
+  // with button placement moved from original sibling of <code> element - need update to find <code> element
+  const getTextToCopy = function(trigger) {
+      // const codeEl = trigger.previousElementSibling.cloneNode(true);
+      const id_codeEl = trigger.parentElement.previousElementSibling.getAttribute('id');
+      const codeEl = document.querySelector('#'+id_codeEl+' code.sourceCode').cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -526,7 +557,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -541,38 +576,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -581,8 +606,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -801,24 +833,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/prncevince\.xyz");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
 });
 </script>
 </div> <!-- /content -->

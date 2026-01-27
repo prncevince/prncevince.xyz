@@ -1,4 +1,5 @@
 
+
 # Creative Commons License
 
 <https://prncevince.xyz> © 2023-2026 by [Vincent Clemson](./about) is

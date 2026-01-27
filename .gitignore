@@ -34,3 +34,5 @@ README_files/
 # pnpm
 node_modules/
 .vercel/
+
+**/*.quarto_ipynb

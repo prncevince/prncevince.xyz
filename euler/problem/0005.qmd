@@ -3,13 +3,8 @@ title: Problem 5 - Smallest Multiple
 date: 01/17/26
 draft: false
 link: <https://projecteuler.net/problem=5>{.link-euler}
+image: ../assets/img/DJI_20250430211849_0811_D.jpg
 ---
-
-<style>
-  .table {
-    margin: 0 0 1.5rem 0;
-  }
-</style>
 
 ```{r}
 #| include: false
@@ -18,7 +13,7 @@ link: <https://projecteuler.net/problem=5>{.link-euler}
 
 ![Ella, Sri Lanka - 9 Arches Bridge - April 30th, 2025](../assets/img/DJI_20250430211849_0811_D.jpg)
 
-2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+$2,520$ is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 <br>
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
@@ -42,9 +37,9 @@ while (TRUE) {
 }
 ```
 
-The runtime begins to become non-trivial at `x2=19`. 
+The runtime begins to become non-trivial at `x2 = 19`. 
 
-We notice that all answers from `x2={11,12,..,18}` are multiples of 2520.
+We notice that all answers from `x2 = {11, 12, .., 18}` are multiples of 2520.
 
 Thus, we can increase `n` incrementally by 2520 instead of incrementally by 1.
 
@@ -75,7 +70,7 @@ toc()
 
 We don't need much code here. 
 
-We need to compute the LCM (Least Common Multiple) of 2520 & a number that is the product of 1-20 using prime factorization. 
+We need to compute the LCM (Least Common Multiple) of 2520 & a number that is the product of 1-20 using prime factorization.
 
 The LCM is the product of the highest power of each prime.
 Prime factorization of 1-10 do not have higher powers.
@@ -92,7 +87,6 @@ Prime factorization of 1-10 do not have higher powers.
 | 18 | 2 * 3^2 |
 | 19 | 19 |
 | 20 | 2^2 * 5 |
-
 : {.striped .hover .bordered}
 
 $LCM = 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19$

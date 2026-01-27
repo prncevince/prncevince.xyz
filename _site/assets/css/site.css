@@ -2,25 +2,44 @@
 html {
   scroll-behavior: smooth;
 }
-/* For jupyter notebooks */
+
+/*-- Figures --*/
+/* unsure what for - maybe can delete */
 figcaption.figure {
   display: block;
   text-align: center;
 }
-/* For quarto documents */
+img.quarto-figure {
+  margin-bottom: 0.5em;
+}
+/* For quarto documents / jupyter notebooks */
 .quarto-figure-center figure {
   text-align: center;
+}
+div.quarto-figure.quarto-figure-center > figure > figcaption {
+  margin-top: 0.5em;
 }
 /* Possibly need more time with quarto before making such a generalization on most quarto-figure classes */
 div.quarto-figure:not(.column-screen, .quarto-figure-center, .cell-output-display) {
   width: fit-content;
   /* padding-right: 2em; */
 }
+
+/*-- Tables --*/
+.quarto-figure-center > figure > div table {
+  text-align: left;
+}
+table, table.table {
+  margin: 0 0 1.5rem 0;
+}
 .table {
   width: unset;
   margin: auto;
+  border-top: 1px solid var(--bs-table-border-color);
+  border-bottom: 1px solid var(--bs-table-border-color);
 }
-/* Links */
+
+/*-- Links --*/
 a {
   text-decoration-line: unset;
 }
@@ -30,8 +49,7 @@ a {
 #quarto-content .quarto-categories > .quarto-category > a:hover {
   text-decoration-line: none;
 }
-
-/*-- external link style --*/
+/* External Links */
 a.external:after {
   font-size: 0.75em;
   vertical-align: top;
@@ -41,6 +59,29 @@ a.external:after {
 }
 
 /*-- Navbar --*/
+.navbar .navbar-container > .navbar-brand-container.me-auto {
+  margin-right: auto !important;
+}
+@media (min-width: 992px) {
+  .navbar .navbar-container > .navbar-brand-container  {
+    margin-right: 1em !important;
+  }
+}
+@media (min-width: 992px) {
+  .navbar .quarto-navbar-tools {
+    margin-left: .25rem;
+  }
+}
+@media (min-width: 992px) {
+  .navbar #quarto-search {
+    margin-left: .25rem;
+  }
+}
+@media (max-width: 992px) {
+  .navbar #quarto-search {
+    margin-left: unset;
+}
+}
 .navbar-container.container-fluid {
   flex-wrap: nowrap; /* for Chrome */
   padding-left: 0;
@@ -81,20 +122,7 @@ a.navbar-brand {
   background-repeat: no-repeat;
   padding-left: 45px;
 }
-@media (max-width: 991.98px) {
-  nav.quarto-secondary-nav {
-    background-color: rgba(253, 251, 247, 0.90);
-    border-bottom: unset;
-  }
-}
-div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sidebar.sidebar-navigation:not(.rollup) {
-  background-color: rgba(253, 251, 247, 0.90);
-}
-
-/* Source Code */
-/* See sourceCode.css */
-
-/* tools */
+/* Tools */
 .quarto-navbar-tools > div.nav-item {
   padding-left: 0.25em;
   padding-right: 0.25em;
@@ -117,7 +145,25 @@ div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sideba
 .nav-item.dropdown {
   outline: none;
 }
-/* media icons */
+
+/*-- Sidebar --*/
+@media (max-width: 991.98px) {
+  nav.quarto-secondary-nav {
+    background-color: rgba(253, 251, 247, 0.90);
+    border-bottom: unset;
+  }
+}
+div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sidebar.sidebar-navigation:not(.rollup) {
+  background-color: rgba(253, 251, 247, 0.90);
+}
+.sidebar-item {
+  margin-top: 0.7rem;
+}
+
+/*-- Source Code --*/
+/* See sourceCode.css */
+
+/*-- Media Icons --*/
 .rss > .fa-rss, .rss > .fa-square-rss {
   background-clip: text;
   -webkit-background-clip: text;
@@ -134,19 +180,20 @@ div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sideba
   -webkit-text-fill-color: transparent;
 }
 
-/* Quarto Back to Top */
+/*-- Back to Top Button --*/
 #quarto-back-to-top {
   bottom: 1.5em;
 }
 #scroll-padding {
   padding: 1.5em;
 }
-/* quarto-appendix */
+
+/*-- Appendix --*/
 #quarto-appendix > #footnotes {
   padding-bottom: 1.5em;
 }
 
-/* footer */
+/*-- Footer --*/
 @media (max-width: 671px) {
   .nav-footer {
     flex-direction: column;

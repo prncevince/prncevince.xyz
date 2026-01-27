@@ -23,6 +23,8 @@ $card-bg: $body-bg;
 $source-code: #770505;
 $code-color: $source-code;
 $code-padding: .1em .2em;
+// Listing 
+$card-title-color: $primary;
 
 /*-- scss:rules --*/
 :root {
@@ -87,7 +89,17 @@ div > details > summary {
 h1, h2, h3, h4, h5, h6 {
   color: $primary;
 }
-/* Posts */
+/* Listing Posts */
+// for Euler listing 
+div.card-attribution.end.euler {
+  color: darken($body-bg, 5%);
+  background-color: lighten($navbar-bg, 2%);
+  padding-top: 4px;
+  padding-right: 1rem;
+  padding-bottom: 4px;
+  padding-left: 0px;
+}
+// for "Last Updated" e.g. 'file-modified' field
 .card-footer {
   color: darken($body-bg, 5%);
   background-color: lighten($navbar-bg, 2%);

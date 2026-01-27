@@ -88,8 +88,12 @@ h1.title {
 a.quarto-grid-link:hover .card-body h5 {
   text-decoration: underline;
 }
-.quarto-listing-cols-3 {
+/* .quarto-listing-cols-3 {
   grid-template-columns: repeat(auto-fit, minmax(245.25px, 1fr));
+} */
+.quarto-listing-cols-3 {
+  grid-template-columns: repeat(auto-fit, minmax(333px, 1fr));
+  gap: 10px;
 }
 .card-attribution .listing-date {
   text-transform: none;

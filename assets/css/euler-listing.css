@@ -17,5 +17,13 @@
 /*-- Listing --*/
 .quarto-listing-cols-3 {
   grid-template-columns: repeat(auto-fit, minmax(333px, 1fr));
-  gap: 10px;
+  gap: 5px;
 }
+.card-body.post-contents {
+  padding-bottom: 4px;
+}
+div.card-footer:has(div.card-file-modified) {
+  height: 0;
+  padding: 0;
+  border: 0;
+} 

@@ -14,7 +14,7 @@
 <title>Project Euler</title>
 <link>https://prncevince.xyz/euler/</link>
 </image>
-<generator>quarto-1.4.424</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Sat, 17 Jan 2026 03:00:00 GMT</lastBuildDate>
 <item>
   <title>Problem 4 - Largest Palindrome Product</title>
@@ -23,6 +23,7 @@
   <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250502212800_0890_D.jpg" class="img-fluid figure-img"> ]]></description>
   <guid>https://prncevince.xyz/euler/problem/0004.html</guid>
   <pubDate>Sat, 17 Jan 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250502212800_0890_D.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Problem 5 - Smallest Multiple</title>
@@ -31,6 +32,7 @@
   <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250430211849_0811_D.jpg" class="img-fluid figure-img"> ]]></description>
   <guid>https://prncevince.xyz/euler/problem/0005.html</guid>
   <pubDate>Sat, 17 Jan 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250430211849_0811_D.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Problem 1 - Multiples of 3 or 5</title>
@@ -39,6 +41,7 @@
   <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250426080623_0634_D.jpg" class="img-fluid figure-img"> ]]></description>
   <guid>https://prncevince.xyz/euler/problem/0001.html</guid>
   <pubDate>Thu, 15 Jan 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250426080623_0634_D.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Problem 2 - Even Fibonacci Numbers</title>
@@ -47,6 +50,7 @@
   <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250426083343_0654_D.jpg" class="img-fluid figure-img"> ]]></description>
   <guid>https://prncevince.xyz/euler/problem/0002.html</guid>
   <pubDate>Thu, 15 Jan 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250426083343_0654_D.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Problem 3 - Largest Prime Factor</title>
@@ -55,6 +59,7 @@
   <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250429081018_0767_D.jpg" class="img-fluid figure-img"> ]]></description>
   <guid>https://prncevince.xyz/euler/problem/0003.html</guid>
   <pubDate>Thu, 15 Jan 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250429081018_0767_D.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
