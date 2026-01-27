@@ -1,5 +1,5 @@
 author: Vincent Clemson
-pagetitle: '{{< meta title >}} | Vincent Clemson'
+pagetitle: '{{< meta title >}}'
 title-block-banner: false
 twitter-card:
   image: /assets/img/posts.png

@@ -1,5 +1,6 @@
 ---
 title: Big & [tiny]{style='font-size:0.75rem;vertical-align:middle;'} spatial thoughts
+pagetitle: Big & tiny spatial thoughts
 twitter-card:
   description: A collection of unique spatial data science content
 open-graph:

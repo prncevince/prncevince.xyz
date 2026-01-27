@@ -1,6 +1,6 @@
 ---
 title: "{{< fa earth-americas >}} Vincent Clemson {{< fa earth-europe >}}"
-pagetitle: 'About - Vincent Clemson'
+pagetitle: 'About'
 image: profile.jpg
 about:
   template: trestles
