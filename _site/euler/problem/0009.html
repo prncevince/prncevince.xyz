@@ -5,8 +5,8 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Vincent Clemson">
-<meta name="dcterms.date" content="2026-01-17">
-<title>Problem 5 - Smallest Multiple | Vincent Clemson</title>
+<meta name="dcterms.date" content="2026-01-21">
+<title>Problem 9 - Special Pythagorean Triplet | Vincent Clemson</title>
 <script src="../../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script><script defer="" src="../../_vercel/insights/script.js"></script><style>
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../euler/problem/0006.html" rel="next">
-<link href="../../euler/problem/0004.html" rel="prev">
+<link href="../../euler/problem/0008.html" rel="prev">
 <link href="../..//assets/img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -108,14 +107,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../assets/css/font.css">
 <link rel="stylesheet" href="../../assets/css/sourceCode.css">
 <link rel="stylesheet" href="../../assets/css/posts.css">
-<link rel="stylesheet" href="../../assets/css/tables-left-aligned.css">
-<meta property="og:title" content="Problem 5 - Smallest Multiple">
+<meta property="og:title" content="Problem 9 - Special Pythagorean Triplet">
 <meta property="og:description" content="A collection of unique spatial data science content by Vincent Clemson">
-<meta property="og:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250430211849_0811_D.jpg">
+<meta property="og:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250429081028_0768_D.jpg">
 <meta property="og:site_name" content="Vincent Clemson">
-<meta name="twitter:title" content="Problem 5 - Smallest Multiple">
+<meta name="twitter:title" content="Problem 9 - Special Pythagorean Triplet">
 <meta name="twitter:description" content="A collection of unique spatial data science content by Vincent Clemson">
-<meta name="twitter:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250430211849_0811_D.jpg">
+<meta name="twitter:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250429081028_0768_D.jpg">
 <meta name="twitter:creator" content="@prncevincecares">
 <meta name="twitter:site" content="@prncevincecares">
 <meta name="twitter:card" content="summary_large_image">
@@ -191,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Problem 5 - Smallest Multiple</h1>
+          <h1 class="quarto-secondary-nav-title">Problem 9 - Special Pythagorean Triplet</h1>
         </a>     
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -233,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../euler/problem/0005.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../euler/problem/0005.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Problem 5 - Smallest Multiple</span></a>
   </div>
 </li>
@@ -257,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../euler/problem/0009.html" class="sidebar-item-text sidebar-link">
+  <a href="../../euler/problem/0009.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Problem 9 - Special Pythagorean Triplet</span></a>
   </div>
 </li>
@@ -271,13 +269,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#development" id="toc-development" class="nav-link active" data-scroll-target="#development">Development</a></li>
-  <li>
-<a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a>
+<li>
+<a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r">R</a>
   <ul>
 <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer 1</a></li>
-  <li><a href="#answer-2---nolow-code" id="toc-answer-2---nolow-code" class="nav-link" data-scroll-target="#answer-2---nolow-code">Answer 2 - No(Low) Code</a></li>
-  <li><a href="#answer-3" id="toc-answer-3" class="nav-link" data-scroll-target="#answer-3">Answer 3</a></li>
+  <li><a href="#answer-2---inequality-bounds" id="toc-answer-2---inequality-bounds" class="nav-link" data-scroll-target="#answer-2---inequality-bounds">Answer 2 - Inequality Bounds</a></li>
+  <li>
+<a href="#answer-3---euclids-formula" id="toc-answer-3---euclids-formula" class="nav-link" data-scroll-target="#answer-3---euclids-formula">Answer 3 - Euclid’s Formula</a>
+  <ul>
+<li><a href="#no-code" id="toc-no-code" class="nav-link" data-scroll-target="#no-code">No Code</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   <li>
@@ -290,13 +293,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Problem 5 - Smallest Multiple</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i></button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/prncevince/prncevince.io/blob/main/euler/problem/0005.qmd">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Problem 9 - Special Pythagorean Triplet</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i></button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/prncevince/prncevince.io/blob/main/euler/problem/0009.qmd">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
-    <div class="quarto-category">least common multiple</div>
-    <div class="quarto-category">primes</div>
-    <div class="quarto-category">prime factorization</div>
-    <div class="quarto-category">factors</div>
-    <div class="quarto-category">multiples</div>
+    <div class="quarto-category">Pythagorean</div>
+    <div class="quarto-category">Euclid’s formula</div>
+    <div class="quarto-category">inequality</div>
+    <div class="quarto-category">bounds</div>
   </div>
   </div>
 
@@ -314,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 17, 2026</p>
+      <p class="date">January 21, 2026</p>
     </div>
   </div>
   
@@ -330,134 +332,165 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../assets/img/DJI_20250430211849_0811_D.jpg" class="img-fluid figure-img"></p>
-<figcaption>Ella, Sri Lanka - 9 Arches Bridge - April 30th, 2025</figcaption></figure>
+<figure class="figure"><p><img src="../assets/img/DJI_20250429081028_0768_D.jpg" class="img-fluid figure-img"></p>
+<figcaption>The foggy, mountainous countriside surrounding the railway over Black Bridge &amp; the Kuda Ravana waterfall <br> Ella, Sri Lanka - April 29th, 2025</figcaption></figure>
 </div>
-<p><span class="math inline">\(2,520\)</span> is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. <br> What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?</p>
-<p><a href="https://projecteuler.net/problem=5" class="link-euler">https://projecteuler.net/problem=5</a></p>
-<section id="development" class="level2"><h2 class="anchored" data-anchor-id="development">Development</h2>
-<p>To start out, we write a simple program to test numbers from 1 to 11, 1 to 12, and so forth to test runtime feasibility.</p>
-<p>e.g.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">2520</span></span>
-<span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
-<span><span class="kw">while</span> <span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="va">x1</span><span class="op">:</span><span class="va">x2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The runtime begins to become non-trivial at <code>x2 = 19</code>.</p>
-<p>We notice that all answers from <code>x2 = {11, 12, .., 18}</code> are multiples of 2520.</p>
-<p>Thus, we can increase <code>n</code> incrementally by 2520 instead of incrementally by 1.</p>
-</section><section id="r" class="level2"><h2 class="anchored" data-anchor-id="r">R</h2>
+<p>A Pythagorean triplet is a set of three natural numbers, <span class="math inline">\(a \lt b \lt c\)</span>, for which, <span class="math display">\[a^2 + b^2 = c^2.\]</span> For example, <span class="math inline">\(3^2 + 4^2 = 9 + 16 = 25 = 5^2\)</span>. <br> There exists exactly one Pythagorean triplet for which <span class="math inline">\(a + b + c = 1000\)</span>. <br> Find the product <span class="math inline">\(abc\)</span>.</p>
+<p><a href="https://projecteuler.net/problem=9" class="link-euler">https://projecteuler.net/problem=9</a></p>
+<section id="r" class="level2"><h2 class="anchored" data-anchor-id="r">R</h2>
+<p>We can brute force this problem by trying every combination of <span class="math inline">\(a, b, c\)</span> since there is exactly one triplet.</p>
 <section id="answer-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1">Answer 1</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#' @param n Starting number</span></span>
-<span><span class="co">#' @param inc increment to increase by</span></span>
-<span><span class="co">#' @param x1 Lowest factor</span></span>
-<span><span class="co">#' @param x2 Highest factor</span></span>
-<span><span class="va">n_x1_to_x2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span>, <span class="va">inc</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">x1</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">x2</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw">while</span> <span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="va">x1</span><span class="op">:</span><span class="va">x2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">brute</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="va">i</span>, b <span class="op">=</span> <span class="va">j</span>, c <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span>
+<span>        <span class="kw">if</span> <span class="op">(</span><span class="va">l</span><span class="op">$</span><span class="va">a</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">l</span><span class="op">$</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span> <span class="op">==</span> <span class="va">l</span><span class="op">$</span><span class="va">c</span><span class="op">^</span><span class="fl">2</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">l</span><span class="op">$</span><span class="va">a</span>, <span class="va">l</span><span class="op">$</span><span class="va">b</span>, <span class="va">l</span><span class="op">$</span><span class="va">c</span><span class="op">)</span> <span class="op">==</span> <span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>          <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">l</span>, prod<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>        <span class="op">}</span></span>
+<span>      <span class="op">}</span></span>
 <span>    <span class="op">}</span></span>
-<span>    <span class="va">n</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">+</span> <span class="va">inc</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">n_x1_to_x2</span><span class="op">(</span><span class="fl">2520</span>, <span class="fl">2520</span>, <span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu">brute</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>[1] 232792560
-0.084 sec elapsed</code></pre>
+<pre><code>$a
+[1] 200
+
+$b
+[1] 375
+
+$c
+[1] 425
+
+$prod
+[1] 31875000
+
+151.184 sec elapsed</code></pre>
 </div>
 </div>
-</section><section id="answer-2---nolow-code" class="level3"><h3 class="anchored" data-anchor-id="answer-2---nolow-code">Answer 2 - No(Low) Code</h3>
-<p>We don’t need much code here.</p>
-<p>We need to compute the LCM (Least Common Multiple) of 2520 &amp; a number that is the product of 1-20 using prime factorization.</p>
-<p>The LCM is the product of the highest power of each prime. Prime factorization of 1-10 do not have higher powers.</p>
-<table class="table-striped table-hover table-bordered caption-top table">
-<thead><tr class="header">
-<th>Multiple</th>
-<th>Prime Factorization</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>11</td>
-<td>11</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>2^2 * 3</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>13</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>2 * 7</td>
-</tr>
-<tr class="odd">
-<td>15</td>
-<td>3 * 5</td>
-</tr>
-<tr class="even">
-<td>16</td>
-<td>2^4</td>
-</tr>
-<tr class="odd">
-<td>17</td>
-<td>17</td>
-</tr>
-<tr class="even">
-<td>18</td>
-<td>2 * 3^2</td>
-</tr>
-<tr class="odd">
-<td>19</td>
-<td>19</td>
-</tr>
-<tr class="even">
-<td>20</td>
-<td>2^2 * 5</td>
-</tr>
-</tbody>
-</table>
-<p><span class="math inline">\(LCM = 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19\)</span></p>
+<p>Repetitive assignments are very, very, slow in R … below is 8 times faster.</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">^</span><span class="fl">4</span> <span class="op">*</span> <span class="fl">3</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">7</span> <span class="op">*</span> <span class="fl">11</span> <span class="op">*</span> <span class="fl">13</span> <span class="op">*</span> <span class="fl">17</span> <span class="op">*</span> <span class="fl">19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code>[1] 232792560</code></pre>
-</div>
-</div>
-</section><section id="answer-3" class="level3"><h3 class="anchored" data-anchor-id="answer-3">Answer 3</h3>
-<p>LCM &amp; Prime Factorization, just code:</p>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l_pf</span> <span class="op">&lt;-</span> <span class="fu">primes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/primes/man/prime_factors.html">prime_factors</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span>
-<span><span class="va">l_pf_c</span> <span class="op">&lt;-</span> <span class="va">l_pf</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">l_pf</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">d_lcm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">p</span><span class="op">)</span></span>
-<span><span class="va">l_lcm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">p_i</span> <span class="kw">in</span> <span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">i_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">l_pf</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="va">i</span> <span class="op">==</span> <span class="va">p_i</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">sum</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="va">l_lcm</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">p_i</span><span class="op">)</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">l_pf_c</span><span class="op">[[</span><span class="va">i_p</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">brute2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="kw">if</span> <span class="op">(</span><span class="va">i</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">j</span><span class="op">^</span><span class="fl">2</span> <span class="op">==</span> <span class="va">k</span><span class="op">^</span><span class="fl">2</span> <span class="op">&amp;</span> <span class="va">i</span><span class="op">+</span><span class="va">j</span><span class="op">+</span><span class="va">k</span> <span class="op">==</span> <span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>          <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>a <span class="op">=</span> <span class="va">i</span>, b <span class="op">=</span> <span class="va">j</span>, c <span class="op">=</span> <span class="va">k</span>, prod <span class="op">=</span> <span class="va">i</span><span class="op">*</span><span class="va">j</span><span class="op">*</span><span class="va">k</span><span class="op">)</span><span class="op">)</span></span>
+<span>        <span class="op">}</span></span>
+<span>      <span class="op">}</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span>
-<span><span class="va">d_lcm</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">l_lcm</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="va">d_lcm</span><span class="op">$</span><span class="va">p</span> <span class="op">^</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">d_lcm</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span></span>
+<span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">brute2</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
+<span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>[1] 232792560</code></pre>
+<pre><code>       a        b        c     prod 
+     200      375      425 31875000 
+19.473 sec elapsed</code></pre>
 </div>
 </div>
-</section></section><section id="python" class="level2"><h2 class="anchored" data-anchor-id="python">Python</h2>
+</section><section id="answer-2---inequality-bounds" class="level3"><h3 class="anchored" data-anchor-id="answer-2---inequality-bounds">Answer 2 - Inequality Bounds</h3>
+<p>We can limit the number of looping iterations by setting bounds for our variables.</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://martin-ueding.de/posts/project-euler-solution-9-special-pythagorean-triplet/" class="uri">https://martin-ueding.de/posts/project-euler-solution-9-special-pythagorean-triplet/</a></li>
+</ul>
+<p>Since <span class="math inline">\(c &gt; b &gt; a\)</span> and <span class="math inline">\(c = 1000 - a - b\)</span>, combining these gives us: <span class="math display">\[1000 - a - b &gt; b;\: 1000 - a &gt; 2b;\: b &lt; 500 - \frac{a}{2}\]</span></p>
+<p>Additionally, since <span class="math inline">\(a &lt; b &lt; c\)</span> &amp; <span class="math inline">\(c = 1000 - a - b\)</span> &amp; <span class="math inline">\(a = 1000 - b - c\)</span>, then <span class="math display">\[1000 - a - c \lt c; \: 1000 - a \lt 2c; \:\frac{1000 - a}{2}\lt c\]</span></p>
+<p>We can use these bounds on <span class="math inline">\(b\)</span> &amp; <span class="math inline">\(c\)</span> to search for the answer faster than the brute force method.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bounds</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="va">i</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="va">i</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="va">i</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="kw">if</span> <span class="op">(</span><span class="va">i</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">j</span><span class="op">^</span><span class="fl">2</span> <span class="op">==</span> <span class="va">k</span><span class="op">^</span><span class="fl">2</span> <span class="op">&amp;</span> <span class="va">i</span><span class="op">+</span><span class="va">j</span><span class="op">+</span><span class="va">k</span> <span class="op">==</span> <span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
+<span>          <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>a <span class="op">=</span> <span class="va">i</span>, b <span class="op">=</span> <span class="va">j</span>, c <span class="op">=</span> <span class="va">k</span>, prod <span class="op">=</span> <span class="va">i</span><span class="op">*</span><span class="va">j</span><span class="op">*</span><span class="va">k</span><span class="op">)</span><span class="op">)</span></span>
+<span>        <span class="op">}</span></span>
+<span>      <span class="op">}</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">bounds</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
+<span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>       a        b        c     prod 
+     200      375      425 31875000 
+3.87 sec elapsed</code></pre>
+</div>
+</div>
+</section><section id="answer-3---euclids-formula" class="level3"><h3 class="anchored" data-anchor-id="answer-3---euclids-formula">Answer 3 - Euclid’s Formula</h3>
+<p>We can use <a href="https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple">Euclid’s formula</a>.</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple" class="uri">https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple</a></li>
+<li><a href="https://www.cuemath.com/pythagorean-triples-formula/" class="uri">https://www.cuemath.com/pythagorean-triples-formula/</a></li>
+<li><a href="https://math.stackexchange.com/a/3378595" class="uri">https://math.stackexchange.com/a/3378595</a></li>
+</ul>
+<p>Euclid’s formula states that for <span class="math inline">\(a^2 + b^2 = c^2\)</span>, there exists <span class="math inline">\(0 &lt; n &lt; m\)</span> such that: <span class="math display">\[a = m^2 - n^2, b = 2mn, c = m^2+n^2\]</span></p>
+<p>Since Euclid’s formula states that <span class="math inline">\(a = m^2 - n^2, b = 2mn, c = m^2+n^2\)</span>, we can also say for <span class="math inline">\(a + b + c = 1000 = P\)</span> that: <span class="math display">\[P = m^2 - n^2 + 2mn + m^2 + n^2 = 2m^2 + 2mn\]</span></p>
+<p>Thus, we can solve for <span class="math inline">\(n\)</span>: <span class="math display">\[\frac{P - 2m^2}{2m} = n\]</span></p>
+<p>Because <span class="math inline">\(m &gt; n &gt; 0\)</span>, we can define limits to <strong><em>search</em></strong> for <span class="math inline">\(m\)</span>.</p>
+<p>To find the lower limit such that <span class="math inline">\(n &lt; m\)</span>: <span class="math display">\[\frac{P - 2m^2}{2m} = n \lt m ;\: P - 2m^2 &lt; 2m^2; \: P \lt 4m^2 ;\: \frac{\sqrt{P}}{2} \lt m\]</span></p>
+<p>To find the upper limit such that <span class="math inline">\(n &gt; 0\)</span> <span class="math display">\[\frac{P - 2m^2}{2m} = n \gt 0 ;\: P - 2m^2 &gt; 0; \: P \gt 2m^2; \: m \lt \sqrt{\frac{P}{2}}\]</span></p>
+<p>Thus, <span class="math display">\[\frac{\sqrt{P}}{2} \lt m \lt \sqrt{\frac{P}{2}}\]</span></p>
+<p>And because <span class="math inline">\(m\)</span> is a whole number: <span class="math display">\[ \lceil{\frac{\sqrt{P}}{2}\rceil} \leq m \leq \lfloor{ \sqrt{\frac{P}{2}}}\rfloor\]</span></p>
+<p>Replacing <span class="math inline">\(P\)</span> with <span class="math inline">\(1000\)</span> <span class="math display">\[ \lceil{\frac{\sqrt{1000}}{2}\rceil} \leq m \leq \lfloor{ \sqrt{\frac{1000}{2}}}\rfloor\]</span></p>
+<p>So <span class="math display">\[16 \leq m \leq 22\]</span></p>
+<section id="no-code" class="level4"><h4 class="anchored" data-anchor-id="no-code">No Code</h4>
+<p>We have enough information here to try a few combinations to find our answer.</p>
+<p>Since <span class="math inline">\(\frac{P - 2m^2}{2m} = n; \: \frac{500 - m^2}{m} = n\)</span> &amp; <span class="math inline">\(n\)</span> must be an integer, the only value of <span class="math inline">\(m\)</span> for <span class="math inline">\(16 \leq m \leq 22\)</span> is <span class="math inline">\(m=20\)</span> where <span class="math inline">\(n = \frac{1000-2*20^2}{2*20} = (2*20)*\frac{25-20}{2*20} = 25 - 20 = 5\)</span></p>
+<p>Thus, <span class="math display">\[n = 5, m = 20\]</span> &amp; <span class="math display">\[a = 2*5*20 = 200,\: b = 20^2-5^2 = 375; \: c = 5^2 + 20^2 = 425\]</span></p>
+<p>Where <span class="math display">\[a*b*c = 200*375*425 = 31875000\]</span></p>
+</section><section id="code" class="level4"><h4 class="anchored" data-anchor-id="code">Code</h4>
+<p>The <a href="#no-code">No Code</a> solution above can be written as code simply via:</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">p</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="va">m1</span><span class="op">:</span><span class="va">m2</span></span>
+<span><span class="co"># can use this because n = (p-2m^2)/(2m) &amp; n is an integer</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="va">m</span><span class="op">[</span><span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="fl">2</span><span class="op">*</span><span class="va">m</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">m</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="fl">2</span><span class="op">*</span><span class="va">m</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">m</span><span class="op">)</span></span>
+<span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  <span class="co"># switch a &amp; b here b/c 2mn &gt; m^2 - n^2 | they can be interchanged b/c a^2+b^2 = b^2+a^2 = c^2</span></span>
+<span>  a <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">m</span> <span class="op">*</span> <span class="va">n</span>,</span>
+<span>  b <span class="op">=</span> <span class="va">m</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="va">n</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>  c <span class="op">=</span> <span class="va">m</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">n</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">l</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>$a
+[1] 200
+
+$b
+[1] 375
+
+$c
+[1] 425
+
+[1] 31875000</code></pre>
+</div>
+</div>
+</section></section></section><section id="python" class="level2"><h2 class="anchored" data-anchor-id="python">Python</h2>
 <section id="answer-1-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1-1">Answer 1</h3>
 
 
 </section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2026" class="csl-entry quarto-appendix-citeas" role="listitem">
-Clemson, Vincent. 2026. <span>“Problem 5 - Smallest Multiple.”</span>
-January 17, 2026. <a href="https://prncevince.xyz/euler/problem/0005.html">https://prncevince.xyz/euler/problem/0005.html</a>.
+Clemson, Vincent. 2026. <span>“Problem 9 - Special Pythagorean
+Triplet.”</span> January 21, 2026. <a href="https://prncevince.xyz/euler/problem/0009.html">https://prncevince.xyz/euler/problem/0009.html</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -968,14 +1001,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><script src="https://giscus.app/client.js" data-repo="prncevince/prncevince.io" data-repo-id="R_kgDOKfrJMA" data-category="Comments" data-category-id="DIC_kwDOKfrJMM4CaFyh" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
 </script><input type="hidden" id="giscus-base-theme" value="preferred_color_scheme"><input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme"><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../../euler/problem/0004.html" class="pagination-link" aria-label="Problem 4 - Largest Palindrome Product">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Problem 4 - Largest Palindrome Product</span>
+      <a href="../../euler/problem/0008.html" class="pagination-link" aria-label="Problem 8 - Largest Product in a Series">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Problem 8 - Largest Product in a Series</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../euler/problem/0006.html" class="pagination-link" aria-label="Problem 6 - Sum Square Difference">
-        <span class="nav-page-text">Problem 6 - Sum Square Difference</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

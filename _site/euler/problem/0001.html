@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Vincent Clemson">
 <meta name="dcterms.date" content="2026-01-15">
-<title>Problem 1 - Multiples of 3 or 5 | Vincent Clemson – Vincent Clemson</title>
+<title>Problem 1 - Multiples of 3 or 5 | Vincent Clemson</title>
 <script src="../../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script><script defer="" src="../../_vercel/insights/script.js"></script><style>
@@ -108,11 +108,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../assets/css/font.css">
 <link rel="stylesheet" href="../../assets/css/sourceCode.css">
 <link rel="stylesheet" href="../../assets/css/posts.css">
-<meta property="og:title" content="Problem 1 - Multiples of 3 or 5 | Vincent Clemson">
+<meta property="og:title" content="Problem 1 - Multiples of 3 or 5">
 <meta property="og:description" content="A collection of unique spatial data science content by Vincent Clemson">
 <meta property="og:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250426080623_0634_D.jpg">
 <meta property="og:site_name" content="Vincent Clemson">
-<meta name="twitter:title" content="Problem 1 - Multiples of 3 or 5 | Vincent Clemson">
+<meta name="twitter:title" content="Problem 1 - Multiples of 3 or 5">
 <meta name="twitter:description" content="A collection of unique spatial data science content by Vincent Clemson">
 <meta name="twitter:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250426080623_0634_D.jpg">
 <meta name="twitter:creator" content="@prncevincecares">
@@ -236,6 +236,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Problem 5 - Smallest Multiple</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../euler/problem/0006.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem 6 - Sum Square Difference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../euler/problem/0007.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem 7 - 10,001st Prime</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../euler/problem/0008.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem 8 - Largest Product in a Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../euler/problem/0009.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem 9 - Special Pythagorean Triplet</span></a>
+  </div>
+</li>
       </ul>
 </li>
     </ul>
@@ -260,7 +284,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Problem 1 - Multiples of 3 or 5</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i></button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/prncevince/prncevince.io/blob/main/euler/problem/0001.qmd">View Source</a></li></ul></div></div>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">multiples</div>
+    <div class="quarto-category">divisors</div>
+    <div class="quarto-category">remainder</div>
+  </div>
+  </div>
 
 
 
@@ -283,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 25, 2026</p>
+      <p class="date-modified">January 27, 2026</p>
     </div>
   </div>
     
@@ -330,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="answer-2" class="level3"><h3 class="anchored" data-anchor-id="answer-2">Answer 2</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">999</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">|</span> <span class="va">x</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span><span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">|</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>[1] 233168</code></pre>
 </div>

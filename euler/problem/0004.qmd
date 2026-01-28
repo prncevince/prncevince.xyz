@@ -3,7 +3,8 @@ title: Problem 4 - Largest Palindrome Product
 date: 01/17/26
 draft: false
 link: <https://projecteuler.net/problem=4>{.link-euler}
-image: ../assets/img/DJI_20250502212800_0890_D.jpg
+image: ../assets/img/DJI_20250429081018_0767_D.jpg
+categories: [palindrome, product, 'brute force', text]
 ---
 
 ```{r}
@@ -11,7 +12,11 @@ image: ../assets/img/DJI_20250502212800_0890_D.jpg
 #| file: euler/utils/setup.R
 ```
 
-![Sigirya, Sri Lanka - Sigirya Fortress - Lion Rock - May 5th, 2025](../assets/img/DJI_20250502212800_0890_D.jpg)
+![
+  Black Bridge overlooking the top of Kuda Ravana waterfall & surrounding valley
+  <br>
+  Ella, Sri Lanka - April 29th, 2025
+](../assets/img/DJI_20250429081018_0767_D.jpg)
 
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is $90009 = 91 \times 99$. 
 <br>
@@ -19,15 +24,13 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 {{< meta link >}}
 
-### Development
-
 ## R
 
 ### Answer 1
 
 ```{r}
 palindrome_m2n3 <- function(m = 2, n = 3) {
-  # check from largest to least of product of m (10^n)-1 digit numbers
+  # check from largest to least of product of m n-digit numbers
   x <- seq(((10^n)-1)^m, 1)
   y <- as.character(x)
   for (i in 1:length(x)) {

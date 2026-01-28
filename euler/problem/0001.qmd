@@ -4,6 +4,7 @@ date: 01/15/26
 draft: false
 link: <https://projecteuler.net/problem=1>{.link-euler}
 image: ../assets/img/DJI_20250426080623_0634_D.jpg
+categories: [multiples, divisors, remainder]
 ---
 
 ```{r}
@@ -54,7 +55,7 @@ sum(unique(c(threes, fives)))
 
 ```{r}
 x <- seq(1, 999)
-sum(x[x %% 5 == 0 | x%%3 == 0])
+sum(x[x %% 5 == 0 | x %% 3 == 0])
 ```
 
 ## Python
