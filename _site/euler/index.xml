@@ -22,6 +22,8 @@
   <link>https://prncevince.xyz/euler/problem/0010.html</link>
   <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250430213311_0834_D.jpg" class="img-fluid figure-img"> ]]></description>
   <category>primes</category>
+  <category>Sieve of Eratosthenes</category>
+  <category>summation</category>
   <guid>https://prncevince.xyz/euler/problem/0010.html</guid>
   <pubDate>Wed, 28 Jan 2026 03:00:00 GMT</pubDate>
   <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250430213311_0834_D.jpg" medium="image" type="image/jpeg"/>

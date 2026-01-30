@@ -1,9 +1,12 @@
 ## Python
 
-### Answer 1 - Sieve
+### Answer 1 - Trial Division
+
+This is extremely slow.
 
 ```{python}
 #| cache: true
+#| label: py-trial-div
 
 import time
 
@@ -15,6 +18,35 @@ def sieve(n: float) -> list:
     # incremental elimination
     x = [i for i in x if i % x[0] != 0]
   return(p)
+
+t0 = time.perf_counter()
+x = sieve(2e6)
+print(sum(x))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```
+
+### Answer 2 - Sieve of Eratosthenes - Optimized
+
+```{python}
+#| cache: true
+
+import time
+from math import floor
+
+def sieve(n: float) -> list:
+  n = int(n)
+  # prime candidates
+  x = [True] * n
+  # number 1 is not prime
+  x[0] = False
+  n0 = floor(n**0.5)
+  for i in range(2, n0+1):
+    if x[i-1]:
+      for j in range(i**2, n+1, i):
+        x[j-1] = False
+  return([i for i, j in zip(list(range(1,n+1)), x) if j])
 
 t0 = time.perf_counter()
 x = sieve(2e6)
