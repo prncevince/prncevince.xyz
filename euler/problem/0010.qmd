@@ -1,0 +1,54 @@
+---
+title: Problem 10 - Summation of Primes
+date: 01/28/26
+draft: false
+link: <https://projecteuler.net/problem=10>{.link-euler}
+image: ../assets/img/DJI_20250430213311_0834_D.jpg
+categories: [primes]
+---
+
+```{r}
+#| include: false
+#| file: euler/utils/setup.R
+```
+
+![ 
+  Train tracks leading to Nine Arches Bridge & and surrounding village
+  <br>
+  Demodara, Ella, Sri Lanka - April 30th, 2025
+](../assets/img/DJI_20250430213311_0834_D.jpg)
+
+The sum of the primes below $10$ is $2 + 3 + 5 + 7 = 17$.
+<br>
+Find the sum of all the primes below two million.
+
+{{< meta link >}}
+
+## Development
+
+## R
+
+### Answer 1 - Sieve
+
+```{r}
+#| cache: true
+
+sieve <- function(n) {
+  x <- 2:n
+  p <- c()
+  while(length(x) > 0) {
+    p <- c(p, x[1])
+    # incremental elimination
+    x <- x[x %% x[1] != 0]
+  }
+  return(p)
+}
+
+tic()
+x <- sieve(2e6)
+sum(x)
+toc()
+```
+
+{{< include _0010.qmd >}}
+ 

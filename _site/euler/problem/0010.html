@@ -5,8 +5,8 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Vincent Clemson">
-<meta name="dcterms.date" content="2026-01-15">
-<title>Problem 2 - Even Fibonacci Numbers | Vincent Clemson</title>
+<meta name="dcterms.date" content="2026-01-28">
+<title>Problem 10 - Summation of Primes | Vincent Clemson</title>
 <script src="../../stats/js/script.js" data-api="/stats/api/event/" data-domain="prncevince.xyz"></script><script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script><script defer="" src="../../_vercel/insights/script.js"></script><style>
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../euler/problem/0003.html" rel="next">
-<link href="../../euler/problem/0001.html" rel="prev">
+<link href="../../euler/problem/0009.html" rel="prev">
 <link href="../..//assets/img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -108,13 +107,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../assets/css/font.css">
 <link rel="stylesheet" href="../../assets/css/sourceCode.css">
 <link rel="stylesheet" href="../../assets/css/posts.css">
-<meta property="og:title" content="Problem 2 - Even Fibonacci Numbers">
+<meta property="og:title" content="Problem 10 - Summation of Primes">
 <meta property="og:description" content="A collection of unique spatial data science content by Vincent Clemson">
-<meta property="og:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250426083343_0654_D.jpg">
+<meta property="og:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250430213311_0834_D.jpg">
 <meta property="og:site_name" content="Vincent Clemson">
-<meta name="twitter:title" content="Problem 2 - Even Fibonacci Numbers">
+<meta name="twitter:title" content="Problem 10 - Summation of Primes">
 <meta name="twitter:description" content="A collection of unique spatial data science content by Vincent Clemson">
-<meta name="twitter:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250426083343_0654_D.jpg">
+<meta name="twitter:image" content="https://prncevince.xyz/euler/assets/img/DJI_20250430213311_0834_D.jpg">
 <meta name="twitter:creator" content="@prncevincecares">
 <meta name="twitter:site" content="@prncevincecares">
 <meta name="twitter:card" content="summary_large_image">
@@ -190,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Problem 2 - Even Fibonacci Numbers</h1>
+          <h1 class="quarto-secondary-nav-title">Problem 10 - Summation of Primes</h1>
         </a>     
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -214,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../euler/problem/0002.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../euler/problem/0002.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Problem 2 - Even Fibonacci Numbers</span></a>
   </div>
 </li>
@@ -262,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../euler/problem/0010.html" class="sidebar-item-text sidebar-link">
+  <a href="../../euler/problem/0010.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Problem 10 - Summation of Primes</span></a>
   </div>
 </li>
@@ -276,28 +275,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#thoughts" id="toc-thoughts" class="nav-link active" data-scroll-target="#thoughts">Thoughts</a></li>
+<li><a href="#development" id="toc-development" class="nav-link active" data-scroll-target="#development">Development</a></li>
   <li>
 <a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a>
   <ul>
-<li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer 1</a></li>
+<li><a href="#answer-1---sieve" id="toc-answer-1---sieve" class="nav-link" data-scroll-target="#answer-1---sieve">Answer 1 - Sieve</a></li>
   </ul>
 </li>
   <li>
 <a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a>
   <ul>
-<li><a href="#answer-1-1" id="toc-answer-1-1" class="nav-link" data-scroll-target="#answer-1-1">Answer 1</a></li>
+<li><a href="#answer-1---sieve-1" id="toc-answer-1---sieve-1" class="nav-link" data-scroll-target="#answer-1---sieve-1">Answer 1 - Sieve</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Problem 2 - Even Fibonacci Numbers</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i></button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/prncevince/prncevince.io/blob/main/euler/problem/0002.qmd">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Problem 10 - Summation of Primes</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i></button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/prncevince/prncevince.io/blob/main/euler/problem/0010.qmd">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
-    <div class="quarto-category">Fibonacci</div>
-    <div class="quarto-category">divisors</div>
-    <div class="quarto-category">remainder</div>
+    <div class="quarto-category">primes</div>
   </div>
   </div>
 
@@ -315,14 +312,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 15, 2026</p>
+      <p class="date">January 28, 2026</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 28, 2026</p>
+      <p class="date-modified">January 29, 2026</p>
     </div>
   </div>
     
@@ -331,46 +328,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../assets/img/DJI_20250426083343_0654_D.jpg" class="img-fluid figure-img"></p>
-<figcaption>Mirissa, Sri Lanka - April 26th, 2025</figcaption></figure>
+<figure class="figure"><p><img src="../assets/img/DJI_20250430213311_0834_D.jpg" class="img-fluid figure-img"></p>
+<figcaption>Train tracks leading to Nine Arches Bridge &amp; and surrounding village <br> Demodara, Ella, Sri Lanka - April 30th, 2025</figcaption></figure>
 </div>
-<p>
-Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>, the first <span class="math inline">\(10\)</span> terms will be: <span class="math display">\[1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots\]</span>
-</p>
-<p>
-By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
-</p>
-<p><a href="https://projecteuler.net/problem=2" class="link-euler">https://projecteuler.net/problem=2</a></p>
-<section id="thoughts" class="level2"><h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
-<p>This is straightforward. We can calculate the Fibonacci sequence up to the value of 4 million. Then, we can sum all even numbers in the sequence.</p>
+<p>The sum of the primes below <span class="math inline">\(10\)</span> is <span class="math inline">\(2 + 3 + 5 + 7 = 17\)</span>. <br> Find the sum of all the primes below two million.</p>
+<p><a href="https://projecteuler.net/problem=10" class="link-euler">https://projecteuler.net/problem=10</a></p>
+<section id="development" class="level2"><h2 class="anchored" data-anchor-id="development">Development</h2>
 </section><section id="r" class="level2"><h2 class="anchored" data-anchor-id="r">R</h2>
-<section id="answer-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1">Answer 1</h3>
+<section id="answer-1---sieve" class="level3"><h3 class="anchored" data-anchor-id="answer-1---sieve">Answer 1 - Sieve</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="kw">while</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;</span> <span class="fl">4e6</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sieve</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">:</span><span class="va">n</span></span>
+<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="kw">while</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="co"># incremental elimination</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">]</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="va">y</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span></span>
+<span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">sieve</span><span class="op">(</span><span class="fl">2e6</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>[1] 4613732</code></pre>
+<pre><code>[1] 142913828922
+78.201 sec elapsed</code></pre>
 </div>
 </div>
 </section></section><section id="python" class="level2"><h2 class="anchored" data-anchor-id="python">Python</h2>
-<section id="answer-1-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1-1">Answer 1</h3>
+<section id="answer-1---sieve-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1---sieve-1">Answer 1 - Sieve</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> x[<span class="op">-</span><span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">4e6</span>:</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  x.append(<span class="bu">sum</span>(x[<span class="op">-</span><span class="dv">2</span>:]))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>([i <span class="cf">for</span> i <span class="kw">in</span> x <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sieve(n: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(n)<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> []</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    p.append(x[<span class="dv">0</span>])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># incremental elimination</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> x <span class="cf">if</span> i <span class="op">%</span> x[<span class="dv">0</span>] <span class="op">!=</span> <span class="dv">0</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>(p)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sieve(<span class="fl">2e6</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(x))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.perf_counter()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t1 <span class="op">-</span> t0</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>t<span class="sc">:.3f}</span><span class="ss"> sec elapsed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>4613732</code></pre>
+<pre><code>142913828922
+394.093 sec elapsed</code></pre>
 </div>
 </div>
 
 
 </section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2026" class="csl-entry quarto-appendix-citeas" role="listitem">
-Clemson, Vincent. 2026. <span>“Problem 2 - Even Fibonacci
-Numbers.”</span> January 15, 2026. <a href="https://prncevince.xyz/euler/problem/0002.html">https://prncevince.xyz/euler/problem/0002.html</a>.
+Clemson, Vincent. 2026. <span>“Problem 10 - Summation of Primes.”</span>
+January 28, 2026. <a href="https://prncevince.xyz/euler/problem/0010.html">https://prncevince.xyz/euler/problem/0010.html</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -881,14 +897,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><script src="https://giscus.app/client.js" data-repo="prncevince/prncevince.io" data-repo-id="R_kgDOKfrJMA" data-category="Comments" data-category-id="DIC_kwDOKfrJMM4CaFyh" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
 </script><input type="hidden" id="giscus-base-theme" value="preferred_color_scheme"><input type="hidden" id="giscus-alt-theme" value="preferred_color_scheme"><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../../euler/problem/0001.html" class="pagination-link" aria-label="Problem 1 - Multiples of 3 or 5">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Problem 1 - Multiples of 3 or 5</span>
+      <a href="../../euler/problem/0009.html" class="pagination-link" aria-label="Problem 9 - Special Pythagorean Triplet">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Problem 9 - Special Pythagorean Triplet</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../euler/problem/0003.html" class="pagination-link" aria-label="Problem 3 - Largest Prime Factor">
-        <span class="nav-page-text">Problem 3 - Largest Prime Factor</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

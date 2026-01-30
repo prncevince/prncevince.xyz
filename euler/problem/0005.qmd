@@ -115,6 +115,5 @@ d_lcm$y <- l_lcm
 prod(d_lcm$p ^ unlist(d_lcm$y))
 ```
 
-## Python
-
-### Answer 1
+{{< include _0005.qmd >}}
+ 

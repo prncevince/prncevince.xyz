@@ -1,0 +1,10 @@
+## Python
+
+### Answer 1
+
+```{python}
+x = list(range(1,101))
+sum_sq = sum([i**2 for i in x])
+sq_sum = sum(x)**2
+sq_sum - sum_sq
+```

@@ -1,0 +1,67 @@
+## Python
+
+### Answer 1 - Brute Force
+
+```{python}
+#| cache: true
+
+import time
+
+def brute2(p: int) -> dict:
+  for i in range(1, p+1):
+    for j in range(1, p+1):
+      for k in range(1, p+1):
+        if i**2 + j**2 == k**2 and i+j+k == p:
+          return({'a': i, 'b': j, 'c': k, 'prod': i*j*k})
+
+t0 = time.perf_counter()
+print(brute2(1000))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```
+
+### Answer 2 - Inequality Bounds
+
+```{python}
+#| cache: true
+
+from math import floor
+
+def bounds(p: int) -> dict:
+  for i in range(1, p+1):
+    for j in range(i, floor((p-i)/2)+1):
+      for k in range(floor((p-i)/2), p+1):
+        if i**2 + j**2 == k**2 and i+j+k == p:
+          return({'a': i, 'b': j, 'c': k, 'prod': i*j*k})
+
+t0 = time.perf_counter()
+print(bounds(1000))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```
+
+### Answer 3 - Euclid's Formula
+
+```{python}
+#| cache: true
+
+from math import ceil, floor, prod
+
+p = 1000
+m1 = ceil(p**0.5/2)
+m2 = floor((p/2)**0.5)
+m = list(range(m1, m2+1))
+# can use this because n = (p-2m^2)/(2m) & n is an integer
+m = [i for i in m if (p-2*i**2) % (2*i) == 0][0]
+n = (p-2*m**2)/(2*m)
+# switch a & b here b/c 2mn > m^2 - n^2 | they can be interchanged b/c a^2+b^2 = b^2+a^2 = c^2
+d = {
+  'a': 2 * m * n,
+  'b': m**2 - n**2,
+  'c': m**2 + n**2
+}
+print(d)
+print(prod(d.values()))
+```

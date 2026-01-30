@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../euler/problem/0010.html" rel="next">
 <link href="../../euler/problem/0008.html" rel="prev">
 <link href="../..//assets/img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -259,6 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Problem 9 - Special Pythagorean Triplet</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../euler/problem/0010.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem 10 - Summation of Primes</span></a>
+  </div>
+</li>
       </ul>
 </li>
     </ul>
@@ -272,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r">R</a>
   <ul>
-<li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer 1</a></li>
+<li><a href="#answer-1---brute-force" id="toc-answer-1---brute-force" class="nav-link" data-scroll-target="#answer-1---brute-force">Answer 1 - Brute Force</a></li>
   <li><a href="#answer-2---inequality-bounds" id="toc-answer-2---inequality-bounds" class="nav-link" data-scroll-target="#answer-2---inequality-bounds">Answer 2 - Inequality Bounds</a></li>
   <li>
 <a href="#answer-3---euclids-formula" id="toc-answer-3---euclids-formula" class="nav-link" data-scroll-target="#answer-3---euclids-formula">Answer 3 - Euclid’s Formula</a>
@@ -286,7 +293,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a>
   <ul>
-<li><a href="#answer-1-1" id="toc-answer-1-1" class="nav-link" data-scroll-target="#answer-1-1">Answer 1</a></li>
+<li><a href="#answer-1---brute-force-1" id="toc-answer-1---brute-force-1" class="nav-link" data-scroll-target="#answer-1---brute-force-1">Answer 1 - Brute Force</a></li>
+  <li><a href="#answer-2---inequality-bounds-1" id="toc-answer-2---inequality-bounds-1" class="nav-link" data-scroll-target="#answer-2---inequality-bounds-1">Answer 2 - Inequality Bounds</a></li>
+  <li><a href="#answer-3---euclids-formula-1" id="toc-answer-3---euclids-formula-1" class="nav-link" data-scroll-target="#answer-3---euclids-formula-1">Answer 3 - Euclid’s Formula</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -323,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 27, 2026</p>
+      <p class="date-modified">January 29, 2026</p>
     </div>
   </div>
     
@@ -339,10 +348,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://projecteuler.net/problem=9" class="link-euler">https://projecteuler.net/problem=9</a></p>
 <section id="r" class="level2"><h2 class="anchored" data-anchor-id="r">R</h2>
 <p>We can brute force this problem by trying every combination of <span class="math inline">\(a, b, c\)</span> since there is exactly one triplet.</p>
-<section id="answer-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1">Answer 1</h3>
+<section id="answer-1---brute-force" class="level3"><h3 class="anchored" data-anchor-id="answer-1---brute-force">Answer 1 - Brute Force</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">brute</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
@@ -371,13 +379,12 @@ $c
 $prod
 [1] 31875000
 
-151.184 sec elapsed</code></pre>
+163.554 sec elapsed</code></pre>
 </div>
 </div>
 <p>Repetitive assignments are very, very, slow in R … below is 8 times faster.</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">brute2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
@@ -395,7 +402,7 @@ $prod
 </details><div class="cell-output cell-output-stdout">
 <pre><code>       a        b        c     prod 
      200      375      425 31875000 
-19.473 sec elapsed</code></pre>
+20.325 sec elapsed</code></pre>
 </div>
 </div>
 </section><section id="answer-2---inequality-bounds" class="level3"><h3 class="anchored" data-anchor-id="answer-2---inequality-bounds">Answer 2 - Inequality Bounds</h3>
@@ -409,7 +416,6 @@ $prod
 <p>We can use these bounds on <span class="math inline">\(b\)</span> &amp; <span class="math inline">\(c\)</span> to search for the answer faster than the brute force method.</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bounds</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="va">i</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="va">i</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="va">i</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
@@ -427,7 +433,7 @@ $prod
 </details><div class="cell-output cell-output-stdout">
 <pre><code>       a        b        c     prod 
      200      375      425 31875000 
-3.87 sec elapsed</code></pre>
+3.789 sec elapsed</code></pre>
 </div>
 </div>
 </section><section id="answer-3---euclids-formula" class="level3"><h3 class="anchored" data-anchor-id="answer-3---euclids-formula">Answer 3 - Euclid’s Formula</h3>
@@ -485,7 +491,72 @@ $c
 </div>
 </div>
 </section></section></section><section id="python" class="level2"><h2 class="anchored" data-anchor-id="python">Python</h2>
-<section id="answer-1-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1-1">Answer 1</h3>
+<section id="answer-1---brute-force-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1---brute-force-1">Answer 1 - Brute Force</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> brute2(p: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, p<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, p<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, p<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> j<span class="op">**</span><span class="dv">2</span> <span class="op">==</span> k<span class="op">**</span><span class="dv">2</span> <span class="kw">and</span> i<span class="op">+</span>j<span class="op">+</span>k <span class="op">==</span> p:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span>({<span class="st">'a'</span>: i, <span class="st">'b'</span>: j, <span class="st">'c'</span>: k, <span class="st">'prod'</span>: i<span class="op">*</span>j<span class="op">*</span>k})</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(brute2(<span class="dv">1000</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.perf_counter()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t1 <span class="op">-</span> t0</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>t<span class="sc">:.3f}</span><span class="ss"> sec elapsed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>{'a': 200, 'b': 375, 'c': 425, 'prod': 31875000}
+14.058 sec elapsed</code></pre>
+</div>
+</div>
+</section><section id="answer-2---inequality-bounds-1" class="level3"><h3 class="anchored" data-anchor-id="answer-2---inequality-bounds-1">Answer 2 - Inequality Bounds</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> floor</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bounds(p: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, p<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, floor((p<span class="op">-</span>i)<span class="op">/</span><span class="dv">2</span>)<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(floor((p<span class="op">-</span>i)<span class="op">/</span><span class="dv">2</span>), p<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> j<span class="op">**</span><span class="dv">2</span> <span class="op">==</span> k<span class="op">**</span><span class="dv">2</span> <span class="kw">and</span> i<span class="op">+</span>j<span class="op">+</span>k <span class="op">==</span> p:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span>({<span class="st">'a'</span>: i, <span class="st">'b'</span>: j, <span class="st">'c'</span>: k, <span class="st">'prod'</span>: i<span class="op">*</span>j<span class="op">*</span>k})</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bounds(<span class="dv">1000</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.perf_counter()</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t1 <span class="op">-</span> t0</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>t<span class="sc">:.3f}</span><span class="ss"> sec elapsed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>{'a': 200, 'b': 375, 'c': 425, 'prod': 31875000}
+2.785 sec elapsed</code></pre>
+</div>
+</div>
+</section><section id="answer-3---euclids-formula-1" class="level3"><h3 class="anchored" data-anchor-id="answer-3---euclids-formula-1">Answer 3 - Euclid’s Formula</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> ceil, floor, prod</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> ceil(p<span class="op">**</span><span class="fl">0.5</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> floor((p<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(m1, m2<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># can use this because n = (p-2m^2)/(2m) &amp; n is an integer</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> m <span class="cf">if</span> (p<span class="op">-</span><span class="dv">2</span><span class="op">*</span>i<span class="op">**</span><span class="dv">2</span>) <span class="op">%</span> (<span class="dv">2</span><span class="op">*</span>i) <span class="op">==</span> <span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> (p<span class="op">-</span><span class="dv">2</span><span class="op">*</span>m<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>m)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># switch a &amp; b here b/c 2mn &gt; m^2 - n^2 | they can be interchanged b/c a^2+b^2 = b^2+a^2 = c^2</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'a'</span>: <span class="dv">2</span> <span class="op">*</span> m <span class="op">*</span> n,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'b'</span>: m<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> n<span class="op">**</span><span class="dv">2</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'c'</span>: m<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> n<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prod(d.values()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>{'a': 200.0, 'b': 375.0, 'c': 425.0}
+31875000.0</code></pre>
+</div>
+</div>
 
 
 </section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2026" class="csl-entry quarto-appendix-citeas" role="listitem">
@@ -1006,6 +1077,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../euler/problem/0010.html" class="pagination-link" aria-label="Problem 10 - Summation of Primes">
+        <span class="nav-page-text">Problem 10 - Summation of Primes</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

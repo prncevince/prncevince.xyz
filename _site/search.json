@@ -89,7 +89,7 @@
     "href": "euler/problem/0001.html#python",
     "title": "Problem 1 - Multiples of 3 or 5",
     "section": "Python",
-    "text": "Python",
+    "text": "Python\nAnswer 1\n\nCodex = []\nfor i in range(1, 1000):\n  if (i % 3 == 0) or (i % 5 == 0):\n    x.append(i)\nsum(x)\n\n233168\n\n\nAnswer 2\n\nCodex = [i for i in range(1, 1000) if (i % 3 == 0) or (i % 5 == 0)]\nsum(x)\n\n233168",
     "crumbs": [
       "Project Euler",
       "Problem 1 - Multiples of 3 or 5"
@@ -122,7 +122,7 @@
     "href": "euler/problem/0003.html#r",
     "title": "Problem 3 - Largest Prime Factor",
     "section": "R",
-    "text": "R\nAnswer 1\n\nCoden &lt;- 600851475143\nprimes &lt;- c()\n# check odd prime factors of n up until square root of n\ny_primes &lt;- c(2, seq(3, floor(sqrt(n)), 2))\n# find & keep only factors\ny_primes &lt;- y_primes[n %% y_primes == 0]\ny_primes &lt;- y_primes[primes::is_prime(y_primes)]\nj &lt;- 0\nfor (i in y_primes) {\n  primes &lt;- c(primes, i)\n  n &lt;- n / i\n  j &lt;- j+1\n  if (primes::is_prime(n) & n &gt; i) {\n    primes &lt;- c(primes, n)\n    break\n  }\n}\n# max of this set is max primes\nmax(primes)\n# Even more impressive is j\nj\n\n[1] 6857\n[1] 3\n\n\nAnswer 2 - Even Numbers\n\nCoden &lt;- 600851475142\nfactor_largest_p &lt;- function(n) {\n  primes &lt;- c()\n  # for even values of n:\n  # check repeated divisions by 2 until we find the highest odd prime factor left\n  if (n %% 2 == 0) {\n    k &lt;- 1\n    i &lt;- n\n    while ((n / k) %% 2 == 0) {\n      i &lt;- i / 2\n      k &lt;- k + 1\n      if (primes::is_prime(i)) primes &lt;- c(primes, i)\n    }\n  }\n  # check odd prime factors of n up until square root of n\n  y_primes &lt;- c(2, seq(3, floor(sqrt(n)), 2))\n  y_primes &lt;- y_primes[n %% y_primes == 0]\n  y_primes &lt;- y_primes[primes::is_prime(y_primes)]\n  j &lt;- 0\n  for (i in y_primes) {\n    primes &lt;- c(primes, i)\n    n &lt;- n / i\n    j &lt;- j+1\n    if (primes::is_prime(n) & n &gt; i) {\n      primes &lt;- c(primes, n)\n      break\n    }\n  }\n  # max of this set is max primes\n  return(c(max_prime = max(primes), iter = j))\n}\n\ntic()\nfactor_largest_p(600851475142)\ntoc()\n\nmax_prime      iter \n    22567         4 \n0.014 sec elapsed",
+    "text": "R\nAnswer 1\n\nCoden &lt;- 600851475143\nprimes &lt;- c()\n# check odd prime factors of n up until square root of n\ny_primes &lt;- c(2, seq(3, floor(sqrt(n)), 2))\n# find & keep only factors\ny_primes &lt;- y_primes[n %% y_primes == 0]\ny_primes &lt;- y_primes[primes::is_prime(y_primes)]\nj &lt;- 0\nfor (i in y_primes) {\n  primes &lt;- c(primes, i)\n  n &lt;- n / i\n  j &lt;- j+1\n  if (primes::is_prime(n) & n &gt; i) {\n    primes &lt;- c(primes, n)\n    break\n  }\n}\n# max of this set is max primes\nmax(primes)\n# Even more impressive is j\nj\n\n[1] 6857\n[1] 3\n\n\nAnswer 2 - Even Numbers\n\nCoden &lt;- 600851475142\nfactor_largest_p &lt;- function(n) {\n  primes &lt;- c()\n  # for even values of n:\n  # check repeated divisions by 2 until we find the highest odd prime factor left\n  if (n %% 2 == 0) {\n    k &lt;- 1\n    i &lt;- n\n    while ((n / k) %% 2 == 0) {\n      i &lt;- i / 2\n      k &lt;- k + 1\n      if (primes::is_prime(i)) primes &lt;- c(primes, i)\n    }\n  }\n  # check odd prime factors of n up until square root of n\n  y_primes &lt;- c(2, seq(3, floor(sqrt(n)), 2))\n  y_primes &lt;- y_primes[n %% y_primes == 0]\n  y_primes &lt;- y_primes[primes::is_prime(y_primes)]\n  j &lt;- 0\n  for (i in y_primes) {\n    primes &lt;- c(primes, i)\n    n &lt;- n / i\n    j &lt;- j+1\n    if (primes::is_prime(n) & n &gt; i) {\n      primes &lt;- c(primes, n)\n      break\n    }\n  }\n  # max of this set is max primes\n  return(c(max_prime = max(primes), iter = j))\n}\n\ntic()\nfactor_largest_p(600851475142)\ntoc()\n\nmax_prime      iter \n    22567         4 \n0.011 sec elapsed",
     "crumbs": [
       "Project Euler",
       "Problem 3 - Largest Prime Factor"
@@ -133,7 +133,7 @@
     "href": "euler/problem/0003.html#python",
     "title": "Problem 3 - Largest Prime Factor",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodeimport time\n\ndef is_prime(n):\n    \"\"\"\n    Checks if a number n is prime using trial division up to sqrt(n).\n    \"\"\"\n    if n != int(n): return False\n    if n &lt;= 1: return False\n    if n &lt;= 3: return True\n    if n % 2 == 0: return False\n    limit = int(n**0.5) + 1\n    for i in range(3, limit, 2):\n      if n % i == 0: return False\n    return True\n\ndef factor_largest_p(n: int) -&gt; int:\n  \"\"\"\n  1st checks for even values of n:\n    checks repeated divisions by 2 until we find the highest odd prime factor left\n  then, checks odd prime factors of n up until square root of n\n  \"\"\"\n  primes = []\n  if n % 2 == 0:\n    k = 1\n    i = n\n    while (n / k) % 2 == 0:\n      i /= 2\n      k += 1\n      if is_prime(i): primes.append(i)\n  y_primes = [2] + [i for i in range(3, int(n**0.5)+1, 2)]\n  y_primes = [i for i in y_primes if n % i == 0]\n  y_primes = [i for i in y_primes if is_prime(i)]\n  j = 0\n  for i in y_primes:\n    primes.append(i)\n    n = n / i\n    j += 1\n    if is_prime(n) and n &gt; i:\n      primes.append(n)\n      break\n  return {'max prime': max(primes), 'iter': j}\n  \nn = 600851475143\n\nt0 = time.perf_counter()\nfactor_largest_p(n)\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n{'max prime': 6857.0, 'iter': 3}\n0.019 sec elapsed\n\n\nAnswer 2 - Even Numbers\n\nCoden = 600851475142\nt0 = time.perf_counter()\nfactor_largest_p(n)\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n{'max prime': 22567.0, 'iter': 4}\n0.018 sec elapsed",
     "crumbs": [
       "Project Euler",
       "Problem 3 - Largest Prime Factor"
@@ -144,7 +144,7 @@
     "href": "euler/problem/0004.html",
     "title": "Problem 4 - Largest Palindrome Product",
     "section": "",
-    "text": "Black Bridge overlooking the top of Kuda Ravana waterfall & surrounding valley  Ella, Sri Lanka - April 29th, 2025\nA palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is \\(90009 = 91 \\times 99\\).  Find the largest palindrome made from the product of two 3-digit numbers.\nhttps://projecteuler.net/problem=4",
+    "text": "Black Bridge overlooking the top of Kuda Ravana waterfall & surrounding valley  Ella, Sri Lanka - April 29th, 2025\nA palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is \\(9009 = 91 \\times 99\\).  Find the largest palindrome made from the product of two 3-digit numbers.\nhttps://projecteuler.net/problem=4",
     "crumbs": [
       "Project Euler",
       "Problem 4 - Largest Palindrome Product"
@@ -155,7 +155,7 @@
     "href": "euler/problem/0004.html#r",
     "title": "Problem 4 - Largest Palindrome Product",
     "section": "R",
-    "text": "R\nAnswer 1\n\nCodepalindrome_m2n3 &lt;- function(m = 2, n = 3) {\n  # check from largest to least of product of m n-digit numbers\n  x &lt;- seq(((10^n)-1)^m, 1)\n  y &lt;- as.character(x)\n  for (i in 1:length(x)) {\n    # find reverse digits & check if palindrome \n    # then check for compatible n-digit m-factor product\n    yr &lt;- lapply(strsplit(y[i], \"\"), function(i) paste(rev(i), collapse = \"\"))[[1]]\n    if (identical(y[i], yr)) {\n      # n-digit sequence\n      f_i &lt;- seq((10^n)-1, 10^(n-1))\n      # booleans of the factor\n      f_x0 &lt;- x[i] %% f_i == 0\n      f_x &lt;- x[i] / f_i\n      # compatibility check: of factor 'f2'\n      if (any(f_x0)) {\n        # compatibility check: of n-digit factor 'f2'\n        bool_n &lt;- f_x[f_x0] %in% f_i\n        if (any(bool_n)) {\n          i_f &lt;- min(which(f_i %in% f_x[f_x0]))\n          f1 &lt;- f_i[i_f]\n          f2 &lt;- f_x[i_f]\n          return(data.frame(p = x[i], f1, f2, iter = i))\n        }\n      }\n    }\n  }\n}\n\ntic()\npalindrome_m2n3(m = 2, n = 3)\ntoc()\n\n       p  f1  f2  iter\n1 906609 993 913 91393\n0.634 sec elapsed",
+    "text": "R\nAnswer 1\n\nCodepalindrome_m2n3 &lt;- function(m = 2, n = 3) {\n  # check from largest to least of product of m n-digit numbers\n  x &lt;- seq(((10^n)-1)^m, 1)\n  y &lt;- as.character(x)\n  for (i in 1:length(x)) {\n    # find reverse digits & check if palindrome \n    # then check for compatible n-digit m-factor product\n    yr &lt;- lapply(strsplit(y[i], \"\"), function(i) paste(rev(i), collapse = \"\"))[[1]]\n    if (identical(y[i], yr)) {\n      # n-digit sequence\n      f_i &lt;- seq((10^n)-1, 10^(n-1))\n      # booleans of the factor\n      f_x0 &lt;- x[i] %% f_i == 0\n      f_x &lt;- x[i] / f_i\n      # compatibility check: of factor 'f2'\n      if (any(f_x0)) {\n        # compatibility check: of n-digit factor 'f2'\n        bool_n &lt;- f_x[f_x0] %in% f_i\n        if (any(bool_n)) {\n          i_f &lt;- min(which(f_i %in% f_x[f_x0]))\n          f1 &lt;- f_i[i_f]\n          f2 &lt;- f_x[i_f]\n          return(data.frame(p = x[i], f1, f2, iter = i))\n        }\n      }\n    }\n  }\n}\n\ntic()\npalindrome_m2n3(m = 2, n = 3)\ntoc()\n\n       p  f1  f2  iter\n1 906609 993 913 91393\n0.559 sec elapsed\n\n\nAnswer 2\nThe real machine memory/RAM issues occur when we increase n.\nWe can make this more efficient by looping through a sequence of products. Storing a sequence of products with increasing values of n (e.g. n = 5) will lead to out of memory errors, possibly due to the fact that R is not allowing to store tables in memory larger than ~2 billion rows (2^31).\nOne way to deal with these out of memory errors is to chunk/partition the sequence of product results incrementally. Additionally, we should not even attempt to push the matrix row upper bound limit of 2^31 rows, because it is inefficient to store in memory & slow to generate.\nThus, we should use a max rational increment, such as \\(10^{n-1}\\), but also keep it well below \\(\\sqrt{2^{31}}=46,340.95\\) — striking a good balance. The loop iterations to find the palindrome is the main bottleneck, not the matrix product calculations.\nAfter running some tests, it seems like setting increment to \\(10^3 = 1,000\\) is a good idea b/c outer(1:10^3, 1:10^3) calculates fast.\nI’ve discovered below does not fully check the correct possibilities.\ne.g. only taking outer products of the indices seq((j-1)*inc + 1, j*inc) of s & not checking j+1, j+2, etc.\ni.e. more complexity is added when chunking by inc=1000 than I had accounted for.\n\nCodepalindrome_m2n3 &lt;- function(m = 2, n = 3) {\n  # check from largest to least of product of m (10^n)-1 digit numbers\n  s &lt;- seq((10^n)-1, 10^(n-1))\n  inc &lt;- 10^3\n  p &lt;- length(s)/inc\n  for (j in 1:p) {\n    so &lt;- s[seq((j-1)*inc + 1, j*inc)]\n    xo &lt;- so\n    for (i in 1:(m-1)) xo &lt;- sort(unique(as.vector(outer(xo, so))), decreasing = T)\n    y &lt;- as.character(xo)\n    # find reverse digits & check if palindrome \n    for (i in 1:length(xo)) {\n      ij &lt;- (j-1)*inc+i\n      yr &lt;- lapply(strsplit(y[i], \"\"), function(i) paste(rev(i), collapse = \"\"))[[1]]\n      if (identical(y[i], yr)) {\n        p = xo[i]\n        # conduct reverse lookup for factors of palindrome product\n        # Note: this is unnecessary if we store factors with outer products in a dataframe\n        # booleans of the factor\n        f_x0 &lt;- p %% so == 0\n        f_x &lt;- p / so\n        i_f &lt;- min(which(so %in% f_x[f_x0]))\n        f1 &lt;- so[i_f]\n        f2 &lt;- f_x[i_f]\n        return(data.frame(p = p, f1, f2, iter = ij, j))\n      }\n    }\n  }\n}\n\ntic()\npalindrome_m2n3(n = 5)\ntoc()\n\n           p    f1    f2  iter j\n1 9966006699 99979 99681 28880 1\n0.252 sec elapsed",
     "crumbs": [
       "Project Euler",
       "Problem 4 - Largest Palindrome Product"
@@ -166,7 +166,7 @@
     "href": "euler/problem/0004.html#python",
     "title": "Problem 4 - Largest Palindrome Product",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodeimport time\n\ndef palindrome_m2n3(m: int, n: int) -&gt; int:\n  # check from largest to least of product of m n-digit numbers\n  x = [i for i in range(((10**n)-1)**m, 0, -1)]\n  # n-digit sequence\n  f_i = [i for i in range(10**n-1, 10**(n-1)-1, -1)]\n  for i in x:\n    # find reverse digits & check if palindrome \n    # then check for compatible n-digit m-factor product\n    if str(i) == str(i)[::-1]:\n      # compatibility check: of an n-digit factor\n      f_x = [i / j for j in f_i]\n      f = [j for j in f_x if j == int(j) and j in f_i]\n      if len(f) &gt; 0:\n        f1 = f[0]\n        f2 = i / f1\n        return {'p': i, 'f1': f1, 'f2': f2, 'iter': x.index(i)+1}\n\nt0 = time.perf_counter()\nprint(palindrome_m2n3(m=2, n=3))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n{'p': 906609, 'f1': 913.0, 'f2': 993.0, 'iter': 91393}\n0.046 sec elapsed",
     "crumbs": [
       "Project Euler",
       "Problem 4 - Largest Palindrome Product"
@@ -394,7 +394,7 @@
     "href": "euler/index.html",
     "title": "Project Euler",
     "section": "",
-    "text": "Here you’ll find me working through answering the Project Euler problems using both R & Python (& Math of course)!\nI’m treating R as a first class citizen, a feat that I think is a bit novel as the majority of members have answered using Python, C/C++, Java, & C#.\nCode Languages used by Project Euler members.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Published - Oldest\n        \n         \n          Published - Newest\n        \n         \n          Updated - Oldest\n        \n         \n          Updated - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nProblem 1 - Multiples of 3 or 5\n\n\n\n\n\n\nJanuary 15, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 2 - Even Fibonacci Numbers\n\n\n\n\n\n\nJanuary 15, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 3 - Largest Prime Factor\n\n\n\n\n\n\nJanuary 15, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 4 - Largest Palindrome Product\n\n\n\n\n\n\nJanuary 17, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 5 - Smallest Multiple\n\n\n\n\n\n\nJanuary 17, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 6 - Sum Square Difference\n\n\n\n\n\n\nJanuary 17, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 7 - 10,001st Prime\n\n\n\n\n\n\nJanuary 19, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 8 - Largest Product in a Series\n\n\n\n\n\n\nJanuary 19, 2026\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 9 - Special Pythagorean Triplet\n\n\n\n\n\n`January 21, 2026`{=html}\n\n\n\n\n\n\n\nJanuary 27, 2026\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Here you’ll find me working through answering the Project Euler problems using both R & Python (& Math of course)!\nI’m treating R as a first class citizen, a feat that I think is a bit novel as the majority of members have answered using Python, C/C++, Java, & C#.\nCode Languages used by Project Euler members.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Published - Oldest\n        \n         \n          Published - Newest\n        \n         \n          Updated - Oldest\n        \n         \n          Updated - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nProblem 1 - Multiples of 3 or 5\n\n\n\n\n\n\nJanuary 15, 2026\n\n\n\n\n\nJanuary 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 2 - Even Fibonacci Numbers\n\n\n\n\n\n\nJanuary 15, 2026\n\n\n\n\n\nJanuary 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 3 - Largest Prime Factor\n\n\n\n\n\n\nJanuary 15, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 4 - Largest Palindrome Product\n\n\n\n\n\n\nJanuary 17, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 5 - Smallest Multiple\n\n\n\n\n\n\nJanuary 17, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 6 - Sum Square Difference\n\n\n\n\n\n\nJanuary 17, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 7 - 10,001st Prime\n\n\n\n\n\n\nJanuary 19, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 8 - Largest Product in a Series\n\n\n\n\n\n\nJanuary 19, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 9 - Special Pythagorean Triplet\n\n\n\n\n\n`January 21, 2026`{=html}\n\n\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem 10 - Summation of Primes\n\n\n\n\n\n\nJanuary 28, 2026\n\n\n\n\n\nJanuary 29, 2026\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Project Euler"
     ]
@@ -437,7 +437,7 @@
     "href": "euler/problem/0002.html#python",
     "title": "Problem 2 - Even Fibonacci Numbers",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodex = [1,2]\nwhile x[-1] &lt; 4e6:\n  x.append(sum(x[-2:]))\nsum([i for i in x if i % 2 == 0])\n\n4613732",
     "crumbs": [
       "Project Euler",
       "Problem 2 -\tEven Fibonacci Numbers"
@@ -487,7 +487,7 @@
     "href": "euler/problem/0005.html#r",
     "title": "Problem 5 - Smallest Multiple",
     "section": "R",
-    "text": "R\nAnswer 1\n\nCode#' @param n Starting number\n#' @param inc increment to increase by\n#' @param x1 Lowest factor\n#' @param x2 Highest factor\nn_x1_to_x2 &lt;- function(n, inc = 1, x1 = 1, x2 = 10) {\n  while (TRUE) {\n    if (all(n %% x1:x2 == 0)) {\n      return(n)\n    }\n    n &lt;- n + inc\n  }\n}\n\ntic()\nn_x1_to_x2(2520, 2520, 1, 20)\ntoc()\n\n[1] 232792560\n0.084 sec elapsed\n\n\nAnswer 2 - No(Low) Code\nWe don’t need much code here.\nWe need to compute the LCM (Least Common Multiple) of 2520 & a number that is the product of 1-20 using prime factorization.\nThe LCM is the product of the highest power of each prime. Prime factorization of 1-10 do not have higher powers.\n\n\nMultiple\nPrime Factorization\n\n\n\n11\n11\n\n\n12\n2^2 * 3\n\n\n13\n13\n\n\n14\n2 * 7\n\n\n15\n3 * 5\n\n\n16\n2^4\n\n\n17\n17\n\n\n18\n2 * 3^2\n\n\n19\n19\n\n\n20\n2^2 * 5\n\n\n\n\\(LCM = 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19\\)\n\nCode2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19\n\n[1] 232792560\n\n\nAnswer 3\nLCM & Prime Factorization, just code:\n\nCodel_pf &lt;- primes::prime_factors(1:20)\nl_pf_c &lt;- l_pf |&gt; lapply(table)\np &lt;- unique(unlist(l_pf))\nd_lcm &lt;- data.frame(p = p)\nl_lcm &lt;- c()\nfor (p_i in p) {\n  i_p &lt;- lapply(l_pf, function(i) i == p_i) |&gt; lapply(sum) |&gt; unlist() |&gt; which.max()\n  l_lcm[[as.character(p_i)]] &lt;- l_pf_c[[i_p]][[1]]\n}\nd_lcm$y &lt;- l_lcm\nprod(d_lcm$p ^ unlist(d_lcm$y))\n\n[1] 232792560",
+    "text": "R\nAnswer 1\n\nCode#' @param n Starting number\n#' @param inc increment to increase by\n#' @param x1 Lowest factor\n#' @param x2 Highest factor\nn_x1_to_x2 &lt;- function(n, inc = 1, x1 = 1, x2 = 10) {\n  while (TRUE) {\n    if (all(n %% x1:x2 == 0)) {\n      return(n)\n    }\n    n &lt;- n + inc\n  }\n}\n\ntic()\nn_x1_to_x2(2520, 2520, 1, 20)\ntoc()\n\n[1] 232792560\n0.078 sec elapsed\n\n\nAnswer 2 - No(Low) Code\nWe don’t need much code here.\nWe need to compute the LCM (Least Common Multiple) of 2520 & a number that is the product of 1-20 using prime factorization.\nThe LCM is the product of the highest power of each prime. Prime factorization of 1-10 do not have higher powers.\n\n\nMultiple\nPrime Factorization\n\n\n\n11\n11\n\n\n12\n2^2 * 3\n\n\n13\n13\n\n\n14\n2 * 7\n\n\n15\n3 * 5\n\n\n16\n2^4\n\n\n17\n17\n\n\n18\n2 * 3^2\n\n\n19\n19\n\n\n20\n2^2 * 5\n\n\n\n\\(LCM = 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19\\)\n\nCode2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19\n\n[1] 232792560\n\n\nAnswer 3\nLCM & Prime Factorization, just code:\n\nCodel_pf &lt;- primes::prime_factors(1:20)\nl_pf_c &lt;- l_pf |&gt; lapply(table)\np &lt;- unique(unlist(l_pf))\nd_lcm &lt;- data.frame(p = p)\nl_lcm &lt;- c()\nfor (p_i in p) {\n  i_p &lt;- lapply(l_pf, function(i) i == p_i) |&gt; lapply(sum) |&gt; unlist() |&gt; which.max()\n  l_lcm[[as.character(p_i)]] &lt;- l_pf_c[[i_p]][[1]]\n}\nd_lcm$y &lt;- l_lcm\nprod(d_lcm$p ^ unlist(d_lcm$y))\n\n[1] 232792560",
     "crumbs": [
       "Project Euler",
       "Problem 5 - Smallest Multiple"
@@ -498,7 +498,7 @@
     "href": "euler/problem/0005.html#python",
     "title": "Problem 5 - Smallest Multiple",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodeimport time\n\ndef n_x1_to_x2(n: int, inc: int, x1=1, x2=10) -&gt; int:\n  x = list(range(x1, x2+1))\n  while True:\n    if all([n % i == 0 for i in x]):\n      return n\n    n=n+inc\n\nn = 2520\n\nt0 = time.perf_counter()\nprint(n_x1_to_x2(n, inc=n, x1=1, x2=20))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n232792560\n0.069 sec elapsed\n\n\nAnswer 2\nLCM & Prime Factorization, just code:\n\nhelpersdef is_prime(n):\n  \"\"\"\n  Checks if a number n is prime using trial division up to sqrt(n).\n  \"\"\"\n  if n != int(n): return False\n  if n &lt;= 1: return False\n  if n &lt;= 3: return True\n  if n % 2 == 0: return False\n  limit = int(n**0.5) + 1\n  for i in range(3, limit, 2):\n    if n % i == 0: return False\n  return True\n\ndef prime_factors(n: list) -&gt; dict:\n  \"\"\"\n  Returns prime factorization of list of integers\n  \"\"\"\n  d = {}\n  for i in n:\n    if is_prime(i):\n      d[i] = [i]\n      continue\n    j = []\n    k = i\n    p = [2] + [h for h in range(3, int(i**0.5)+1+1, 2) if is_prime(h)]\n    for h in p:\n      while k % h == 0:\n        j.append(h)\n        k /= h\n      if k == 1: break\n    d[i] = j\n  return d\n\n\n\nanswerfrom math import prod\nfrom collections import Counter\n\np = prime_factors(list(range(1,21)))\ncounts = {i:Counter(j) for i, j in p.items()}\np_unique = list(set([j for i in list(p.values()) for j in i]))\np_unique.sort()\nd = {}\nfor i in p_unique:\n  c = []\n  c = [j[i] for k, j in counts.items()]\n  d[i] = max(c)\nprod([i**j for i, j in d.items()])\n\n232792560",
     "crumbs": [
       "Project Euler",
       "Problem 5 - Smallest Multiple"
@@ -509,7 +509,7 @@
     "href": "euler/problem/0006.html",
     "title": "Problem 6 - Sum Square Difference",
     "section": "",
-    "text": "Train tracks leading to 9 Arches Bridge  Ella, Sri Lanka - April 30th, 2025\nThe sum of the squares of the first ten natural numbers is, \\[1^2 + 2^2 + ... + 10^2 = 385.\\] The square of the sum of the first ten natural numbers is, \\[(1 + 2 + ... + 10)^2 = 55^2 = 3025.\\] Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is \\(3025 - 385 = 2640\\).\nFind the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.\nhttps://projecteuler.net/problem=6",
+    "text": "Train tracks leading to Nine Arches Bridge  Demodara, Ella, Sri Lanka - April 30th, 2025\nThe sum of the squares of the first ten natural numbers is, \\[1^2 + 2^2 + ... + 10^2 = 385.\\] The square of the sum of the first ten natural numbers is, \\[(1 + 2 + ... + 10)^2 = 55^2 = 3025.\\] Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is \\(3025 - 385 = 2640\\).\nFind the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.\nhttps://projecteuler.net/problem=6",
     "crumbs": [
       "Project Euler",
       "Problem 6 - Sum Square Difference"
@@ -531,7 +531,7 @@
     "href": "euler/problem/0006.html#python",
     "title": "Problem 6 - Sum Square Difference",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodex = list(range(1,101))\nsum_sq = sum([i**2 for i in x])\nsq_sum = sum(x)**2\nsq_sum - sum_sq\n\n25164150",
     "crumbs": [
       "Project Euler",
       "Problem 6 - Sum Square Difference"
@@ -553,7 +553,7 @@
     "href": "euler/problem/0007.html#r",
     "title": "Problem 7 - 10,001st Prime",
     "section": "R",
-    "text": "R\nAnswer 1\n\nCoden &lt;- 10001\n\nsieve &lt;- function(n) {\n  n1 &lt;- 2\n  n2 &lt;- 2*ceiling(n*log(n))\n  p &lt;- n1:n2\n  for(i in 2:n) {\n    # incremental elimination\n    p &lt;- p[p %% p[1] != 0]\n  }\n  return(c(p[1], max=n2))\n}\n\ntic()\nsieve(n)\ntoc()\n\n          max \n104743 184228 \n0.843 sec elapsed\n\n\nAnswer 2\n\nCodeprimes::nth_prime(10001)\n\n[1] 104743",
+    "text": "R\nAnswer 1\n\nCoden &lt;- 10001\n\nsieve &lt;- function(n) {\n  n1 &lt;- 2\n  n2 &lt;- 2*ceiling(n*log(n))\n  p &lt;- n1:n2\n  for(i in 2:n) {\n    # incremental elimination\n    p &lt;- p[p %% p[1] != 0]\n  }\n  return(c(p[1], max=n2))\n}\n\ntic()\nsieve(n)\ntoc()\n\n          max \n104743 184228 \n0.909 sec elapsed\n\n\nAnswer 2\n\nCodetic()\nprimes::nth_prime(10001)\ntoc()\n\n[1] 104743\n0.045 sec elapsed",
     "crumbs": [
       "Project Euler",
       "Problem 7 - 10,001st Prime"
@@ -564,7 +564,7 @@
     "href": "euler/problem/0007.html#python",
     "title": "Problem 7 - 10,001st Prime",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodeimport time\nfrom math import ceil, log\n\ndef sieve(n: int) -&gt; int:\n  n1 = 2\n  n2 = 2*ceil(n*log(n))\n  p = list(range(2, n2+1))\n  for i in range(2, n+1):\n    p = [j for j in p if j % p[0] != 0]\n  return(p[0])\n\nn = 10001\nt0 = time.perf_counter()\nprint(sieve(n))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n104743\n3.553 sec elapsed\n\n\nAnswer 2\n\nCodeimport sympy\n\nt0 = time.perf_counter()\nprint(sympy.prime(10001))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n104743\n0.008 sec elapsed",
     "crumbs": [
       "Project Euler",
       "Problem 7 - 10,001st Prime"
@@ -597,7 +597,7 @@
     "href": "euler/problem/0008.html#python",
     "title": "Problem 8 - Largest Product in a Series",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1\n\nCodeimport time\nfrom math import prod\n\nx = \"\"\"\n73167176531330624919225119674426574742355349194934\n96983520312774506326239578318016984801869478851843\n85861560789112949495459501737958331952853208805511\n12540698747158523863050715693290963295227443043557\n66896648950445244523161731856403098711121722383113\n62229893423380308135336276614282806444486645238749\n30358907296290491560440772390713810515859307960866\n70172427121883998797908792274921901699720888093776\n65727333001053367881220235421809751254540594752243\n52584907711670556013604839586446706324415722155397\n53697817977846174064955149290862569321978468622482\n83972241375657056057490261407972968652414535100474\n82166370484403199890008895243450658541227588666881\n16427171479924442928230863465674813919123162824586\n17866458359124566529476545682848912883142607690042\n24219022671055626321111109370544217506941658960408\n07198403850962455444362981230987879927244284909188\n84580156166097919133875499200524063689912560717606\n05886116467109405077541002256983155200055935729725\n71636269561882670428252483600823257530420752963450\n\"\"\"\nx = [int(i) for i in list(x) if i != '\\n']\n\nm = 13\np = []\nfor i in range(13, len(x)):\n  p.append(prod(x[i-m:i]))\ni = p.index(max(p))\nans = {'max': max(p), 'digits': x[i:i+m]}\nprint(prod(ans['digits']) == ans['max'])\nprint(ans)\n\nTrue\n{'max': 23514624000, 'digits': [5, 5, 7, 6, 6, 8, 9, 6, 6, 4, 8, 9, 5]}",
     "crumbs": [
       "Project Euler",
       "Problem 8 - Largest Product in a Series"
@@ -619,7 +619,7 @@
     "href": "euler/problem/0009.html#r",
     "title": "Problem 9 - Special Pythagorean Triplet",
     "section": "R",
-    "text": "R\nWe can brute force this problem by trying every combination of \\(a, b, c\\) since there is exactly one triplet.\nAnswer 1\n\nCodebrute &lt;- function(p) {\n  p &lt;- 1000\n  for (i in 1:p) {\n    for (j in 1:p) {\n      for (k in 1:p) {\n        l &lt;- list(a = i, b = j, c = k)\n        if (l$a^2 + l$b^2 == l$c^2 & sum(l$a, l$b, l$c) == p) {\n          return(c(l, prod=prod(unlist(l))))\n        }\n      }\n    }\n  }\n}\n\ntic()\nbrute(1000)\ntoc()\n\n$a\n[1] 200\n\n$b\n[1] 375\n\n$c\n[1] 425\n\n$prod\n[1] 31875000\n\n151.184 sec elapsed\n\n\nRepetitive assignments are very, very, slow in R … below is 8 times faster.\n\nCodebrute2 &lt;- function(p) {\n  p &lt;- 1000\n  for (i in 1:p) {\n    for (j in 1:p) {\n      for (k in 1:p) {\n        if (i^2 + j^2 == k^2 & i+j+k == p) {\n          return(c(a = i, b = j, c = k, prod = i*j*k))\n        }\n      }\n    }\n  }\n}\n\ntic()\nbrute2(1000)\ntoc()\n\n       a        b        c     prod \n     200      375      425 31875000 \n19.473 sec elapsed\n\n\nAnswer 2 - Inequality Bounds\nWe can limit the number of looping iterations by setting bounds for our variables.\nResources:\n\nhttps://martin-ueding.de/posts/project-euler-solution-9-special-pythagorean-triplet/\n\nSince \\(c &gt; b &gt; a\\) and \\(c = 1000 - a - b\\), combining these gives us: \\[1000 - a - b &gt; b;\\: 1000 - a &gt; 2b;\\: b &lt; 500 - \\frac{a}{2}\\]\nAdditionally, since \\(a &lt; b &lt; c\\) & \\(c = 1000 - a - b\\) & \\(a = 1000 - b - c\\), then \\[1000 - a - c \\lt c; \\: 1000 - a \\lt 2c; \\:\\frac{1000 - a}{2}\\lt c\\]\nWe can use these bounds on \\(b\\) & \\(c\\) to search for the answer faster than the brute force method.\n\nCodebounds &lt;- function(p) {\n  p &lt;- 1000\n  for (i in 1:p) {\n    for (j in i:floor((p - i)/2)) {\n      for (k in floor((p - i)/2):p) {\n        if (i^2 + j^2 == k^2 & i+j+k == p) {\n          return(c(a = i, b = j, c = k, prod = i*j*k))\n        }\n      }\n    }\n  }\n}\n\ntic()\nbounds(1000)\ntoc()\n\n       a        b        c     prod \n     200      375      425 31875000 \n3.87 sec elapsed\n\n\nAnswer 3 - Euclid’s Formula\nWe can use Euclid’s formula.\nResources:\n\nhttps://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple\nhttps://www.cuemath.com/pythagorean-triples-formula/\nhttps://math.stackexchange.com/a/3378595\n\nEuclid’s formula states that for \\(a^2 + b^2 = c^2\\), there exists \\(0 &lt; n &lt; m\\) such that: \\[a = m^2 - n^2, b = 2mn, c = m^2+n^2\\]\nSince Euclid’s formula states that \\(a = m^2 - n^2, b = 2mn, c = m^2+n^2\\), we can also say for \\(a + b + c = 1000 = P\\) that: \\[P = m^2 - n^2 + 2mn + m^2 + n^2 = 2m^2 + 2mn\\]\nThus, we can solve for \\(n\\): \\[\\frac{P - 2m^2}{2m} = n\\]\nBecause \\(m &gt; n &gt; 0\\), we can define limits to search for \\(m\\).\nTo find the lower limit such that \\(n &lt; m\\): \\[\\frac{P - 2m^2}{2m} = n \\lt m ;\\: P - 2m^2 &lt; 2m^2; \\: P \\lt 4m^2 ;\\: \\frac{\\sqrt{P}}{2} \\lt m\\]\nTo find the upper limit such that \\(n &gt; 0\\) \\[\\frac{P - 2m^2}{2m} = n \\gt 0 ;\\: P - 2m^2 &gt; 0; \\: P \\gt 2m^2; \\: m \\lt \\sqrt{\\frac{P}{2}}\\]\nThus, \\[\\frac{\\sqrt{P}}{2} \\lt m \\lt \\sqrt{\\frac{P}{2}}\\]\nAnd because \\(m\\) is a whole number: \\[ \\lceil{\\frac{\\sqrt{P}}{2}\\rceil} \\leq m \\leq \\lfloor{ \\sqrt{\\frac{P}{2}}}\\rfloor\\]\nReplacing \\(P\\) with \\(1000\\) \\[ \\lceil{\\frac{\\sqrt{1000}}{2}\\rceil} \\leq m \\leq \\lfloor{ \\sqrt{\\frac{1000}{2}}}\\rfloor\\]\nSo \\[16 \\leq m \\leq 22\\]\nNo Code\nWe have enough information here to try a few combinations to find our answer.\nSince \\(\\frac{P - 2m^2}{2m} = n; \\: \\frac{500 - m^2}{m} = n\\) & \\(n\\) must be an integer, the only value of \\(m\\) for \\(16 \\leq m \\leq 22\\) is \\(m=20\\) where \\(n = \\frac{1000-2*20^2}{2*20} = (2*20)*\\frac{25-20}{2*20} = 25 - 20 = 5\\)\nThus, \\[n = 5, m = 20\\] & \\[a = 2*5*20 = 200,\\: b = 20^2-5^2 = 375; \\: c = 5^2 + 20^2 = 425\\]\nWhere \\[a*b*c = 200*375*425 = 31875000\\]\nCode\nThe No Code solution above can be written as code simply via:\n\nCodep &lt;- 1000\nm1 &lt;- ceiling(sqrt(p)/2)\nm2 &lt;- floor(sqrt(p/2))\nm &lt;- m1:m2\n# can use this because n = (p-2m^2)/(2m) & n is an integer\nm &lt;- m[(p - 2*m^2) %% (2*m) == 0]\nn &lt;- (p - 2*m^2)/(2*m)\nl &lt;- list(\n  # switch a & b here b/c 2mn &gt; m^2 - n^2 | they can be interchanged b/c a^2+b^2 = b^2+a^2 = c^2\n  a = 2 * m * n,\n  b = m^2 - n^2,\n  c = m^2 + n^2\n)\nl\nunlist(l) |&gt; prod()\n\n$a\n[1] 200\n\n$b\n[1] 375\n\n$c\n[1] 425\n\n[1] 31875000",
+    "text": "R\nWe can brute force this problem by trying every combination of \\(a, b, c\\) since there is exactly one triplet.\nAnswer 1 - Brute Force\n\nCodebrute &lt;- function(p) {\n  for (i in 1:p) {\n    for (j in 1:p) {\n      for (k in 1:p) {\n        l &lt;- list(a = i, b = j, c = k)\n        if (l$a^2 + l$b^2 == l$c^2 & sum(l$a, l$b, l$c) == p) {\n          return(c(l, prod=prod(unlist(l))))\n        }\n      }\n    }\n  }\n}\n\ntic()\nbrute(1000)\ntoc()\n\n$a\n[1] 200\n\n$b\n[1] 375\n\n$c\n[1] 425\n\n$prod\n[1] 31875000\n\n163.554 sec elapsed\n\n\nRepetitive assignments are very, very, slow in R … below is 8 times faster.\n\nCodebrute2 &lt;- function(p) {\n  for (i in 1:p) {\n    for (j in 1:p) {\n      for (k in 1:p) {\n        if (i^2 + j^2 == k^2 & i+j+k == p) {\n          return(c(a = i, b = j, c = k, prod = i*j*k))\n        }\n      }\n    }\n  }\n}\n\ntic()\nbrute2(1000)\ntoc()\n\n       a        b        c     prod \n     200      375      425 31875000 \n20.325 sec elapsed\n\n\nAnswer 2 - Inequality Bounds\nWe can limit the number of looping iterations by setting bounds for our variables.\nResources:\n\nhttps://martin-ueding.de/posts/project-euler-solution-9-special-pythagorean-triplet/\n\nSince \\(c &gt; b &gt; a\\) and \\(c = 1000 - a - b\\), combining these gives us: \\[1000 - a - b &gt; b;\\: 1000 - a &gt; 2b;\\: b &lt; 500 - \\frac{a}{2}\\]\nAdditionally, since \\(a &lt; b &lt; c\\) & \\(c = 1000 - a - b\\) & \\(a = 1000 - b - c\\), then \\[1000 - a - c \\lt c; \\: 1000 - a \\lt 2c; \\:\\frac{1000 - a}{2}\\lt c\\]\nWe can use these bounds on \\(b\\) & \\(c\\) to search for the answer faster than the brute force method.\n\nCodebounds &lt;- function(p) {\n  for (i in 1:p) {\n    for (j in i:floor((p - i)/2)) {\n      for (k in floor((p - i)/2):p) {\n        if (i^2 + j^2 == k^2 & i+j+k == p) {\n          return(c(a = i, b = j, c = k, prod = i*j*k))\n        }\n      }\n    }\n  }\n}\n\ntic()\nbounds(1000)\ntoc()\n\n       a        b        c     prod \n     200      375      425 31875000 \n3.789 sec elapsed\n\n\nAnswer 3 - Euclid’s Formula\nWe can use Euclid’s formula.\nResources:\n\nhttps://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple\nhttps://www.cuemath.com/pythagorean-triples-formula/\nhttps://math.stackexchange.com/a/3378595\n\nEuclid’s formula states that for \\(a^2 + b^2 = c^2\\), there exists \\(0 &lt; n &lt; m\\) such that: \\[a = m^2 - n^2, b = 2mn, c = m^2+n^2\\]\nSince Euclid’s formula states that \\(a = m^2 - n^2, b = 2mn, c = m^2+n^2\\), we can also say for \\(a + b + c = 1000 = P\\) that: \\[P = m^2 - n^2 + 2mn + m^2 + n^2 = 2m^2 + 2mn\\]\nThus, we can solve for \\(n\\): \\[\\frac{P - 2m^2}{2m} = n\\]\nBecause \\(m &gt; n &gt; 0\\), we can define limits to search for \\(m\\).\nTo find the lower limit such that \\(n &lt; m\\): \\[\\frac{P - 2m^2}{2m} = n \\lt m ;\\: P - 2m^2 &lt; 2m^2; \\: P \\lt 4m^2 ;\\: \\frac{\\sqrt{P}}{2} \\lt m\\]\nTo find the upper limit such that \\(n &gt; 0\\) \\[\\frac{P - 2m^2}{2m} = n \\gt 0 ;\\: P - 2m^2 &gt; 0; \\: P \\gt 2m^2; \\: m \\lt \\sqrt{\\frac{P}{2}}\\]\nThus, \\[\\frac{\\sqrt{P}}{2} \\lt m \\lt \\sqrt{\\frac{P}{2}}\\]\nAnd because \\(m\\) is a whole number: \\[ \\lceil{\\frac{\\sqrt{P}}{2}\\rceil} \\leq m \\leq \\lfloor{ \\sqrt{\\frac{P}{2}}}\\rfloor\\]\nReplacing \\(P\\) with \\(1000\\) \\[ \\lceil{\\frac{\\sqrt{1000}}{2}\\rceil} \\leq m \\leq \\lfloor{ \\sqrt{\\frac{1000}{2}}}\\rfloor\\]\nSo \\[16 \\leq m \\leq 22\\]\nNo Code\nWe have enough information here to try a few combinations to find our answer.\nSince \\(\\frac{P - 2m^2}{2m} = n; \\: \\frac{500 - m^2}{m} = n\\) & \\(n\\) must be an integer, the only value of \\(m\\) for \\(16 \\leq m \\leq 22\\) is \\(m=20\\) where \\(n = \\frac{1000-2*20^2}{2*20} = (2*20)*\\frac{25-20}{2*20} = 25 - 20 = 5\\)\nThus, \\[n = 5, m = 20\\] & \\[a = 2*5*20 = 200,\\: b = 20^2-5^2 = 375; \\: c = 5^2 + 20^2 = 425\\]\nWhere \\[a*b*c = 200*375*425 = 31875000\\]\nCode\nThe No Code solution above can be written as code simply via:\n\nCodep &lt;- 1000\nm1 &lt;- ceiling(sqrt(p)/2)\nm2 &lt;- floor(sqrt(p/2))\nm &lt;- m1:m2\n# can use this because n = (p-2m^2)/(2m) & n is an integer\nm &lt;- m[(p - 2*m^2) %% (2*m) == 0]\nn &lt;- (p - 2*m^2)/(2*m)\nl &lt;- list(\n  # switch a & b here b/c 2mn &gt; m^2 - n^2 | they can be interchanged b/c a^2+b^2 = b^2+a^2 = c^2\n  a = 2 * m * n,\n  b = m^2 - n^2,\n  c = m^2 + n^2\n)\nl\nunlist(l) |&gt; prod()\n\n$a\n[1] 200\n\n$b\n[1] 375\n\n$c\n[1] 425\n\n[1] 31875000",
     "crumbs": [
       "Project Euler",
       "Problem 9 - Special Pythagorean Triplet"
@@ -630,7 +630,7 @@
     "href": "euler/problem/0009.html#python",
     "title": "Problem 9 - Special Pythagorean Triplet",
     "section": "Python",
-    "text": "Python\nAnswer 1",
+    "text": "Python\nAnswer 1 - Brute Force\n\nCodeimport time\n\ndef brute2(p: int) -&gt; dict:\n  for i in range(1, p+1):\n    for j in range(1, p+1):\n      for k in range(1, p+1):\n        if i**2 + j**2 == k**2 and i+j+k == p:\n          return({'a': i, 'b': j, 'c': k, 'prod': i*j*k})\n\nt0 = time.perf_counter()\nprint(brute2(1000))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n{'a': 200, 'b': 375, 'c': 425, 'prod': 31875000}\n14.058 sec elapsed\n\n\nAnswer 2 - Inequality Bounds\n\nCodefrom math import floor\n\ndef bounds(p: int) -&gt; dict:\n  for i in range(1, p+1):\n    for j in range(i, floor((p-i)/2)+1):\n      for k in range(floor((p-i)/2), p+1):\n        if i**2 + j**2 == k**2 and i+j+k == p:\n          return({'a': i, 'b': j, 'c': k, 'prod': i*j*k})\n\nt0 = time.perf_counter()\nprint(bounds(1000))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n{'a': 200, 'b': 375, 'c': 425, 'prod': 31875000}\n2.785 sec elapsed\n\n\nAnswer 3 - Euclid’s Formula\n\nCodefrom math import ceil, floor, prod\n\np = 1000\nm1 = ceil(p**0.5/2)\nm2 = floor((p/2)**0.5)\nm = list(range(m1, m2+1))\n# can use this because n = (p-2m^2)/(2m) & n is an integer\nm = [i for i in m if (p-2*i**2) % (2*i) == 0][0]\nn = (p-2*m**2)/(2*m)\n# switch a & b here b/c 2mn &gt; m^2 - n^2 | they can be interchanged b/c a^2+b^2 = b^2+a^2 = c^2\nd = {\n  'a': 2 * m * n,\n  'b': m**2 - n**2,\n  'c': m**2 + n**2\n}\nprint(d)\nprint(prod(d.values()))\n\n{'a': 200.0, 'b': 375.0, 'c': 425.0}\n31875000.0",
     "crumbs": [
       "Project Euler",
       "Problem 9 - Special Pythagorean Triplet"
@@ -674,10 +674,87 @@
     "href": "euler/problem/0007.html#development",
     "title": "Problem 7 - 10,001st Prime",
     "section": "Development",
-    "text": "Development\nThe Sieve of Eratosthenes is important here. Resource:\n\nhttps://cp-algorithms.com/algebra/sieve-of-eratosthenes.html\n\nIt is said that \\(n * ln(n)\\) is a good estimate of the \\(n\\)th prime.\nThus, we implement the logic below as a crude implementation of the sieve where we pre-generate values, setting our upper bound to \\(2 * n * ln(n)\\) where \\(n\\) is the \\(n\\)th prime.\nIn the sieve, we eliminate each prime incrementally from the pre-generated set until we reach the \\(n\\)th prime. We do this by checking divisibility by the lowest prime of 2, then 3, 5, 7, etc.",
+    "text": "Development\nThe Sieve of Eratosthenes is important here. Resource:\n\nhttps://cp-algorithms.com/algebra/sieve-of-eratosthenes.html\n\nIt is said that \\(n * ln(n)\\) is a good estimate of the \\(n\\)th prime.\nThus, we implement the logic below as a crude implementation of the sieve where we pre-generate a sequence of values: setting our lower bound to 2, and our upper bound to \\(2 * n * ln(n)\\) where \\(n\\) is the \\(n\\)th prime.\nIn the sieve, we eliminate values incremntally from the pre-generated set by conducting remainder division to reach the next prime until we reach the \\(n\\)th prime. This pattern allows us to conduct divisibility by the lowest prime of 2, then 3, 5, 7, etc., & we do not even need to check for primeness.\nThe sieve is pretty neat!",
     "crumbs": [
       "Project Euler",
       "Problem 7 - 10,001st Prime"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0010.html",
+    "href": "euler/problem/0010.html",
+    "title": "Problem 10 - Summation of Primes",
+    "section": "",
+    "text": "Train tracks leading to Nine Arches Bridge & and surrounding village  Demodara, Ella, Sri Lanka - April 30th, 2025\nThe sum of the primes below \\(10\\) is \\(2 + 3 + 5 + 7 = 17\\).  Find the sum of all the primes below two million.\nhttps://projecteuler.net/problem=10",
+    "crumbs": [
+      "Project Euler",
+      "Problem 10 - Summation of Primes"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0010.html#development",
+    "href": "euler/problem/0010.html#development",
+    "title": "Problem 10 - Summation of Primes",
+    "section": "Development",
+    "text": "Development",
+    "crumbs": [
+      "Project Euler",
+      "Problem 10 - Summation of Primes"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0010.html#r",
+    "href": "euler/problem/0010.html#r",
+    "title": "Problem 10 - Summation of Primes",
+    "section": "R",
+    "text": "R\nAnswer 1 - Sieve\n\nCodesieve &lt;- function(n) {\n  x &lt;- 2:n\n  p &lt;- c()\n  while(length(x) &gt; 0) {\n    p &lt;- c(p, x[1])\n    # incremental elimination\n    x &lt;- x[x %% x[1] != 0]\n  }\n  return(p)\n}\n\ntic()\nx &lt;- sieve(2e6)\nsum(x)\ntoc()\n\n[1] 142913828922\n78.201 sec elapsed",
+    "crumbs": [
+      "Project Euler",
+      "Problem 10 - Summation of Primes"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0010.html#python",
+    "href": "euler/problem/0010.html#python",
+    "title": "Problem 10 - Summation of Primes",
+    "section": "Python",
+    "text": "Python\nAnswer 1 - Sieve\n\nCodeimport time\n\ndef sieve(n: float) -&gt; list:\n  x = list(range(2, int(n)+1))\n  p = []\n  while len(x) &gt; 0:\n    p.append(x[0])\n    # incremental elimination\n    x = [i for i in x if i % x[0] != 0]\n  return(p)\n\nt0 = time.perf_counter()\nx = sieve(2e6)\nprint(sum(x))\nt1 = time.perf_counter()\nt = t1 - t0\nprint(f'{t:.3f} sec elapsed')\n\n142913828922\n394.093 sec elapsed",
+    "crumbs": [
+      "Project Euler",
+      "Problem 10 - Summation of Primes"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0004.html#thoughts",
+    "href": "euler/problem/0004.html#thoughts",
+    "title": "Problem 4 - Largest Palindrome Product",
+    "section": "Thoughts",
+    "text": "Thoughts\nOne of the lessons of working through the Project Euler problems is to learn to see & use patterns as mathematical shortcuts.\nAn observation that a user on Stackoverflow made is that all even digit palindromes (e.g. for even values of n in the answers below) are divisible by 11.\nIncreasing n in this problem is a great example of the battle between writing efficient logic & conducting in-memory compute.\nI do not implement the divisible by 11 logic in any of the answers below, but I do share my thoughts on 1st order improvements to my original answers to handle runtime complexity. I may come back to implementing this pattern sometime to discover calculating larger even digit palindromes.\nNone of the answers are optimized for values of \\(m &gt; 2\\).",
+    "crumbs": [
+      "Project Euler",
+      "Problem 4 - Largest Palindrome Product"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0004.html#answer-2",
+    "href": "euler/problem/0004.html#answer-2",
+    "title": "Problem 4 - Largest Palindrome Product",
+    "section": "Answer 2",
+    "text": "Answer 2\nThe real machine memory/RAM issues occur when we increase n.\nWe can make this more efficient by looping through a sequence of products. Storing a sequence of products with increasing values of n (e.g. n = 5) will lead to out of memory errors, possibly due to the fact that R is not allowing to store tables in memory larger than ~2 billion rows (2^31).\nOne way to deal with these out of memory errors is to chunk/partition the sequence of product results incrementally. Additionally, we should not even attempt to push the matrix row upper bound limit of 2^31 rows, because it is inefficient to store in memory & slow to generate.\nThus, we should use a max rational increment, such as \\(10^{n-1}\\), but also keep it well below \\(\\sqrt{2^{31}}=46,340.95\\) — striking a good balance. The loop iterations to find the palindrome is the main bottleneck, not the matrix product calculations.\nAfter running some tests, it seems like setting increment to \\(10^3 = 1,000\\) is a good idea b/c outer(1:10^3, 1:10^3) calculates fast.\nNot optimized for values of \\(m &gt; 2\\).\n\nCodepalindrome_m2n3 &lt;- function(m = 2, n = 3) {\n  # check from largest to least of product of m (10^n)-1 digit numbers\n  s &lt;- seq((10^n)-1, 10^(n-1))\n  inc &lt;- 10^3\n  p &lt;- length(s)/inc\n  for (j in 1:p) {\n    so &lt;- s[seq((j-1)*inc + 1, j*inc)]\n    xo &lt;- so\n    for (i in 1:(m-1)) xo &lt;- sort(unique(as.vector(outer(xo, so))), decreasing = T)\n    y &lt;- as.character(xo)\n    # find reverse digits & check if palindrome \n    for (i in 1:length(xo)) {\n      ij &lt;- (j-1)*inc+i\n      yr &lt;- lapply(strsplit(y[i], \"\"), function(i) paste(rev(i), collapse = \"\"))[[1]]\n      if (identical(y[i], yr)) {\n        p = xo[i]\n        # conduct reverse lookup for factors of palindrome product\n        # Note: this is unnecessary if we store factors with outer products in a dataframe\n        # booleans of the factor\n        f_x0 &lt;- p %% so == 0\n        f_x &lt;- p / so\n        i_f &lt;- min(which(so %in% f_x[f_x0]))\n        f1 &lt;- so[i_f]\n        f2 &lt;- f_x[i_f]\n        return(data.frame(p = p, f1, f2, iter = ij, j))\n      }\n    }\n  }\n}\n\ntic()\npalindrome_m2n3(n = 5)\ntoc()\n\n           p    f1    f2  iter j\n1 9966006699 99979 99681 28880 1\n0.261 sec elapsed",
+    "crumbs": [
+      "Project Euler",
+      "Problem 4 - Largest Palindrome Product"
+    ]
+  },
+  {
+    "objectID": "euler/problem/0004.html#conclusion",
+    "href": "euler/problem/0004.html#conclusion",
+    "title": "Problem 4 - Largest Palindrome Product",
+    "section": "Conclusion",
+    "text": "Conclusion",
+    "crumbs": [
+      "Project Euler",
+      "Problem 4 - Largest Palindrome Product"
     ]
   }
 ]

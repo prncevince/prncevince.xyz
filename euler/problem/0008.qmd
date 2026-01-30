@@ -92,6 +92,5 @@ prod(ans$digits) == ans$max
 ans
 ```
 
-## Python
-
-### Answer 1
+{{< include _0008.qmd >}}
+ 

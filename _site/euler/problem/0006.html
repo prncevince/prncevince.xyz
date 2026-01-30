@@ -260,6 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Problem 9 - Special Pythagorean Triplet</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../euler/problem/0010.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem 10 - Summation of Primes</span></a>
+  </div>
+</li>
       </ul>
 </li>
     </ul>
@@ -314,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 27, 2026</p>
+      <p class="date-modified">January 29, 2026</p>
     </div>
   </div>
     
@@ -324,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../assets/img/DJI_20250430213330_0835_D.jpg" class="img-fluid figure-img"></p>
-<figcaption>Train tracks leading to 9 Arches Bridge <br> Ella, Sri Lanka - April 30th, 2025</figcaption></figure>
+<figcaption>Train tracks leading to Nine Arches Bridge <br> Demodara, Ella, Sri Lanka - April 30th, 2025</figcaption></figure>
 </div>
 <p>The sum of the squares of the first ten natural numbers is, <span class="math display">\[1^2 + 2^2 + ... + 10^2 = 385.\]</span> The square of the sum of the first ten natural numbers is, <span class="math display">\[(1 + 2 + ... + 10)^2 = 55^2 = 3025.\]</span> Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is <span class="math inline">\(3025 - 385 = 2640\)</span>.</p>
 <p>Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.</p>
@@ -343,6 +349,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="python" class="level2"><h2 class="anchored" data-anchor-id="python">Python</h2>
 <section id="answer-1-1" class="level3"><h3 class="anchored" data-anchor-id="answer-1-1">Answer 1</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">101</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sum_sq <span class="op">=</span> <span class="bu">sum</span>([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> x])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sq_sum <span class="op">=</span> <span class="bu">sum</span>(x)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sq_sum <span class="op">-</span> sum_sq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>25164150</code></pre>
+</div>
+</div>
 
 
 </section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>© 2023-2026 Vincent Clemson | This post is licensed under &lt;a href='http://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank'&gt;CC BY-NC-SA 4.0&lt;/a&gt;</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-clemson2026" class="csl-entry quarto-appendix-citeas" role="listitem">

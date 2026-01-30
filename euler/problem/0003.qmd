@@ -111,6 +111,4 @@ factor_largest_p(600851475142)
 toc()
 ```
 
-## Python
-
-### Answer 1
+{{< include _0003.qmd >}}

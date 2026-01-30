@@ -15,7 +15,17 @@
 <link>https://prncevince.xyz/euler/</link>
 </image>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Wed, 21 Jan 2026 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 28 Jan 2026 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Problem 10 - Summation of Primes</title>
+  <dc:creator>Vincent Clemson</dc:creator>
+  <link>https://prncevince.xyz/euler/problem/0010.html</link>
+  <description><![CDATA[ <img src="https://prncevince.xyz/euler/assets/img/DJI_20250430213311_0834_D.jpg" class="img-fluid figure-img"> ]]></description>
+  <category>primes</category>
+  <guid>https://prncevince.xyz/euler/problem/0010.html</guid>
+  <pubDate>Wed, 28 Jan 2026 03:00:00 GMT</pubDate>
+  <media:content url="https://prncevince.xyz/euler/assets/img/DJI_20250430213311_0834_D.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Problem 9 - Special Pythagorean Triplet</title>
   <dc:creator>Vincent Clemson</dc:creator>

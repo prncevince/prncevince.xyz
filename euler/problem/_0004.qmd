@@ -1,0 +1,30 @@
+## Python
+
+### Answer 1
+
+```{python}
+import time
+
+def palindrome_m2n3(m: int, n: int) -> int:
+  # check from largest to least of product of m n-digit numbers
+  x = [i for i in range(((10**n)-1)**m, 0, -1)]
+  # n-digit sequence
+  f_i = [i for i in range(10**n-1, 10**(n-1)-1, -1)]
+  for i in x:
+    # find reverse digits & check if palindrome 
+    # then check for compatible n-digit m-factor product
+    if str(i) == str(i)[::-1]:
+      # compatibility check: of an n-digit factor
+      f_x = [i / j for j in f_i]
+      f = [j for j in f_x if j == int(j) and j in f_i]
+      if len(f) > 0:
+        f1 = f[0]
+        f2 = i / f1
+        return {'p': i, 'f1': f1, 'f2': f2, 'iter': x.index(i)+1}
+
+t0 = time.perf_counter()
+print(palindrome_m2n3(m=2, n=3))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```

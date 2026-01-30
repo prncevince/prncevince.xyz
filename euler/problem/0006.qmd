@@ -13,9 +13,9 @@ categories: ["sum of squares"]
 ```
 
 ![
-  Train tracks leading to 9 Arches Bridge
+  Train tracks leading to Nine Arches Bridge
   <br>
-  Ella, Sri Lanka - April 30th, 2025
+  Demodara, Ella, Sri Lanka - April 30th, 2025
 ](../assets/img/DJI_20250430213330_0835_D.jpg)
 
 The sum of the squares of the first ten natural numbers is,
@@ -42,6 +42,4 @@ sq_sum <- sum(1:100)^2
 sq_sum - sum_sq
 ```
 
-## Python
-
-### Answer 1
+{{< include _0006.qmd >}}

@@ -1,0 +1,36 @@
+## Python
+
+### Answer 1
+
+```{python}
+import time
+from math import ceil, log
+
+def sieve(n: int) -> int:
+  n1 = 2
+  n2 = 2*ceil(n*log(n))
+  p = list(range(2, n2+1))
+  for i in range(2, n+1):
+    p = [j for j in p if j % p[0] != 0]
+  return(p[0])
+
+n = 10001
+t0 = time.perf_counter()
+print(sieve(n))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```
+
+### Answer 2
+
+
+```{python}
+import sympy
+
+t0 = time.perf_counter()
+print(sympy.prime(10001))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```

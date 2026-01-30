@@ -1,0 +1,25 @@
+## Python
+
+### Answer 1 - Sieve
+
+```{python}
+#| cache: true
+
+import time
+
+def sieve(n: float) -> list:
+  x = list(range(2, int(n)+1))
+  p = []
+  while len(x) > 0:
+    p.append(x[0])
+    # incremental elimination
+    x = [i for i in x if i % x[0] != 0]
+  return(p)
+
+t0 = time.perf_counter()
+x = sieve(2e6)
+print(sum(x))
+t1 = time.perf_counter()
+t = t1 - t0
+print(f'{t:.3f} sec elapsed')
+```
