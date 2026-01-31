@@ -1,0 +1,11 @@
+#quarto-sidebar:nth-child(1) {
+  padding-top: 0;
+}
+#quarto-sidebar div.sidebar-search {
+  display: block;
+  position: relative;
+  left: -2px;
+}
+#quarto-sidebar .sidebar-menu-container {
+  padding-top: 0;
+}

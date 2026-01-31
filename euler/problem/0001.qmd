@@ -5,7 +5,6 @@ draft: false
 link: <https://projecteuler.net/problem=1>{.link-euler}
 image: ../assets/img/DJI_20250426080623_0634_D.jpg
 categories: [multiples, divisors, remainder]
-
 ---
 
 ```{r}

@@ -23,6 +23,7 @@ website:
   bread-crumbs: false
   sidebar:
     - id: euler
+      search: true
       title: Project Euler
       contents: 
         - section: Project Euler

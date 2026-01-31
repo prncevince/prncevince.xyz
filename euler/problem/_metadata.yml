@@ -1,2 +1,10 @@
-css: [/assets/css/posts.css]
+css: [/assets/css/posts.css, /assets/css/sidebar.css]
 page-navigation: true
+include-after-body:
+  text: |
+    <div id="scroll-padding"></div>
+    <script src='/assets/js/sidebar.js'></script>
+    <script src='/assets/js/site.js'></script>
+    <script src='/assets/js/posts.js'></script>
+    <script src='/assets/js/sourceCode.js'></script>
+    <script src='/assets/js/euler.js'></script>

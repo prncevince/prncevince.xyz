@@ -116,4 +116,3 @@ prod(d_lcm$p ^ unlist(d_lcm$y))
 ```
 
 {{< include _0005.qmd >}}
- 

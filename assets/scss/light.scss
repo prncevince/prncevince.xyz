@@ -36,6 +36,34 @@ a:hover, .nav-footer a:hover, .quarto-listing-category > .category:hover {
 .nav-footer-left a {
   color: $primary;
 }
+
+/* Sidebar  */
+#quarto-sidebar #sidebar-input:focus-within {
+  box-shadow: rgba($primary, 0.6) 0 0 0 1px;
+  outline: none;
+}
+#quarto-sidebar #sidebar-input {
+  align-items: center;
+  background-color: $body-bg;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  color: $body-color;
+  display: flex;
+  line-height: 1.75em;
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
+#quarto-sidebar .clear-icon#clearBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaaaaa;
+  display: none; /* Hidden by default */
+}
+
 /* Header / Navbar */
 #quarto-header {
   box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.5);
